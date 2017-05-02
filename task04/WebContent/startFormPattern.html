@@ -2,163 +2,104 @@
 	onsubmit="return validateInfo()" action="task01form">
 	<table>
 		<tr>
-			<td><label for="surName">Фамилия </label></td>
-			<td><input type="text" class="form-control" id="surName"
-				name="surName" placeholder="Иванов"></td>
+			<td><label for="surNameStudent">Фамилия слушателя</label></td>
+			<td><input type="text" size="50" maxlength="50"
+				class="form-control" id="surNameStudent" name="surNameStudent"
+				placeholder="Иванов"></td>
 		</tr>
 		<tr>
-			<td><label for="firstName">Имя </label></td>
-			<td><input type="text" class="form-control" id="firstName"
-				name="firstName" placeholder="Иван"></td>
+			<td><label for="firstNameStudent">Имя слушателя </label></td>
+			<td><input type="text" size="50" maxlength="50"
+				class="form-control" id="firstNameStudent" name="firstNameStudent"
+				placeholder="Иван"></td>
 		</tr>
 		<tr>
-			<td><label for="patronymic">Отчество </label></td>
-			<td><input type="text" class="form-control" id="patronymic"
-				name="patronymic" placeholder="Иванич"></td>
+			<td><label for="patronymicStudent">Отчество слушателя </label></td>
+			<td><input type="text" size="50" maxlength="50"
+				class="form-control" id="patronymicStudent" name="patronymicStudent"
+				placeholder="Иванич"></td>
+		</tr>
+
+		<tr>
+			<td><label for="dateStart">Дата начала занятий</label></td>
+			<td><input type="date" class="form-control" id="dateStart"
+				name="dateStart"></td>
 		</tr>
 		<tr>
-			<td><label for="secretPhrase">Секретная фраза : </label></td>
-			<td><input type="password" class="form-control"
-				id="secretPhrase" name="secretPhrase" placeholder="Всемирный секрет"></td>
+			<td><label for="dateFinish">Дата окончания занятий</label></td>
+			<td><input type="date" class="form-control" id="dateFinish"
+				name="dateFinish"></td>
 		</tr>
+
 		<tr>
-			<td><label for="age">Возраст</label></td>
-			<td><input type="text" class="form-control" id="age" name="age"
-				placeholder="33"></td>
+			<td><label for="listOfTopicsStudiedIndependently">Список
+					тем, изученных самостоятельно<span style='padding-right: 10px;'>
+				</span>
+			</label></td>
+			<td>
+				<table>
+					<tr><td><input type="checkbox" name="${themeNUM}" id="${themeNUM}" value="${theme}"><span style='padding-left: 10px;'></span></td><td>${theme}</td></tr>
+				</table>
+			</td>
 		</tr>
+
 		<tr>
-			<td><label>Пол</label></td>
-			<td><input type="radio" name="gender" id="gender_Male"
-				value="Male" /> <label for="gender_Male">Мужчина</label> <br>
-				<input type="radio" name="gender" id="gender_Female" value="Female" />
-				<label for="gender_Female">Женщина</label></td>
+			<td><label>Тема курсового проекта </label></td>
+			<td><label for="courseProjectTheme"></label> <textarea
+					class="form-control" rows="3" maxlength="1000"
+					name="courseProjectTheme" id="courseProjectTheme"></textarea></td>
 		</tr>
+
 		<tr>
-			<td><label>Курс</label></td>
-			<td><label for="courseCombo"></label><select id="courseCombo"
-				name="courseCombo" class="form-control"
-				onchange="showOtherCourses()">
-					<option value="" disabled selected="selected"></option>
-					<option value="Java SE">Java SE</option>
-					<option value="Java EE">Java EE</option>
-					<option
-						value="Тестирование корабельных якорей методом погружения в Северное Море">
-						Тестирование корабельных якорей методом погружения в Северное Море</option>
-					<option
-						value="Вышивание крестиком в условиях, близких к невесомости">
-						Вышивание крестиком в условиях, близких к невесомости</option>
-			</select></td>
-		</tr>
-		<tr>
-			<td><label>Преподаватель </label></td>
-			<td><label for="teacherName"></label><select id="teacherName"
-				name="teacherName" class="form-control" size="3">
-					<option value="Иванов Иван Иванович">Иванов Иван Иванович</option>
-					<option value="Петров Петр Петрович">Петров Петр Петрович</option>
-					<option value="Сидоров Сидор Сидорович">Сидоров Сидор
-						Сидорович</option>
-			</select></td>
-		</tr>
-		<tr>
-			<td><label for="assessmentOfaCourseCombo">Оценка курса</label></td>
+			<td><label for="assessmentOfaCourseCombo">Оценка
+					курсового проекта</label></td>
 			<td><select id="assessmentOfaCourseCombo"
 				name="assessmentOfaCourseCombo" class="form-control">
 					<option value="" disabled selected></option>
-					<option value="10">10</option>
-					<option value="100500">100500</option>
-					<option value="Мильен Мильярдов">Мильен Мильярдов</option>
-					<option value="Еще пока нет такого числа">Еще пока нет
-						такого числа</option>
-					<option value="Это было даже лучше, чем 10 000 люстр от Карлсона!">
-						Это было даже лучше, чем 10 000 люстр от Карлсона!</option>
+					<option value="Excellent">Отлично</option>
+					<option value="Good">Хорошо</option>
+					<option value="Satisfactory">Удовлетворительно</option>
 			</select></td>
 		</tr>
-		<tr>
-			<td><label>Прочие курсы</label></td>
-			<td><label for="otherCoursesCombo"></label><select
-				id="otherCoursesCombo" name="otherCoursesCombo" multiple
-				class="form-control">
-					<option value="Java SE" id="otherCourse01" hidden="true">
-						Java SE</option>
-					<option value="Java EE" id="otherCourse02" hidden="true">
-						Java EE</option>
-					<option
-						value="Тестирование корабельных якорей методом погружения в Северное
-                                Море"
-						id="otherCourse03" hidden="true">Тестирование корабельных
-						якорей методом погружения в Северное Море</option>
-					<option
-						value="Вышивание крестиком в условиях, близких к невесомости"
-						id="otherCourse04" hidden="true">Вышивание крестиком в
-						условиях, близких к невесомости</option>
-			</select></td>
-		</tr>
-		<tr>
-			<td><label>Как Вы о нас узнали </label></td>
-			<td>
-				<p>
-					<label> <input type="checkbox"
-						name="howDidYouHearAboutUs01" id="howDidYouHearAboutUs01"
-						value="Реклама по ТВ">
-					</label> Реклама по ТВ
-				</p>
-				<p>
-					<label> <input type="checkbox"
-						name="howDidYouHearAboutUs02" id="howDidYouHearAboutUs02"
-						value="Реклама по радио">
-					</label> Реклама по радио
-				</p>
-				<p>
-					<label> <input type="checkbox"
-						name="howDidYouHearAboutUs03" id="howDidYouHearAboutUs03"
-						value="Реклама в Интернете">
-					</label> Реклама в Интернете
-				</p>
-				<p>
-					<label> <input type="checkbox"
-						name="howDidYouHearAboutUs04" id="howDidYouHearAboutUs04"
-						value="Реклама в метро">
-					</label> Реклама в метро
-				</p>
-				<p>
-					<label> <input type="checkbox"
-						name="howDidYouHearAboutUs05" id="howDidYouHearAboutUs05"
-						value="Тварь, какая-то мне этими буклетами весь почтовый ящик
-                            зас#%ла">
-					</label> Тварь, какая-то мне этими буклетами весь почтовый ящик зас#%ла
-				</p>
-				<p>
-					<label> <input type="checkbox"
-						id="howDidYouHearAboutUsOTHER" value="Другое"
-						onclick="otherCheck()">
-					</label> Другое
-				</p> <label for="textOtherId"></label> <textarea class="form-control"
-					name="textOtherId" id="textOtherId" disabled></textarea>
 
-			</td>
+		<tr>
+			<td><label for="surNameTeacher">Фамилия преподавателя</label></td>
+			<td><input type="text" size="50" maxlength="50"
+				class="form-control" id="surNameTeacher" name="surNameTeacher"
+				placeholder="Иванов"></td>
 		</tr>
 		<tr>
-			<td><label>Прочие Рекомендации </label></td>
-			<td><label for="otherRecommendations"></label> <textarea
-					class="form-control" name="otherRecommendations"
-					id="otherRecommendations"></textarea></td>
+			<td><label for="firstNameTeacher">Имя преподавателя </label></td>
+			<td><input type="text" size="50" maxlength="50"
+				class="form-control" id="firstNameTeacher" name="firstNameTeacher"
+				placeholder="Иван"></td>
+		</tr>
+		<tr>
+			<td><label for="patronymicTeacher">Отчество
+					преподавателя </label></td>
+			<td><input type="text" size="50" maxlength="50"
+				class="form-control" id="patronymicTeacher" name="patronymicTeacher"
+				placeholder="Иванич"></td>
+		</tr>
+
+		<tr>
+			<td><label>Упаковать в архив </label></td>
+			<td><label> <input type="checkbox" name="archive"
+					id="archive" value="archive">
+			</label></td>
+		</tr>
+
+		<tr>
+			<td><label>Тип архива</label></td>
+			<td><input type="radio" name="archiveType" id="ZIP" value="ZIP" />
+				<label for="ZIP">ZIP</label> <br> <input type="radio"
+				name="archiveType" id="JAR" value="JAR" /> <label for="JAR">JAR</label></td>
 		</tr>
 
 	</table>
 	<p>
-		<input id="secretValue" name="secretValue" type="hidden" value="" />
-		<input type="submit" id="button01" class="btn btn-primary"
-			onclick="saveSecret(1);" value="Отправить – здесь все правда" /> <input
-			type="submit" id="button02" class="btn btn-primary"
-			onclick="saveSecret(2);" value="Отправить – я все равно все наврал" />
+		<input type="submit" id="buttonSubmit" class="btn btn-primary"
+			value="Сгенерировать письмо" />
+	</p>
 
-	</p>
-	<p>
-		<label>Управление валидацией на странице при помощи
-			JavaScript:</label> <label for="onOffNameON"></label><input type="radio"
-			name="onOff" id="onOffNameON" value="on" checked
-			onchange="javaScriptEnable()"> ON <label for="onOffNameOFF"></label><input
-			type="radio" name="onOff" id="onOffNameOFF" value="off"
-			onchange="javaScriptDisable()"> OFF
-	</p>
 </form>
