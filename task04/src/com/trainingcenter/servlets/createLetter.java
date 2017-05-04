@@ -5,18 +5,19 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class contentStartFormServlet extends HttpServlet {
+public class createLetter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -24,22 +25,39 @@ public class contentStartFormServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.println("<div class='col-xs-8'>");
+		//out.println("Hello from createLetter!!!!!!!!!!!");
 
+		HashMap<String, String> paramFromRequest = putToHashMap(request);
+		//printAllKeysValues (out, paramFromRequest);
+		
+		
 		writeContent(out, request);
 
-		out.println("</div>");
+	}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("advertising.html");
-		dispatcher.include(request, response);
-		out.close();
-
+	private HashMap<String, String> putToHashMap(HttpServletRequest request) {
+		HashMap<String, String> paramFromRequest = new HashMap<String, String>();
+		Enumeration<?> params = request.getParameterNames();
+		while (params.hasMoreElements()) {
+			String paramName = (String) params.nextElement();
+			// System.out.println("Parameter Name - "+paramName+", Value -
+			// "+request.getParameter(paramName));
+			paramFromRequest.put(paramName, request.getParameter(paramName));
+		}
+		return paramFromRequest;
+	}
+	
+	private void printAllKeysValues (PrintWriter out, HashMap<String, String> paramFromRequest){
+		for (HashMap.Entry<String, String> entry : paramFromRequest.entrySet()) {
+		    out.println("<p>Key: " + entry.getKey() + " Value: "
+		        + entry.getValue() + "<br>");
+		}
 	}
 
 	private void writeContent(PrintWriter out, HttpServletRequest request) throws IOException {
 
 		ServletContext servletContext = request.getServletContext();
-		String realPath = servletContext.getRealPath("/startFormPattern.html");
+		String realPath = servletContext.getRealPath("/recomendate.txt");
 		Path path = Paths.get(realPath);
 		List<String> readAllLines = Files.readAllLines(path);
 
@@ -49,7 +67,7 @@ public class contentStartFormServlet extends HttpServlet {
 			// System.out.println(str01);
 		}
 	}
-
+	
 	private String parser(String strStart, HttpServletRequest request) throws IOException {
 		Pattern pNum = Pattern.compile("\\$\\{themeNUM\\}");
 		Matcher matcherNum = pNum.matcher(strStart);
@@ -74,7 +92,7 @@ public class contentStartFormServlet extends HttpServlet {
 
 		return strFinish;
 	}
-
+	
 	private List<String> readFromFile(String pathForFile, HttpServletRequest request) throws IOException {
 		ServletContext servletContext = request.getServletContext();
 		String realPath = servletContext.getRealPath(pathForFile);
@@ -89,5 +107,4 @@ public class contentStartFormServlet extends HttpServlet {
 		String strCOPY = String.valueOf(chars).trim();
 		return strCOPY;
 	}
-
 }

@@ -17,8 +17,9 @@ public class footerServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		out.println("<div class='footer'>");
-		out.println("FOOTER");
+		out.println("<div class='footer' align='center'>");
+		out.println("<p>");
+		out.println("This page was developed by Denis Tmenov.");
 		out.println("</div>");
 		out.println("</body>");
 		out.println("</html>");

@@ -57,4 +57,12 @@
     <servlet-name>footerServlet</servlet-name>
     <url-pattern>/footer.html</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>createLetter</servlet-name>
+    <servlet-class>com.trainingcenter.servlets.createLetter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createLetter</servlet-name>
+    <url-pattern>/createLetter.html</url-pattern>
+  </servlet-mapping>
 </web-app>
