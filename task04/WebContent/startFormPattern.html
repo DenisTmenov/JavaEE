@@ -17,17 +17,17 @@
 			<td><label for="patronymicStudent">Отчество слушателя </label></td>
 			<td><input type="text" size="50" maxlength="50"
 				class="form-control" id="patronymicStudent" name="patronymicStudent"
-				placeholder="Иванич"></td>
+				placeholder="Иванович"></td>
 		</tr>
 
 		<tr>
 			<td><label for="dateStart">Дата начала занятий</label></td>
-			<td><input type="date" class="form-control" id="dateStart"
+			<td><input type="date" max="01-01-2020" min="01-01-2017" class="form-control" id="dateStart"
 				name="dateStart"></td>
 		</tr>
 		<tr>
 			<td><label for="dateFinish">Дата окончания занятий</label></td>
-			<td><input type="date" class="form-control" id="dateFinish"
+			<td><input type="date" max="01-01-2020" min="01-01-2017" class="form-control" id="dateFinish"
 				name="dateFinish"></td>
 		</tr>
 
@@ -56,9 +56,9 @@
 			<td><select id="assessmentOfaCourseCombo"
 				name="assessmentOfaCourseCombo" class="form-control">
 					<option value="" disabled selected></option>
-					<option value="Excellent">Отлично</option>
-					<option value="Good">Хорошо</option>
-					<option value="Satisfactory">Удовлетворительно</option>
+					<option value="Отлично">Отлично</option>
+					<option value="Хорошо">Хорошо</option>
+					<option value="Удовлетворительно">Удовлетворительно</option>
 			</select></td>
 		</tr>
 
@@ -79,7 +79,7 @@
 					преподавателя </label></td>
 			<td><input type="text" size="50" maxlength="50"
 				class="form-control" id="patronymicTeacher" name="patronymicTeacher"
-				placeholder="Иванич"></td>
+				placeholder="Иванович"></td>
 		</tr>
 
 		<tr>

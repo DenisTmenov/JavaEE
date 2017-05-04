@@ -37,8 +37,8 @@ public class headerServlet extends HttpServlet {
 		out.println("<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'");
 		out.println("integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa'");
 		out.println("crossorigin='anonymous'></script>");
-		//out.println("<script src='/task04/validate.js'></script>");
-		//out.println("<script src='/task04/Arhive.js'></script>");
+		out.println("<script src='/task04/validate.js'></script>");
+		out.println("<script src='/task04/Arhive.js'></script>");
 		out.println("<title>Lesson 03. Task 02.</title>");
 		out.println("</head>");
 		out.println("<body>");

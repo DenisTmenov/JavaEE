@@ -1,13 +1,14 @@
-﻿Рекомендательное письмо
+﻿          Рекомендательное письмо
 
 ${surNameStudent} ${firstNameStudent} ${patronymicStudent} прослушал курс${manyCourses}:
-	${theme}
-в ООО «TrainingCenter» под моим руководством с ${dateStart} г. по ${dateFinish} г.
-За время посещения курс${oneCourse}${twoCourse} ${firstNameStudent} зарекомендовал себя пунктуальным, добросовестным слушателем, выполняющим вовремя домашние задания, показал себя трудолюбивым и исполнительным слушателем. 
+     ${theme}
+в ООО «TrainingCenter» под моим руководством с ${dateStart} по ${dateFinish}
+За время посещения курс${oneCourse}${twoCourse} ${firstNameStudent} зарекомендовал себя пунктуальным, добросовестным слушателем, 
+выполняющим вовремя домашние задания, показал себя трудолюбивым и исполнительным слушателем. 
 
 
 Преподаватель по курс${threeCourse}${fourCourse}
-${surNameTeacher} ${firstNameTeacherONE}. ${patronymicTeacherONE}.
+${surNameTeacher} ${firstNameTeacher} ${patronymicTeacher}
 
 ${dateToday} г.
 
