@@ -20,91 +20,92 @@ function validateInfo() {
 	var reg3 = / /;
 
 	var difference = Date.parse(dateStart.value) - Date.parse(dateFinish.value);
+	var stringReturn = true;
 
 	if (surNameStudent.value === "" || surNameStudent.value === null) {
 		alert("«Фамилия слушателя» не может быть пустой");
-		return false;
+		stringReturn = false;
 	} else if (surNameStudent.value.match(reg1)) {
 		alert("«Фамилия слушателя» не может содержать числа");
-		return false;
+		stringReturn = false;
 	} else if (surNameStudent.value.match(reg3)) {
 		alert("«Фамилия слушателя» не может содержать пробел");
-		return false;
+		stringReturn = false;
 	} else if (firstNameStudent.value === "" || firstNameStudent.value === null) {
 		alert("«Имя слушателя» не может быть пустым");
-		return false;
+		stringReturn = false;
 	} else if (firstNameStudent.value.match(reg1)) {
 		alert("«Имя слушателя» не может содержать числа");
-		return false;
+		stringReturn = false;
 	} else if (firstNameStudent.value.match(reg3)) {
 		alert("«Имя слушателя» не может содержать пробел");
-		return false;
+		stringReturn = false;
 	} else if (patronymicStudent.value !== "") {
 		if (patronymicStudent.value.match(reg1)) {
 			alert("«Отчество слушателя» не может содержать числа");
-			return false;
+			stringReturn = false;
 		} else if (patronymicStudent.value.match(reg1)) {
 			alert("«Отчество слушателя» не может содержать пробел");
-			return false;
+			stringReturn = false;
 		}
-
 	} else if (surNameTeacher.value === "" || surNameTeacher.value === null) {
 		alert("«Фамилия преподавателя» не может быть пустой");
-		return false;
+		stringReturn = false;
 	} else if (surNameTeacher.value.match(reg1)) {
 		alert("«Фамилия преподавателя» не может содержать числа");
-		return false;
+		stringReturn = false;
 	} else if (surNameTeacher.value.match(reg3)) {
 		alert("«Фамилия преподавателя» не может содержать пробел");
-		return false;
+		stringReturn = false;
 	} else if (firstNameTeacher.value === "" || firstNameTeacher.value === null) {
 		alert("«Имя преподавателя» не может быть пустым");
-		return false;
+		stringReturn = false;
 	} else if (firstNameTeacher.value.match(reg1)) {
 		alert("«Имя преподавателя» не может содержать числа");
-		return false;
+		stringReturn = false;
 	} else if (firstNameTeacher.value.match(reg3)) {
 		alert("«Имя преподавателя» не может содержать пробел");
-		return false;
+		stringReturn = false;
 	} else if (patronymicTeacher.value !== "") {
 		if (patronymicTeacher.value.match(reg1)) {
 			alert("«Отчество преподавателя» не может содержать числа");
-			return false;
+			stringReturn = false;
 		} else if (patronymicTeacher.value.match(reg1)) {
 			alert("«Отчество преподавателя» не может содержать пробел");
-			return false;
+			stringReturn = false;
 		}
-
 	} else if (courseProjectTheme.value === ""
 			|| courseProjectTheme.value === null) {
 		alert("«Тема курсового проекта» не может быть пустой");
-		return false;
+		stringReturn = false;
 	} else if (assessmentOfaCourseCombo.value === ""
 			|| assessmentOfaCourseCombo.value === null) {
 		alert("Укажите «оценку курсового проекта»");
-		return false;
+		stringReturn = false;
 	} else if (archive.checked === false) {
 		alert("Выберите «Упаковать в архив»");
-		return false;
+		stringReturn = false;
 	} else if (!document.getElementById('ZIP').checked
+			&& !document.getElementById('HTML').checked
 			&& !document.getElementById('JAR').checked) {
 		alert("Выберите «Тип архива»");
-		return false;
-
+		stringReturn = false;
 	} else if (dateStart.value === "" || dateStart.value === null) {
 		alert("«Дата начала занятий» не введена.");
-		return false;
+		stringReturn = false;
 	} else if (dateFinish.value === "" || dateFinish.value === null) {
 		alert("«Дата окончания занятий» не введена.");
-		return false;
+		stringReturn = false;
 	} else if (difference >= 0) {
 		alert("Вы перепутали даты местами.");
-		return false;
+		stringReturn = false;
 	}
 
-	else {
+	if (stringReturn === true) {
+
 		alert("Форма отправлена на сервлет.");
-		return true;
+
 	}
+	return stringReturn;
 
 }

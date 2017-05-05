@@ -1,5 +1,5 @@
 <form id="primaryTable" method="post" class="form-group"
-	onsubmit="return validateInfo()" action="createLetter.html">
+	onsubmit="return validateInfo()" action="startServlet.html" >
 	<table>
 		<tr>
 			<td><label for="surNameStudent">Фамилия слушателя</label></td>
@@ -92,8 +92,14 @@
 		<tr>
 			<td><label id="archiveTypeLable" hidden=1>Тип архива</label></td>
 			<td><input type="radio" hidden=1 name="archiveType" id="ZIP" value="ZIP" />
-				<label for="ZIP" hidden=1 id="ZIPLable">ZIP</label> <br> <input type="radio" hidden=1
-				name="archiveType" id="JAR"  value="JAR" /> <label for="JAR" hidden=1 id="JARLable">JAR</label></td>
+				<label for="ZIP" hidden=1 id="ZIPLable">ZIP</label> <br> 
+				
+				<input type="radio" hidden=1 name="archiveType" id="JAR"  value="JAR" /> 
+				<label for="JAR" hidden=1 id="JARLable" >JAR</label> <br> 
+				
+				<input type="radio" hidden=1 name="archiveType" id="HTML" value="HTML" /> 
+				<label for="HTML" hidden=1 id="HTMLLable" >HTML</label>
+				</td>
 		</tr>
 
 	</table>

@@ -58,11 +58,35 @@
     <url-pattern>/footer.html</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>createLetter</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.createLetter</servlet-class>
+    <servlet-name>createLetterHTML</servlet-name>
+    <servlet-class>com.trainingcenter.servlets.createLetterHTML</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>createLetter</servlet-name>
-    <url-pattern>/createLetter.html</url-pattern>
+    <servlet-name>createLetterHTML</servlet-name>
+    <url-pattern>/createLetterHTML.html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>createLetterZIP</servlet-name>
+    <servlet-class>com.trainingcenter.servlets.createLetterZIP</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createLetterZIP</servlet-name>
+    <url-pattern>/createLetterZIP.html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>createLetterJAR</servlet-name>
+    <servlet-class>com.trainingcenter.servlets.createLetterJAR</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createLetterJAR</servlet-name>
+    <url-pattern>/createLetterJAR.html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>startServlet</servlet-name>
+    <servlet-class>com.trainingcenter.servlets.startServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>startServlet</servlet-name>
+    <url-pattern>/startServlet.html</url-pattern>
   </servlet-mapping>
 </web-app>

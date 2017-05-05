@@ -16,6 +16,6 @@
 В целом могу охарактеризовать Дениса как прилежного слушателя и перспективного сотрудника. 
 
 
-Преподаватель                                                                              ${firstNameTeacherONE}.${patronymicTeacherONE}. ${surNameTeacher}
+Преподаватель                                                                              ${firstNameTeacherONE}${patronymicTeacherONE} ${surNameTeacher}
 
 
