@@ -9,9 +9,25 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+   <context-param>
+        <param-name>themes.txt</param-name>
+        <param-value>e:/Denis/GitHub/task04/themes.txt</param-value>
+    </context-param>
+    <context-param>
+        <param-name>recomendate.doc</param-name>
+        <param-value>e:/Denis/GitHub/task04/recomendate.doc</param-value>
+    </context-param>
+    <context-param>
+        <param-name>recomendate.docx</param-name>
+        <param-value>e:/Denis/GitHub/task04/recomendate.docx</param-value>
+    </context-param>
+    <context-param>
+        <param-name>recomendate.txt</param-name>
+        <param-value>e:/Denis/GitHub/task04/recomendate.txt</param-value>
+    </context-param>
   <servlet>
     <servlet-name>startformServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.startformServlet</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.StartformServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>startformServlet</servlet-name>
@@ -19,7 +35,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>headerServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.headerServlet</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.HeaderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>headerServlet</servlet-name>
@@ -27,7 +43,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>menuServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.menuServlet</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.MenuServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>menuServlet</servlet-name>
@@ -35,7 +51,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>contentStartFormServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.contentStartFormServlet</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.ContentStartFormServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>contentStartFormServlet</servlet-name>
@@ -43,7 +59,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>advertisingServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.advertisingServlet</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.AdvertisingServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>advertisingServlet</servlet-name>
@@ -51,7 +67,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>footerServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.footerServlet</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.FooterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>footerServlet</servlet-name>
@@ -59,7 +75,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>createLetterHTML</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.createLetterHTML</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.CreateLetterHTML</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>createLetterHTML</servlet-name>
@@ -67,7 +83,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>createLetterArchive</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.createLetterArchive</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.CreateLetterArchive</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>createLetterArchive</servlet-name>
@@ -75,7 +91,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>startServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.startServlet</servlet-class>
+    <servlet-class>com.trainingcenter.servlets.StartServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>startServlet</servlet-name>
