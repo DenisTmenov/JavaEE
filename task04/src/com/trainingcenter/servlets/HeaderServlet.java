@@ -41,7 +41,7 @@ public class HeaderServlet extends HttpServlet {
 		out.println("<script src='/task04/arhive.js'></script>");
 		out.println("<script src='/task04/action.js'></script>");
 		out.println("<script src='/task04/letterFullOrClean.js'></script>");
-		out.println("<title>Lesson 03. Task 02.</title>");
+		out.println("<title>Lesson 03. Task 04.</title>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h1 align='center'>Lesson 03 - Servlet API. Task 04. <br>");
