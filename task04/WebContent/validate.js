@@ -13,7 +13,6 @@ function validateInfo() {
 			.getElementById("assessmentOfaCourseCombo");
 
 	var archive = document.getElementById("archive");
-	var archiveType = document.getElementById("archiveType");
 
 	var reg1 = /\d/;
 	var reg2 = /[a-zA-Zа-яА-Я]/;
@@ -82,14 +81,20 @@ function validateInfo() {
 			|| assessmentOfaCourseCombo.value === null) {
 		alert("Укажите «оценку курсового проекта»");
 		stringReturn = false;
-	} else if (archive.checked === false) {
-		alert("Выберите «Упаковать в архив»");
-		stringReturn = false;
-	} else if (!document.getElementById('ZIP').checked
-			&& !document.getElementById('HTML').checked
-			&& !document.getElementById('JAR').checked) {
-		alert("Выберите «Тип архива»");
-		stringReturn = false;
+
+	} else if (archive.checked === true) {
+		if (!document.getElementById('ZIP').checked
+				&& !document.getElementById('JAR').checked) {
+			alert("Выберите «Тип архива»");
+			stringReturn = false;
+		}
+		else if (!document.getElementById('TXT').checked
+				&& !document.getElementById('DOC').checked
+				&& !document.getElementById('DOCX').checked) {
+			alert("Выберите «Тип файла»");
+			stringReturn = false;
+		}
+
 	} else if (dateStart.value === "" || dateStart.value === null) {
 		alert("«Дата начала занятий» не введена.");
 		stringReturn = false;

@@ -23,6 +23,7 @@ public class contentStartFormServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
+		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<div class='col-xs-8'>");
 
@@ -37,7 +38,7 @@ public class contentStartFormServlet extends HttpServlet {
 	}
 
 	private void writeContent(PrintWriter out, HttpServletRequest request) throws IOException {
-
+		request.setCharacterEncoding("UTF-8");
 		ServletContext servletContext = request.getServletContext();
 		String realPath = servletContext.getRealPath("/startFormPattern.html");
 		Path path = Paths.get(realPath);

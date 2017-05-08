@@ -47,7 +47,7 @@
 			<td><label>Тема курсового проекта </label></td>
 			<td><label for="courseProjectTheme"></label> <textarea
 					class="form-control" rows="3" maxlength="1000"
-					name="courseProjectTheme" id="courseProjectTheme"></textarea></td>
+					name="courseProjectTheme"  id="courseProjectTheme"></textarea></td>
 		</tr>
 
 		<tr>
@@ -85,21 +85,34 @@
 		<tr>
 			<td><label>Упаковать в архив </label></td>
 			<td><label> <input type="checkbox" name="archive"
-					id="archive" value="archive" onclick="Arhive()">
+					id="archive" value="archive" oncanplay="Arhive()" onclick="Arhive()">
 			</label></td>
 		</tr>
 
 		<tr>
 			<td><label id="archiveTypeLable" hidden=1>Тип архива</label></td>
-			<td><input type="radio" hidden=1 name="archiveType" id="ZIP" value="ZIP" />
-				<label for="ZIP" hidden=1 id="ZIPLable">ZIP</label> <br> 
+			<td><table><tr>
+				<td width="100">
+					<input type="radio" hidden=1 name="archiveType" id="ZIP" value="ZIP" />
+					<label for="ZIP" hidden=1 id="ZIPLable">ZIP</label> <br> 
 				
-				<input type="radio" hidden=1 name="archiveType" id="JAR"  value="JAR" /> 
-				<label for="JAR" hidden=1 id="JARLable" >JAR</label> <br> 
-				
-				<input type="radio" hidden=1 name="archiveType" id="HTML" value="HTML" /> 
-				<label for="HTML" hidden=1 id="HTMLLable" >HTML</label>
+					<input type="radio" hidden=1 name="archiveType" id="JAR"  value="JAR" /> 
+					<label for="JAR" hidden=1 id="JARLable" >JAR</label> <br> 
 				</td>
+				
+				<td>
+					<input type="radio" hidden=1  name="fileType" id="TXT" value="TXT" /> 
+					<label for="TXT" hidden=1 id="TXTLable" >TXT</label> <br>
+					
+					<input type="radio" hidden=1 name="fileType" id="DOC" value="DOC" /> 
+					<label for="DOC" hidden=1 id="DOCLable" >DOC</label> <br>
+				
+					<input type="radio" hidden=1 name="fileType" id="DOCX" value="DOCX" /> 
+					<label for="DOCX" hidden=1 id="DOCXLable" >DOCX</label>
+				</td>
+				
+			</tr></table>
+			</td>
 		</tr>
 
 	</table>

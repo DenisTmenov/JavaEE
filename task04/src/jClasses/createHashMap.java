@@ -40,7 +40,7 @@ public class createHashMap {
 		String allThemes = "";
 		for (int i = 1; i < 100; i++) {
 			if (paramFromRequest.containsKey("theme" + i)) {
-				allThemes += "\r\n     " + request.getParameter("theme" + i) + "</li>";
+				allThemes += "\r\n     " + request.getParameter("theme" + i);
 			}
 		}
 		

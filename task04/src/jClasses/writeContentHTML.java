@@ -15,7 +15,7 @@ public class writeContentHTML {
 	public static void start(PrintWriter out, HttpServletRequest request, HashMap<String, String> paramFromRequest)
 			throws IOException {
 		ServletContext servletContext = request.getServletContext();
-		String realPath = servletContext.getRealPath("/recomendateDOC.txt");
+		String realPath = servletContext.getRealPath("/recomendate.txt");
 		Path path = Paths.get(realPath);
 		List<String> readAllLines = Files.readAllLines(path);
 
