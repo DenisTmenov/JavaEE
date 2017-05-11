@@ -1,12 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>task05</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>task05</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>StartServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.StartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StartServlet</servlet-name>
+		<url-pattern>/start.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HomeStartServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.HomeStartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomeStartServlet</servlet-name>
+		<url-pattern>/home.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>HomeServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.HomeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomeServlet</servlet-name>
+		<url-pattern>/homecontent.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegistrationServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.RegistrationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistrationServlet</servlet-name>
+		<url-pattern>/registration.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegistrationShowServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.RegistrationShowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistrationShowServlet</servlet-name>
+		<url-pattern>/registrationshow.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>RegistrationCheckServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.RegistrationCheckServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistrationCheckServlet</servlet-name>
+		<url-pattern>/registrationcheck.html</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>AuthorizationServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.AuthorizationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthorizationServlet</servlet-name>
+		<url-pattern>/authorization.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AuthorizationShowServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.AuthorizationShowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthorizationShowServlet</servlet-name>
+		<url-pattern>/authorizationshow.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AuthorizationCheckServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.AuthorizationCheckServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthorizationCheckServlet</servlet-name>
+		<url-pattern>/authorizationcheck.html</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ExitServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.ExitServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ExitServlet</servlet-name>
+		<url-pattern>/exit.html</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>FotoServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.FotoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FotoServlet</servlet-name>
+		<url-pattern>/foto.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FotoShowServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.FotoShowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FotoShowServlet</servlet-name>
+		<url-pattern>/fotoshow.html</url-pattern>
+	</servlet-mapping>
+	
+
+
+	<servlet>
+		<servlet-name>HeaderServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.HeaderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HeaderServlet</servlet-name>
+		<url-pattern>/header.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MenuServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.MenuServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MenuServlet</servlet-name>
+		<url-pattern>/menu.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AdvertisingServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.AdvertisingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdvertisingServlet</servlet-name>
+		<url-pattern>/advertising.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>FooterServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.FooterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FooterServlet</servlet-name>
+		<url-pattern>/footer.html</url-pattern>
+	</servlet-mapping>
 </web-app>
