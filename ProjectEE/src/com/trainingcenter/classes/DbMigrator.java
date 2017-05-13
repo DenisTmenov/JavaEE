@@ -16,6 +16,7 @@ public class DbMigrator implements ServletContextListener{
 	public void contextInitialized(ServletContextEvent arg0) {
 		Flyway flyway = new Flyway();
 		flyway.setDataSource("jdbc:mysql//localhost:3306/project_ee_db", "root", "root");
+		flyway.baseline();
 		flyway.migrate();		
 	}
 
