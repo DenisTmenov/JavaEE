@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>task02</display-name>
+	<welcome-file-list>
+		<welcome-file>start</welcome-file>
+	</welcome-file-list>
+	<context-param>
+		<param-name>TitelName01</param-name>
+		<param-value>Lesson 03. Task 02.</param-value>
+	</context-param>
+	<context-param>
+		<param-name>TitelName02</param-name>
+		<param-value>Электронная анкета для оценки качества образования.</param-value>
+	</context-param>
+
+
+	<servlet>
+		<servlet-name>start</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.start</servlet-class>
+		<init-param>
+			<param-name>TitelName</param-name>
+			<param-value>Lesson 03. Task 02.</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>start</servlet-name>
+		<url-pattern>/start</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>start2</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.start2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>start2</servlet-name>
+		<url-pattern>/start2</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>start3</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.start3</servlet-class>
+		<init-param>
+			<param-name>nameParam</param-name>
+			<param-value>Name param is pam-param-pam-pam</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>start3</servlet-name>
+		<url-pattern>/start3</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>startCookie</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.startCookie</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>startCookie</servlet-name>
+		<url-pattern>/startCookie</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>

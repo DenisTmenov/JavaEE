@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="eng">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+
+<script>
+	function validateInfo() {
+		var surNAME = document.getElementById("surName");
+		var firstNAME = document.getElementById("firstName");
+		var secretPHRASE = document.getElementById("secretPhrase");
+		var AGE = document.getElementById("age");
+		var course = document.getElementById("courseCombo");
+		var teacherNAME = document.getElementById("teacherName");
+		var assessmentCourse = document
+				.getElementById("assessmentOfaCourseCombo");
+		var otherTEXT = document.getElementById("textOtherId");
+		var reg1 = /\d/;
+		var reg2 = /[a-zA-Zа-яА-Я]/;
+		var reg3 = / /;
+		if (surNAME.value === "" || surNAME.value === null
+				|| surNAME.value.match(reg3)) {
+			alert("«Фамилия» не может быть пустой");
+			return false;
+		} else if (surNAME.value.match(reg1)) {
+			alert("«Фамилия» не может содержать числа");
+			return false;
+		} else if (surNAME.value.match(reg3)) {
+			alert("«Фамилия» не может содержать пробел");
+			return false;
+		} else if (firstNAME.value === "" || firstNAME.value === null) {
+			alert("«Имя» не может быть пустым");
+			return false;
+		} else if (firstNAME.value.match(reg1)) {
+			alert("«Имя» не может содержать числа");
+			return false;
+		} else if (firstNAME.value.match(reg3)) {
+			alert("«Имя» не может содержать пробел");
+			return false;
+		} else if (secretPHRASE.value === "" || secretPHRASE.value === null) {
+			alert("«Секретная фраза» не может быть пустой");
+			return false;
+		} else if (AGE.value !== "") {
+			if (AGE.value.match(reg2)) {
+				alert("«Возрост» не может состоять из букв");
+				return false;
+			} else if (AGE.value <= 0) {
+				alert("«Возрост» не может быть меньше 1");
+				return false;
+			} else if (AGE.value > 120) {
+				alert("«Возрост» не может быть больше 120");
+				return false;
+			}
+		} else if (!document.getElementById('gender_Male').checked
+				&& !document.getElementById('gender_Female').checked) {
+			alert("Укажите пол. Вы хто: М или Ж ?");
+			return false;
+		} else if (course.value === "") {
+			alert("Выберите Курс, который Вы проходили.");
+			return false;
+		} else if (teacherNAME.value === "") {
+			alert("Укажите преподавателя, который вел курс.");
+			return false;
+		} else if (assessmentCourse.value === "") {
+			alert("Укажите, как Вы оценили курс.");
+			return false;
+		} else if (document.getElementById("howDidYouHearAboutUs01").checked === false
+				&& document.getElementById("howDidYouHearAboutUs02").checked === false
+				&& document.getElementById("howDidYouHearAboutUs03").checked === false
+				&& document.getElementById("howDidYouHearAboutUs04").checked === false
+				&& document.getElementById("howDidYouHearAboutUs05").checked === false
+				&& document.getElementById("howDidYouHearAboutUsOTHER").checked === false) {
+			alert("Укажите, как Вы узнали о нас.");
+			return false;
+		} else if (document.getElementById("textOtherId").disabled === false
+				&& /^\s+$/.test(otherTEXT.value)) {
+			alert("Отвергаешь – предлагай!");
+			return false;
+		} else {
+			var hiddenValue = parseInt(document.getElementById("secretValue").value);
+			if (hiddenValue === 1) {
+				alert("Браво, честный человек! Смело отправляйся смотреть результат!");
+				return true;
+			}
+			if (hiddenValue === 2) {
+				return confirm("Вообще-то врать не хорошо, даже если не видят… Точно отправляем.");
+			}
+		}
+		return true;
+	}
+
+	function saveSecret(button) {
+		document.getElementById("secretValue").value = button;
+	}
+
+	function otherCheck() {
+		// Если поставлен флажок, снимаем блокирование кнопки
+		if (!document.getElementById("howDidYouHearAboutUsOTHER").checked) {
+			document.getElementById("howDidYouHearAboutUs01").disabled = 0;
+			document.getElementById("howDidYouHearAboutUs02").disabled = 0;
+			document.getElementById("howDidYouHearAboutUs03").disabled = 0;
+			document.getElementById("howDidYouHearAboutUs04").disabled = 0;
+			document.getElementById("howDidYouHearAboutUs05").disabled = 0;
+			document.getElementById("textOtherId").disabled = 1;
+		}
+		// В противном случае вновь блокируем кнопку
+		else {
+			document.getElementById("howDidYouHearAboutUs01").disabled = 1;
+			document.getElementById("howDidYouHearAboutUs02").disabled = 1;
+			document.getElementById("howDidYouHearAboutUs03").disabled = 1;
+			document.getElementById("howDidYouHearAboutUs04").disabled = 1;
+			document.getElementById("howDidYouHearAboutUs05").disabled = 1;
+			document.getElementById("howDidYouHearAboutUs01").checked = 0;
+			document.getElementById("howDidYouHearAboutUs02").checked = 0;
+			document.getElementById("howDidYouHearAboutUs03").checked = 0;
+			document.getElementById("howDidYouHearAboutUs04").checked = 0;
+			document.getElementById("howDidYouHearAboutUs05").checked = 0;
+			document.getElementById("textOtherId").disabled = 0;
+		}
+	}
+
+	function showOtherCourses() {
+		var valueCourse = document.getElementById('courseCombo');
+		if (valueCourse.value === "Java SE") {
+			document.getElementById('otherCourse01').hidden = 1;
+			document.getElementById('otherCourse02').hidden = 0;
+			document.getElementById('otherCourse03').hidden = 0;
+			document.getElementById('otherCourse04').hidden = 0;
+		}
+		if (valueCourse.value === "Java EE") {
+			document.getElementById('otherCourse02').hidden = 1;
+			document.getElementById('otherCourse01').hidden = 0;
+			document.getElementById('otherCourse03').hidden = 0;
+			document.getElementById('otherCourse04').hidden = 0;
+		}
+		if (valueCourse.value === "Тестирование корабельных якорей методом погружения в Северное Море") {
+			document.getElementById('otherCourse03').hidden = 1;
+			document.getElementById('otherCourse01').hidden = 0;
+			document.getElementById('otherCourse02').hidden = 0;
+			document.getElementById('otherCourse04').hidden = 0;
+		}
+		if (valueCourse.value === "Вышивание крестиком в условиях, близких к невесомости") {
+			document.getElementById('otherCourse04').hidden = 1;
+			document.getElementById('otherCourse01').hidden = 0;
+			document.getElementById('otherCourse02').hidden = 0;
+			document.getElementById('otherCourse03').hidden = 0;
+		}
+
+	}
+
+	function javaScriptEnable() {
+		var primaryTable = document.getElementById("primaryTable");
+		primaryTable.onsubmitonsubmit="return validateInfo()";
+	}
+
+	function javaScriptDisable() {
+		var primaryTable = document.getElementById("primaryTable");
+		primaryTable.onsubmit="true";
+	}
+</script>
+
+
+<title>Lesson 03. Task 01.</title>
+</head>
+
+<body>
+	<h1 align="center">
+		Lesson 03 - Servlet API. Task 01. <br> Электронная анкета для
+		оценки качества образования.
+	</h1>
+	<div class="container">
+		<div class="col-xs-2">Menu</div>
+		<div class="col-xs-8">
+			<form id="primaryTable" method="post" class="form-group"
+				onsubmit="return validateInfo()" action="task01form">
+				<table>
+					<tr>
+						<td><label for="surName">Фамилия </label></td>
+						<td><input type="text" class="form-control" id="surName"
+							name="surName" placeholder="Иванов"></td>
+					</tr>
+					<tr>
+						<td><label for="firstName">Имя </label></td>
+						<td><input type="text" class="form-control" id="firstName"
+							name="firstName" placeholder="Иван"></td>
+					</tr>
+					<tr>
+						<td><label for="patronymic">Отчество </label></td>
+						<td><input type="text" class="form-control" id="patronymic"
+							name="patronymic" placeholder="Иванич"></td>
+					</tr>
+					<tr>
+						<td><label for="secretPhrase">Секретная фраза : </label></td>
+						<td><input type="password" class="form-control"
+							id="secretPhrase" name="secretPhrase"
+							placeholder="Всемирный секрет"></td>
+					</tr>
+					<tr>
+						<td><label for="age">Возраст</label></td>
+						<td><input type="text" class="form-control" id="age"
+							name="age" placeholder="33"></td>
+					</tr>
+					<tr>
+						<td><label>Пол</label></td>
+						<td><input type="radio" name="gender" id="gender_Male"
+							value="Male" /> <label for="gender_Male">Мужчина</label> <br>
+							<input type="radio" name="gender" id="gender_Female"
+							value="Female" /> <label for="gender_Female">Женщина</label></td>
+					</tr>
+					<tr>
+						<td><label>Курс</label></td>
+						<td><label for="courseCombo"></label><select id="courseCombo"
+							name="courseCombo" class="form-control"
+							onchange="showOtherCourses()">
+								<option value="" disabled selected="selected"></option>
+								<option value="Java SE">Java SE</option>
+								<option value="Java EE">Java EE</option>
+								<option
+									value="Тестирование корабельных якорей методом погружения в Северное Море">
+									Тестирование корабельных якорей методом погружения в Северное
+									Море</option>
+								<option
+									value="Вышивание крестиком в условиях, близких к невесомости">
+									Вышивание крестиком в условиях, близких к невесомости</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><label>Преподаватель </label></td>
+						<td><label for="teacherName"></label><select id="teacherName"
+							name="teacherName" class="form-control" size="3">
+								<option value="Иванов Иван Иванович">Иванов Иван
+									Иванович</option>
+								<option value="Петров Петр Петрович">Петров Петр
+									Петрович</option>
+								<option value="Сидоров Сидор Сидорович">Сидоров Сидор
+									Сидорович</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><label for="assessmentOfaCourseCombo">Оценка
+								курса</label></td>
+						<td><select id="assessmentOfaCourseCombo"
+							name="assessmentOfaCourseCombo" class="form-control">
+								<option value="" disabled selected></option>
+								<option value="10">10</option>
+								<option value="100500">100500</option>
+								<option value="Мильен Мильярдов">Мильен Мильярдов</option>
+								<option value="Еще пока нет такого числа">Еще пока нет
+									такого числа</option>
+								<option
+									value="Это было даже лучше, чем 10 000 люстр от Карлсона!">
+									Это было даже лучше, чем 10 000 люстр от Карлсона!</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><label>Прочие курсы</label></td>
+						<td><label for="otherCoursesCombo"></label><select
+							id="otherCoursesCombo" name="otherCoursesCombo" multiple
+							class="form-control">
+								<option value="Java SE" id="otherCourse01" hidden="true">
+									Java SE</option>
+								<option value="Java EE" id="otherCourse02" hidden="true">
+									Java EE</option>
+								<option
+									value="Тестирование корабельных якорей методом погружения в Северное
+                                Море"
+									id="otherCourse03" hidden="true">Тестирование
+									корабельных якорей методом погружения в Северное Море</option>
+								<option
+									value="Вышивание крестиком в условиях, близких к невесомости"
+									id="otherCourse04" hidden="true">Вышивание крестиком в
+									условиях, близких к невесомости</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><label>Как Вы о нас узнали </label></td>
+						<td>
+							<p>
+								<label> <input type="checkbox"
+									name="howDidYouHearAboutUs01" id="howDidYouHearAboutUs01"
+									value="Реклама по ТВ">
+								</label> Реклама по ТВ
+							</p>
+							<p>
+								<label> <input type="checkbox"
+									name="howDidYouHearAboutUs02" id="howDidYouHearAboutUs02"
+									value="Реклама по радио">
+								</label> Реклама по радио
+							</p>
+							<p>
+								<label> <input type="checkbox"
+									name="howDidYouHearAboutUs03" id="howDidYouHearAboutUs03"
+									value="Реклама в Интернете">
+								</label> Реклама в Интернете
+							</p>
+							<p>
+								<label> <input type="checkbox"
+									name="howDidYouHearAboutUs04" id="howDidYouHearAboutUs04"
+									value="Реклама в метро">
+								</label> Реклама в метро
+							</p>
+							<p>
+								<label> <input type="checkbox"
+									name="howDidYouHearAboutUs05" id="howDidYouHearAboutUs05"
+									value="Тварь, какая-то мне этими буклетами весь почтовый ящик
+                            зас#%ла">
+								</label> Тварь, какая-то мне этими буклетами весь почтовый ящик зас#%ла
+							</p>
+							<p>
+								<label> <input type="checkbox"
+									id="howDidYouHearAboutUsOTHER" value="Другое"
+									onclick="otherCheck()">
+								</label> Другое
+							</p> <label for="textOtherId"></label>
+						<textarea class="form-control" name="textOtherId" id="textOtherId"
+								disabled></textarea>
+
+						</td>
+					</tr>
+					<tr>
+						<td><label>Прочие Рекомендации </label></td>
+						<td><label for="otherRecommendations"></label>
+						<textarea class="form-control" name="otherRecommendations"
+								id="otherRecommendations"></textarea></td>
+					</tr>
+
+				</table>
+				<p>
+					<input id="secretValue" name="secretValue" type="hidden" value="" />
+					<input type="submit" id="button01" class="btn btn-primary"
+						onclick="saveSecret(1);" value="Отправить – здесь все правда" /> <input
+						type="submit" id="button02" class="btn btn-primary"
+						onclick="saveSecret(2);"
+						value="Отправить – я все равно все наврал" />
+
+				</p>
+				<p>
+					<label>Управление валидацией на странице при помощи
+						JavaScript:</label> <label for="onOffNameON"></label><input type="radio"
+						name="onOff" id="onOffNameON" value="on" checked
+						onchange="javaScriptEnable()"> ON <label
+						for="onOffNameOFF"></label><input type="radio" name="onOff"
+						id="onOffNameOFF" value="off" onchange="javaScriptDisable()">
+					OFF
+				</p>
+			</form>
+		</div>
+		<div class="col-xs-2">реклама</div>
+	</div>
+</body>
+</html>
