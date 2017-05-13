@@ -3,11 +3,6 @@
   <display-name>task04</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
    <context-param>
         <param-name>themes.txt</param-name>
@@ -33,46 +28,7 @@
     <servlet-name>startformServlet</servlet-name>
     <url-pattern>/startform.html</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>headerServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.HeaderServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>headerServlet</servlet-name>
-    <url-pattern>/header.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>menuServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.MenuServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>menuServlet</servlet-name>
-    <url-pattern>/menu.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>contentStartFormServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.ContentStartFormServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>contentStartFormServlet</servlet-name>
-    <url-pattern>/contentstartform.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>advertisingServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.AdvertisingServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>advertisingServlet</servlet-name>
-    <url-pattern>/advertising.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>footerServlet</servlet-name>
-    <servlet-class>com.trainingcenter.servlets.FooterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>footerServlet</servlet-name>
-    <url-pattern>/footer.html</url-pattern>
-  </servlet-mapping>
+
   <servlet>
     <servlet-name>createLetterHTML</servlet-name>
     <servlet-class>com.trainingcenter.servlets.CreateLetterHTML</servlet-class>

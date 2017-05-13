@@ -4,12 +4,10 @@ function Arhive() {
 	var ZIP = document.getElementById("ZIP");
 	var JAR = document.getElementById("JAR");
 	var TXT = document.getElementById("TXT");
-	var DOC = document.getElementById("DOC");
 	var DOCX = document.getElementById("DOCX");
 	var JARLable = document.getElementById("JARLable");
 	var ZIPLable = document.getElementById("ZIPLable");
 	var TXTLable = document.getElementById("TXTLable");
-	var DOCLable = document.getElementById("DOCLable");
 	var DOCXLable = document.getElementById("DOCXLable");
 	if(archive.checked){
 		archiveTypeLable.hidden=0;
@@ -17,13 +15,11 @@ function Arhive() {
 		ZIP.hidden=0;
 		JAR.hidden=0;
 		TXT.hidden=0;
-		DOC.hidden=0;
 		DOCX.hidden=0;
 		
 		JARLable.hidden=0;
 		ZIPLable.hidden=0;
 		TXTLable.hidden=0;
-		DOCLable.hidden=0;
 		DOCXLable.hidden=0;
 		
 	} else {
@@ -32,13 +28,11 @@ function Arhive() {
 		ZIP.hidden=1;
 		JAR.hidden=1;
 		TXT.hidden=1;
-		DOC.hidden=1;
 		DOCX.hidden=1;
 		
 		JARLable.hidden=1;
 		ZIPLable.hidden=1;
 		TXTLable.hidden=1;
-		DOCLable.hidden=1;
 		DOCXLable.hidden=1;
 	}
 	

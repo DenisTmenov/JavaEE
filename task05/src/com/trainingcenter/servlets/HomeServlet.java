@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javaClasses.ReadFile;
+import javaClasses.FileReader;
 
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
 		response.setContentType("text/html");
 		
 		PrintWriter out = response.getWriter();
-		List<String> readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/home.html");
+		List<String> readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/home.html");
 		for (String str : readAllLines) {
 			out.println(str);
 		}

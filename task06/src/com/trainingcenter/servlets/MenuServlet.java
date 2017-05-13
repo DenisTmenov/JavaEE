@@ -9,10 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import javaClasses.FileReader;
+import javaClasses.ReadFile;
 
-public class AuthorizationShowServlet extends HttpServlet {
+public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -21,22 +22,15 @@ public class AuthorizationShowServlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		PrintWriter out = response.getWriter();
-		List<String> readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/authorization.html");
+		List<String> readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/menu.html");
+
 		for (String str : readAllLines) {
 			out.println(str);
 		}
-		if (request.getSession().getAttribute("error") == null) {
-			request.getSession().setAttribute("error", "NO");
-		} else {
-			if (request.getSession().getAttribute("error").equals("YES")) {
-				out.println("<script>alert('ERROR!!!!');</script>");
-				request.getSession().setAttribute("error", "NO");
-			}
-		}
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("advertising.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("start.html");
 		dispatcher.include(request, response);
 		out.close();
 
 	}
+
 }

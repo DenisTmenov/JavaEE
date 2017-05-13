@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javaClasses.ReadFile;
+import javaClasses.FileReader;
 
 public class HeaderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class HeaderServlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		PrintWriter out = response.getWriter();
-		List<String> readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/header.html");
+		List<String> readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/header.html");
 		for (String str : readAllLines) {
 			out.println(str);
 		}
@@ -32,11 +32,11 @@ public class HeaderServlet extends HttpServlet {
 				"request.getSession().getAttribute('autoriz') " + request.getSession().getAttribute("autoriz"));
 
 		if (request.getSession().getAttribute("reg") == null) {
-			readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/headerRegHom.html");
+			readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/headerRegHom.html");
 		} else if (request.getSession().getAttribute("autoriz") == null) {
-			readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/headerRegAutHom.html");
+			readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/headerRegAutHom.html");
 		} else if (request.getSession().getAttribute("autoriz") != null) {
-			readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/headerFotoExitHom.html");
+			readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/headerFotoExitHom.html");
 		}
 
 		for (String str : readAllLines) {

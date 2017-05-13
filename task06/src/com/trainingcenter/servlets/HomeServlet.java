@@ -10,33 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javaClasses.FileReader;
+import javaClasses.ReadFile;
 
-public class AuthorizationShowServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-
+		
 		PrintWriter out = response.getWriter();
-		List<String> readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/authorization.html");
+		List<String> readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/home.html");
 		for (String str : readAllLines) {
 			out.println(str);
 		}
-		if (request.getSession().getAttribute("error") == null) {
-			request.getSession().setAttribute("error", "NO");
-		} else {
-			if (request.getSession().getAttribute("error").equals("YES")) {
-				out.println("<script>alert('ERROR!!!!');</script>");
-				request.getSession().setAttribute("error", "NO");
-			}
-		}
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("advertising.html");
 		dispatcher.include(request, response);
 		out.close();
-
 	}
 }

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javaClasses.ReadFile;
+import javaClasses.FileReader;
 
 public class HomeStartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

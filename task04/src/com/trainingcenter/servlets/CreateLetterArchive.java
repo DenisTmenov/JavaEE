@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jClasses.CreateZIP;
-import jClasses.CreateDOC;
 import jClasses.CreateDOCX;
 import jClasses.CreateJAR;
 import jClasses.CreateTXT;
@@ -28,9 +27,7 @@ public class CreateLetterArchive extends HttpServlet {
 		byte[] file = null;
 		if (typeFile.equals("TXT")) {
 			file = CreateTXT.create(request);
-		} else if (typeFile.equals("DOC")) {
-			file = CreateDOC.create(request);
-		} else if (typeFile.equals("DOCX")) {
+		}  else if (typeFile.equals("DOCX")) {
 			file = CreateDOCX.create(request);
 		}
 
@@ -45,8 +42,7 @@ public class CreateLetterArchive extends HttpServlet {
 		}
 
 		ServletOutputStream stream = response.getOutputStream();
-		response.setHeader("Content-Disposition: attachment; filename=recommendation",
-				"new." + typeArchive.toLowerCase());
+		response.setHeader("Content-Disposition", "attachment; filename=recommendation." + typeArchive.toLowerCase());
 		stream.write(fileArchive);
 		stream.close();
 

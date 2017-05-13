@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import javaClasses.ReadFile;
+import javaClasses.FileReader;
 
 public class MenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,11 +24,11 @@ public class MenuServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		List<String> readAllLines = null;
 		if (request.getSession().getAttribute("reg") == null) {
-			readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/menuRegHom.html");
+			readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/menuRegHom.html");
 		} else if (request.getSession().getAttribute("autoriz") == null) {
-			readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/menuRegAutHom.html");
+			readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/menuRegAutHom.html");
 		} else if (request.getSession().getAttribute("autoriz") != null) {
-			readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/menuFotoExitHom.html");
+			readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/menuFotoExitHom.html");
 		}
 
 		for (String str : readAllLines) {

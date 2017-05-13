@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javaClasses.FileReader;
+import javaClasses.ReadFile;
 
 public class FooterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +20,7 @@ public class FooterServlet extends HttpServlet {
 		response.setContentType("text/html");
 		
 		PrintWriter out = response.getWriter();
-		List<String> readAllLines = FileReader.readContentFromWebInf(request, "/WEB-INF/html/footer.html");
+		List<String> readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/footer.html");
 		for (String str : readAllLines) {
 			out.println(str);
 		}

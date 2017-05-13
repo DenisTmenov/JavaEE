@@ -106,11 +106,6 @@ function validateInfo() {
 		stringReturn = false;
 	}
 
-	if (stringReturn === true) {
-
-		alert("Форма отправлена на сервлет.");
-
-	}
 	return stringReturn;
 
 }
