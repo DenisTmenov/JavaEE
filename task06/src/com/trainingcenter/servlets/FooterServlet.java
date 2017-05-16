@@ -24,7 +24,6 @@ public class FooterServlet extends HttpServlet {
 		for (String str : readAllLines) {
 			out.println(str);
 		}
-		out.close();
 	}
 
 }

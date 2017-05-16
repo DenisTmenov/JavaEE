@@ -1,89 +1,73 @@
 <div class='col-xs-8'>
-<style>
-	table {
-   		border-spacing: 10px 15px; /* Расстояние между ячейками */ 
-   }
-   td {
-    padding: 10px; /* Поля вокруг текста */ 
-   }
+	<style>
+table {
+	border-spacing: 10px 15px; /* Расстояние между ячейками */
+}
 
-
+td {
+	padding: 10px; /* Поля вокруг текста */
+}
 </style>
-	<table id="products" >
-		<thead>Продукты
-		<tr>
-			<td>Мясо
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Пиво
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Рыба
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		
-		</thead>
-	
-	</table>
-	
-	<table id="productsForHome">
-		<thead>Товары для дома
-		<tr>
-			<td>Телевизор
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Диван
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Тапочки
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		
-		</thead>
-	
-	</table>
-	
-	<table id="instruments" >
-		<thead>Инструменты
-		<tr>
-			<td>Отвертка
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Стамеска
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Молоток
-			</td>
-			<td><a href="">Купить</a>
-			</td>
-		</tr>
-		
-		</thead>
-	
-	</table>
-		
-</div>
-		
-		
+	<form id="primaryTable" method="post" class="form-group"
+		onsubmit="Order();" action="cookieservlet">
+		<table>
+			<tr>
+				<td colspan="2">Продукты</td>
+			</tr>
+
+			<tr>
+				<td>Мясо</td>
+				<td><button name="products" type="submit"
+						value="Мясо" class="btn btn-primary">Купить</button></td>
+			</tr>
+			<tr>
+				<td>Пиво</td>
+				<td><button name="products" type="submit" value="Пиво"
+						class="btn btn-primary">Купить</button></td>
+			</tr>
+			<tr>
+				<td>Рыба</td>
+				<td><button name="products" type="submit" value="Рыба"
+						class="btn btn-primary">Купить</button></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td colspan="2">Товары для дома</td>
+			</tr>
+
+			<tr>
+				<td>Телевизор</td>
+				<td><button name="productsForHome" type="submit" value="Телевизор"
+						class="btn btn-primary">Купить</button></td>
+			</tr>
+			<tr>
+				<td>Диван</td>
+				<td><button name="productsForHome" type="submit" value="Диван"
+						class="btn btn-primary">Купить</button></td>
+			</tr>
+			<tr>
+				<td>Тапочки</td>
+				<td><button name="productsForHome" type="submit" value="Тапочки"
+						class="btn btn-primary">Купить</button></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td colspan="2">Инструменты</td>
+			</tr>
+			<tr>
+				<td>Отвертка</td>
+				<td><button name="instruments" type="submit" value="Отвертка"
+						class="btn btn-primary">Купить</button></td>
+			</tr>
+			<tr>
+				<td>Стамеска</td>
+				<td><button name="instruments" type="submit" value="Стамеска"
+						class="btn btn-primary">Купить</button></td>
+			</tr>
+			<tr>
+				<td>Молоток</td>
+				<td><button name="instruments" type="submit" value="Молоток"
+						class="btn btn-primary">Купить</button></td>
+			</tr>

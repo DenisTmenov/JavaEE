@@ -2,12 +2,14 @@ package com.trainingcenter.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import javaClasses.ReadFile;
 
 public class AdvertisingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -17,16 +19,10 @@ public class AdvertisingServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
-		out.println("<div class='col-xs-2'>");
-		out.println("реклама");
-		out.println("</div>");
-		out.println("</div>");
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("footer.html");
-		dispatcher.include(request, response);
-		
-		out.close();
+		List<String> readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/advertising.html");
+		for (String str : readAllLines) {
+			out.println(str);
+		}
 	}
 
 }

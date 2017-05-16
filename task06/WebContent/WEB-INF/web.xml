@@ -15,20 +15,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>HomeStartServlet</servlet-name>
-		<servlet-class>com.trainingcenter.servlets.HomeStartServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HomeStartServlet</servlet-name>
-		<url-pattern>/home.html</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>HomeServlet</servlet-name>
 		<servlet-class>com.trainingcenter.servlets.HomeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeServlet</servlet-name>
-		<url-pattern>/homecontent.html</url-pattern>
+		<url-pattern>/home.html</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -62,5 +54,13 @@
 	<servlet-mapping>
 		<servlet-name>FooterServlet</servlet-name>
 		<url-pattern>/footer.html</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CookieServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.CookieServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CookieServlet</servlet-name>
+		<url-pattern>/cookieservlet</url-pattern>
 	</servlet-mapping>
 </web-app>

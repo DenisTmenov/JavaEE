@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +24,5 @@ public class HomeServlet extends HttpServlet {
 		for (String str : readAllLines) {
 			out.println(str);
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("advertising.html");
-		dispatcher.include(request, response);
-		out.close();
 	}
 }
