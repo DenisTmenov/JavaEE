@@ -66,9 +66,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Вы ответили: " <%
+					<td>Вы ответили: <%
 						String id_a = request.getParameter("button");
-						System.out.println(id_a);
 
 						Connection c = null;
 						Statement statement = null;
@@ -79,18 +78,21 @@
 									"root");
 							statement = c.createStatement();
 							set = statement.executeQuery("SELECT * FROM jdbc_task02_db.answers WHERE id_a=" + id_a);
-					%> <%=set.getString("answer")%>
+							int columns = set.getMetaData().getColumnCount();
+							set.next();
+							String answer = set.getString("answer");
+					%> "<%=answer%>"
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<%
-							String trueOrFalse = set.getString("trueOrFalse");
-
+							//String trueOrFalse = set.getString(3);
+								String trueOrFalse = set.getString("trueOrFalse");
 								if (trueOrFalse.equals("true")) {
 						%> Поздравляем! Вы ответили правильно. <%
 							}
-								if (trueOrFalse.equals("falce")) {
+								if (trueOrFalse.equals("false")) {
 						%> К сожалению Вы ошиблись. <%
 							}
 							} catch (SQLException e) {
