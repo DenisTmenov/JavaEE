@@ -1,0 +1,4 @@
+CREATE TABLE `questions` (
+  `id_q` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `question` VARCHAR(255) NOT NULL
+);
