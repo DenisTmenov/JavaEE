@@ -1,0 +1,1 @@
+UPDATE `jdbc_task03_db`.`questions` SET question='Как пишется ДОМ по английски?' WHERE id_q=3;
