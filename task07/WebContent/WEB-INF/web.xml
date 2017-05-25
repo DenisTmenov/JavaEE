@@ -5,6 +5,12 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
+  <resource-ref>
+    <res-ref-name>mail/Session</res-ref-name>
+    <res-type>javax.mail.Session</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  
   <servlet>
 		<servlet-name>StartServlet</servlet-name>
 		<servlet-class>com.trainingcenter.servlets.StartServlet</servlet-class>
@@ -56,11 +62,11 @@
 		<url-pattern>/footer.html</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>CookieServlet</servlet-name>
-		<servlet-class>com.trainingcenter.servlets.CookieServlet</servlet-class>
+		<servlet-name>SenderServlet</servlet-name>
+		<servlet-class>com.trainingcenter.servlets.SenderServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CookieServlet</servlet-name>
-		<url-pattern>/cookieservlet</url-pattern>
+		<servlet-name>SenderServlet</servlet-name>
+		<url-pattern>/SenderServlet</url-pattern>
 	</servlet-mapping>
 </web-app>

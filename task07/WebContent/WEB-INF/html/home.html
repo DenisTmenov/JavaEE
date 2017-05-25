@@ -9,33 +9,43 @@ td {
 }
 </style>
 	<form id="primaryTable" method="post" class="form-group"
-		onsubmit="return validateInfo()" action="xxxxxxxxx">
+		onsubmit = 'return validateInfo()' action="SenderServlet">
 		<table>
 			<tr>
-				<td><label for="adressSender">Адрес отправителя
-						сообщения </label></td>
-				<td><input type="text" class="form-control" id="adressSender"
-					name="adressSender" maxlength="100" size="50"></td>
+				<th colspan="2"><h3 align="center">Отправляем письма с
+						сервера GMAIL.COM</h3></th>
 			</tr>
 			<tr>
-				<td><label for="adressRecipient">Адрес получателя
+				<td><label for="addressSender">Адрес отправителя
+						сообщения </label></td>
+				<td><input type="text" class="form-control" id="addressSender"
+					name="addressSender" maxlength="100" size="50" required="required"></td>
+			</tr>
+			<tr>
+				<td><label for="pass">Пароль</label></td>
+				<td><input type="password" class="form-control" id="pass"
+					name="pass" maxlength="100" size="50" required="required"></td>
+			</tr>
+
+			<tr>
+				<td><label for="addressRecipient">Адрес получателя
 						сообщения </label></td>
 				<td><input type="text" class="form-control"
-					id="adressRecipient" name="adressRecipient" maxlength="100"></td>
+					id="addressRecipient" name="addressRecipient" maxlength="100" required="required"></td>
 			</tr>
 			<tr>
 				<td><label for="theme">Тема сообщения </label></td>
 				<td><input type="text" class="form-control" id="theme"
-					name="theme" maxlength="100"></td>
+					name="theme" maxlength="100" required="required"></td>
 			</tr>
 			<tr>
 				<td><label for="messageText">Текст сообщения</label></td>
 				<td><textarea class="form-control" name="messageText"
-						id="messageText" rows="5"></textarea></td>
+						id="messageText" rows="5" required="required"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" id="buttonSend"
-					class="btn btn-primary" value="Send Mail" /></td>
+				<td colspan="2" align="center"><input type="submit"
+					id="buttonSend" class="btn btn-primary" value="Send Mail" /></td>
 			</tr>
 
 		</table>

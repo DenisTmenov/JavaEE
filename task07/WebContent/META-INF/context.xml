@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+   <ResourceLink 
+   name="mail/Session" 
+   global="mail/Session" 
+  auth="Container"
+   type="javax.mail.Session"/>
+</Context>
