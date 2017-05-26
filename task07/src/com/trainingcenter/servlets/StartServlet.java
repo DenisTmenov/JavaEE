@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import javaClasses.ReadFile;
+import com.trainingcenter.javaClasses.ReadFile;
 
 public class StartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,36 +25,22 @@ public class StartServlet extends HttpServlet {
 		for (String str : readAllLines) {
 			out.println(str);
 		}
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("menu.html");
-		dispatcher.include(request, response);
-		dispatcher = request.getRequestDispatcher("home.html");
-		dispatcher.include(request, response);
-
-		Cookie[] cookie = request.getCookies();
-		if (cookie != null && cookie.length > 0) {
-
-			out.println("</table>");
-			out.println("<table>");
-			out.println("<tr>");
-			out.println("<td colspan='2'>Вас может заинтересовать</td>");
-			out.println("</tr>");
-
-			for (Cookie cook : cookie) {
-				System.out.println("cookie " + cook.getName() + "   " + cook.getValue());
-				out.println("<tr>");
-				out.println("<td>" + cook.getValue() + "</td>");
-				out.println("<td><button name=" + cook.getName() + " type='submit' value=" + cook.getValue()
-						+ "	class='btn btn-primary'>Купить</button></td>");
-				out.println("</tr>");
-			}
-
+		readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/menu.html");
+		for (String str : readAllLines) {
+			out.println(str);
 		}
-
-		dispatcher = request.getRequestDispatcher("advertising.html");
-		dispatcher.include(request, response);
-		dispatcher = request.getRequestDispatcher("footer.html");
-		dispatcher.include(request, response);
+		readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/home.html");
+		for (String str : readAllLines) {
+			out.println(str);
+		}
+		readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/advertising.html");
+		for (String str : readAllLines) {
+			out.println(str);
+		}
+		readAllLines = ReadFile.writeContent(request, "/WEB-INF/html/footer.html");
+		for (String str : readAllLines) {
+			out.println(str);
+		}
 
 		out.close();
 	}
