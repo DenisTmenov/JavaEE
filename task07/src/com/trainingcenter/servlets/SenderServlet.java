@@ -25,7 +25,7 @@ public class SenderServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String propePathDefault = "com/trainingcenter/properties/propertiesForGmail.properties";
-		String propePathUser = "com/trainingcenter/properties/userConfig.properties";
+		String propePathUser = "user_config/userConfig.properties";
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		InputStream stream = classLoader.getResourceAsStream(propePathDefault);
 		Properties properties = new Properties();
