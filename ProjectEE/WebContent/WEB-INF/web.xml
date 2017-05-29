@@ -19,6 +19,14 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
+    <servlet-name>JspWelcomeLogin</servlet-name>
+    <jsp-file>/WEB-INF/pages/welcomelogin.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JspWelcomeLogin</servlet-name>
+    <url-pattern>/welcome.html</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>JspRegisrtation</servlet-name>
     <jsp-file>/WEB-INF/pages/registration.jsp</jsp-file>
   </servlet>

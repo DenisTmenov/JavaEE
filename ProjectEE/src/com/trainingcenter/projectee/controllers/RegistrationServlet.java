@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.trainingcenter.projectee.utils.StringUtils;
 import com.trainingcenter.projectee.beans.UserBean;
@@ -23,7 +24,8 @@ import com.trainingcenter.projectee.utils.HttpUtils;
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_NAME = "/WEB-INF/pages/registration.jsp";
+	private static final String VIEW_OK_NAME = "/WEB-INF/pages/welcomelogin.jsp";
+	private static final String VIEW_BED_NAME = "/WEB-INF/pages/registration.jsp";
 
 	public static final String VALIDATION_ERRORS_ATTR = "validation_errors";
 
@@ -52,8 +54,8 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		Map<String, String> paramsRequest = createMapParameters(request);
-		printMapToScrean(paramsRequest, response);
+		// Map<String, String> paramsRequest = createMapParameters(request);
+		// printMapToScrean(paramsRequest, response);
 		Boolean isBtnRegister = HttpUtils.isParameterExists(request, "btn_register");
 
 		if (isBtnRegister) {
@@ -63,29 +65,40 @@ public class RegistrationServlet extends HttpServlet {
 			String email = request.getParameter("email");
 
 			boolean isValid = validateData(request, login, password, password_confirm, email);
-			
+
 			if (isValid) {
+
 				MySqlUserDAO userDao = new MySqlUserDAO();
 				MySqlUserInfoDAO userInfoDAO = new MySqlUserInfoDAO();
-				
+
 				UserBean userBean = new UserBean();
 				userBean.setLogin(login);
 				userBean.setPassword(password);
 				userBean.setDelStatus(true);
 				userBean.setFkRole(3);
-				
+
 				userDao.storeUser(userBean);
-				
+
 				Integer id_user = userDao.returnIdByLogin(login);
-				
+
 				UserInfoBean userInfoBean = new UserInfoBean();
 				userInfoBean.setEmail(email);
 				userInfoBean.setFkIdUser(id_user);
-				
+
 				userInfoDAO.storeUserInfo(userInfoBean);
-				
+
+				HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
 			}
-			
+
+			if (!isValid) {
+				HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
+				// HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+			}
+
+		}
+		if (!isBtnRegister) {
+			HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
+			// HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
 		}
 
 	}
@@ -120,43 +133,46 @@ public class RegistrationServlet extends HttpServlet {
 		return parametersRequest;
 	}
 
-	private boolean validateData(
-			HttpServletRequest request, String login, String password, String password_confirm,	String email) {
+	private boolean validateData(HttpServletRequest request, String login, String password, String password_confirm,
+			String email) {
 		Map<String, String> errorMap = new HashMap<>();
-
+		HttpSession session = request.getSession();
 		if (StringUtils.isBlank(login)) {
 			errorMap.put(LOGIN_EMPTY_CODE, LOGIN_EMPTY_VALUE);
 		}
-		
-		/*if (StringUtils.isBlank(login)) {
-			errorMap.put(LOGIN_EXISTS_CODE, LOGIN_EXISTS_VALUE);
-		}*/
+		// проверить в базе данных
+		/*
+		 * if (StringUtils.isBlank(login)) { errorMap.put(LOGIN_EXISTS_CODE,
+		 * LOGIN_EXISTS_VALUE); }
+		 */
 
 		if (StringUtils.isBlank(password)) {
 			errorMap.put(PASSWORD_EMPTY_CODE, PASSWORD_EMPTY_VALUE);
 		}
-		
+
 		if (StringUtils.isBlank(password)) {
 			errorMap.put(PASSWORD_CONFIRM_EMPTY_CODE, PASSWORD_CONFIRM_EMPTY_VALUE);
 		}
-		
-		/*if (StringUtils.isBlank(password, password_confirm)) {
-			errorMap.put(PASSWORDS_NOT_MATCH_CODE, PASSWORDS_NOT_MATCH_VALUE);
-		}*/
+		// проверить в базе данных
+		/*
+		 * if (StringUtils.isBlank(password, password_confirm)) {
+		 * errorMap.put(PASSWORDS_NOT_MATCH_CODE, PASSWORDS_NOT_MATCH_VALUE); }
+		 */
 
 		if (StringUtils.isBlank(email)) {
 			errorMap.put(EMAIL_EMPTY_CODE, EMAIL_EMPTY_VALUE);
 		}
-		
-		/*if (StringUtils.isBlank(email)) {
-			errorMap.put(EMAIL_EXISTS_CODE, EMAIL_EXISTS_VALUE);
-		}*/
-		
+		// проверить в базе данных
+		/*
+		 * if (StringUtils.isBlank(email)) { errorMap.put(EMAIL_EXISTS_CODE,
+		 * EMAIL_EXISTS_VALUE); }
+		 */
+
 		if (!errorMap.isEmpty()) {
-			request.setAttribute(VALIDATION_ERRORS_ATTR, errorMap);
+			session.setAttribute(VALIDATION_ERRORS_ATTR, errorMap);
 			return false;
 		}
-
+		session.removeAttribute(VALIDATION_ERRORS_ATTR);
 		return true;
 	}
 

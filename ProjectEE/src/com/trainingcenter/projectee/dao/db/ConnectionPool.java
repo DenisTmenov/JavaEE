@@ -24,7 +24,7 @@ public class ConnectionPool {
 		try {
 			Context initContext = new InitialContext();
 			Context rootContext = (Context) initContext.lookup("java:comp/env");
-			dataSource = (DataSource) rootContext.lookup("jdbc/project_ee_db");
+			dataSource = (DataSource) rootContext.lookup("jdbc/project_ee_db_context");
 		} catch (NamingException e) {
 			throw new RuntimeException("Some errors occurred during DataSource lookup!", e);
 		}

@@ -37,33 +37,7 @@ public class MySqlUserRoleDAO {
 		return result;
 	}
 
-	public UserRoleBean loadUserRoleById(Integer idRole) {
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet set = null;
-
-		try {
-			connection = ConnectionPool.getPool().getConnection();
-
-			statement = connection.prepareStatement("SELECT * FROM user_role WHERE id_role=?");
-			statement.setInt(1, idRole);
-
-			set = statement.executeQuery();
-
-			if (set.next()) {
-				UserRoleBean entity = createUserRoleBean(set);
-				return entity;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
-		}
-
-		return null;
-	}
-
-	public UserRoleBean storeUser(UserRoleBean bean) {
+	public UserRoleBean storeUserRole(UserRoleBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -80,12 +54,6 @@ public class MySqlUserRoleDAO {
 			statement.setBoolean(5, bean.getRead());
 
 			statement.executeUpdate();
-			set = statement.getGeneratedKeys();
-			if (set.next()) {
-				Integer storedId = set.getInt(1);
-				UserRoleBean storedUser = loadUserRoleById(storedId);
-				return storedUser;
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

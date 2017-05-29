@@ -12,31 +12,6 @@ import com.trainingcenter.projectee.dao.db.ConnectionPool;
 
 public class MySqlUserInfoDAO {
 
-	public List<UserInfoBean> loadAlluserInfo() {
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet set = null;
-
-		List<UserInfoBean> result = new ArrayList<UserInfoBean>();
-
-		try {
-			connection = ConnectionPool.getPool().getConnection();
-			statement = connection.prepareStatement("SELECT * from user_info");
-			set = statement.executeQuery();
-
-			while (set.next()) {
-				UserInfoBean entity = createUserInfoBean(set);
-				result.add(entity);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
-		}
-
-		return result;
-	}
-
 	public UserInfoBean loadUserInfoById(Integer id_info) {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -80,12 +55,7 @@ public class MySqlUserInfoDAO {
 			    
 
 			statement.executeUpdate();
-			set = statement.getGeneratedKeys();
-			if (set.next()) {
-				Integer storedId = set.getInt(1);
-				UserInfoBean storedUser = loadUserInfoById(storedId);
-				return storedUser;
-			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

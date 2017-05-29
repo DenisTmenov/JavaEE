@@ -1,9 +1,13 @@
 package com.trainingcenter.projectee.utils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public final class HttpUtils {
@@ -55,4 +59,11 @@ public final class HttpUtils {
 			return null;
 		}
 	}
+	
+	public static void forwardToView(String viewName, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
+		dispatcher.forward(request, response);
+	}
+
 }
