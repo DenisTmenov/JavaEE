@@ -1,0 +1,4 @@
+CREATE TABLE `user` (
+  `id_user` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `del_status` BOOLEAN NOT NULL
+);

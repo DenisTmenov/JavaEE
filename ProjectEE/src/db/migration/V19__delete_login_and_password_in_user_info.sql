@@ -1,0 +1,1 @@
+ALTER TABLE user_info DROP COLUMN login, DROP COLUMN password;
