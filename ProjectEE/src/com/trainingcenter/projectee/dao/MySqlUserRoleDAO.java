@@ -40,7 +40,6 @@ public class MySqlUserRoleDAO {
 	public UserRoleBean storeUserRole(UserRoleBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -57,7 +56,7 @@ public class MySqlUserRoleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 
 		return null;
@@ -66,7 +65,6 @@ public class MySqlUserRoleDAO {
 	public void updateUser(UserRoleBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -84,14 +82,13 @@ public class MySqlUserRoleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 	}
 
 	public void removeUserRole(Integer idRole) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -103,7 +100,7 @@ public class MySqlUserRoleDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 	}
 

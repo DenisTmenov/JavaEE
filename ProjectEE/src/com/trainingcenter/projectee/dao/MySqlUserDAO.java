@@ -39,7 +39,6 @@ public class MySqlUserDAO {
 	public UserBean storeUser(UserBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -55,7 +54,7 @@ public class MySqlUserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 
 		return null;
@@ -64,7 +63,6 @@ public class MySqlUserDAO {
 	public void updateUser(UserBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -81,14 +79,13 @@ public class MySqlUserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 	}
 
 	public void removeUser(Integer idUser) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -100,7 +97,7 @@ public class MySqlUserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 	}
 

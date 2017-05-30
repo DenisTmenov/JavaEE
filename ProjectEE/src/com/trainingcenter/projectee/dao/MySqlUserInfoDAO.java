@@ -41,7 +41,6 @@ public class MySqlUserInfoDAO {
 	public UserInfoBean storeUserInfo(UserInfoBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -59,7 +58,7 @@ public class MySqlUserInfoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 
 		return null;
@@ -68,7 +67,6 @@ public class MySqlUserInfoDAO {
 	public void updateUserInfo(UserInfoBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -83,14 +81,13 @@ public class MySqlUserInfoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 	}
 
 	public void removeUserInfo(Integer idInfo) {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		ResultSet set = null;
 
 		try {
 			connection = ConnectionPool.getPool().getConnection();
@@ -102,7 +99,7 @@ public class MySqlUserInfoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getPool().closeDbResources(connection, statement);
 		}
 	}
 
