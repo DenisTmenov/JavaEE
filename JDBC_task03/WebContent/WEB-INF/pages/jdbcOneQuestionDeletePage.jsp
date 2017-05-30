@@ -1,5 +1,5 @@
+<%@page import="com.trainingcenter.connectionpool.ConnectionPool"%>
 <%@page import="javax.sql.DataSource"%>
-<%@page import="com.trainingcenter.javaclass.ConnectionManager"%>
 <%@page import="java.util.List"%>
 <%@page import="com.trainingcenter.javaclass.ReadFile"%>
 <%@page import="java.io.PrintWriter"%>
@@ -41,23 +41,21 @@
 			</tr>
 			<%
 				String id_question = request.getParameter("change_id_q");
-				Connection c = null;
-				Statement statement = null;
+				Connection connection = null;
+				PreparedStatement statement = null;
 				ResultSet set = null;
 				ArrayList<Integer> allNumberQuestions = new ArrayList<Integer>();
 				HashMap<Integer, String> allQuestions = new HashMap<Integer, String>();
 				try {
-					Context initContext = new InitialContext();
-					Context rootContext = (Context) initContext.lookup("java:comp/env");
-					DataSource dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task03_db_link");
+					connection = ConnectionPool.getPool().getConnection();
 
-					c = dataSource.getConnection();
-					statement = c.createStatement();
-					set = statement.executeQuery("SELECT * FROM jdbc_task03_db.questions WHERE id_q=" + id_question);
+					statement = connection.prepareStatement("SELECT * FROM jdbc_task03_db.questions WHERE id_q= ?");
+					statement.setString(1, id_question);
 
-					set.next();
-					Integer id_q = set.getInt("id_q"); // Вот так получать данные - очень хорошо!
-					String question = set.getString("question");
+					set = statement.executeQuery();
+					while (set.next()) {
+						Integer id_q = set.getInt("id_q"); // Вот так получать данные - очень хорошо!
+						String question = set.getString("question");
 			%>
 			<tr>
 				<td align="right">Вопрос: <%=id_q%> &nbsp;
@@ -66,10 +64,11 @@
 					name="question" type="hidden" value="<%=question%>" /></td>
 			</tr>
 			<%
+				}
 				} catch (SQLException e) {
 					throw new RuntimeException("Some errors occurred during DB access!", e);
 				} finally {
-					ConnectionManager.closeDbResources(c, statement, set);
+					ConnectionPool.getPool().closeDbResources(connection, statement, set);
 				}
 			%>
 			<tr>
@@ -77,14 +76,13 @@
 			</tr>
 			<%
 				try {
-					Context initContext = new InitialContext();
-					Context rootContext = (Context) initContext.lookup("java:comp/env");
-					DataSource dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task03_db_link");
+					connection = ConnectionPool.getPool().getConnection();
 
-					c = dataSource.getConnection();
-					statement = c.createStatement();
-					set = statement
-							.executeQuery("SELECT * FROM jdbc_task03_db.answers WHERE fk_question_id=" + id_question);
+					statement = connection
+							.prepareStatement("SELECT * FROM jdbc_task03_db.answers WHERE fk_question_id = ?");
+					statement.setString(1, id_question);
+
+					set = statement.executeQuery();
 					int i = 1;
 					while (set.next()) {
 						Integer id_a = set.getInt("id_a"); // Вот так получать данные - очень хорошо!
@@ -102,7 +100,7 @@
 				} catch (SQLException e) {
 					throw new RuntimeException("Some errors occurred during DB access!", e);
 				} finally {
-					ConnectionManager.closeDbResources(c, statement, set);
+					ConnectionPool.getPool().closeDbResources(connection, statement);
 				}
 			%>
 
@@ -110,18 +108,21 @@
 		</table>
 
 		<div id="startButton">
-		<a href="jdbcindex.html" class='btn btn-primary'>Нет. Пусть остается.</a> 
-		<a class='btn btn-primary' onclick="hideShow(startButton, divDelete)" >Да. Удалить вопрос.</a> 
+			<a href="jdbcindex.html" class='btn btn-primary'>Нет. Пусть
+				остается.</a> <a class='btn btn-primary'
+				onclick="hideShow(startButton, divDelete)">Да. Удалить вопрос.</a>
 		</div>
-		
+
 		<div id="divDelete" hidden="true">
-			<a href="jdbcindex.html" class='btn btn-primary'>Нет. Пусть остается.</a> 
-			<p>Без проблем :) </p>
+			<a href="jdbcindex.html" class='btn btn-primary'>Нет. Пусть
+				остается.</a>
+			<p>Без проблем :)</p>
 			<p>Только что будем делать с ответами на вопрос?</p>
-			<a href="deleteQuestionServlet?change_id_q=<%=id_question%>&command=save"
-			class='btn btn-primary' >Ответы оставим в базе.</a>
-			<a href="deleteQuestionServlet?change_id_q=<%=id_question%>&command=delete"
-			class='btn btn-primary' >Ответы тоже удалим.</a>
+			<a
+				href="deleteQuestionServlet?change_id_q=<%=id_question%>&command=save"
+				class='btn btn-primary'>Ответы оставим в базе.</a> <a
+				href="deleteQuestionServlet?change_id_q=<%=id_question%>&command=delete"
+				class='btn btn-primary'>Ответы тоже удалим.</a>
 		</div>
 
 	</form>

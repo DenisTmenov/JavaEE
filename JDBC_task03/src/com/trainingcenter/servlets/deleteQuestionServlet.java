@@ -21,8 +21,6 @@ public class deleteQuestionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String command = request.getParameter("command");
 		String id_q = request.getParameter("change_id_q");
-		System.out.println(command);
-		System.out.println(id_q);
 		if (id_q != null && command != null) {
 			if (command.equals("save")) {
 				try {
@@ -31,7 +29,6 @@ public class deleteQuestionServlet extends HttpServlet {
 				} catch (NamingException e) {
 					e.printStackTrace();
 				}
-				System.out.println("все нули");
 			}
 			if (command.equals("delete")) {
 				try {
@@ -40,7 +37,6 @@ public class deleteQuestionServlet extends HttpServlet {
 				} catch (NamingException e) {
 					e.printStackTrace();
 				}
-				System.out.println("все удалили");
 			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher("jdbcindex.html");
 			request.setAttribute("actionDelete", "OK");

@@ -1,5 +1,5 @@
+<%@page import="com.trainingcenter.connectionpool.ConnectionPool"%>
 <%@page import="javax.sql.DataSource"%>
-<%@page import="com.trainingcenter.javaclass.ConnectionManager"%>
 <%@page import="com.trainingcenter.javaclass.ReadFile"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -44,38 +44,39 @@
 			<td>Вы ответили: <%
 				String id_a = request.getParameter("button");
 
-				Connection c = null;
-				Statement statement = null;
+				Connection connection = null;
+				PreparedStatement statement = null;
 				ResultSet set = null;
 				try {
-					Context initContext = new InitialContext();
-					Context rootContext = (Context) initContext.lookup("java:comp/env");
-					DataSource dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task03_db_link");
+					connection = ConnectionPool.getPool().getConnection();
 
-					c = dataSource.getConnection();
-					statement = c.createStatement();
-					set = statement.executeQuery("SELECT * FROM jdbc_task03_db.answers WHERE id_a=" + id_a);
+					statement = connection.prepareStatement("SELECT * FROM jdbc_task03_db.answers WHERE id_a = ?");
+					statement.setString(1, id_a);
+
+					set = statement.executeQuery();
 					int columns = set.getMetaData().getColumnCount();
-					set.next();
-					String answer = set.getString("answer");
+
+					String answer = null;
+					while (set.next()) {
+						answer = set.getString("answer");
 			%> "<%=answer%>"
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<%
-					//String trueOrFalse = set.getString(3);
-						String trueOrFalse = set.getString("trueOrFalse");
-						if (trueOrFalse.equals("true")) {
+					String trueOrFalse = set.getString("trueOrFalse");
+							if (trueOrFalse.equals("true")) {
 				%> Поздравляем! Вы ответили правильно. <%
 					}
-						if (trueOrFalse.equals("false")) {
+							if (trueOrFalse.equals("false")) {
 				%> К сожалению Вы ошиблись. <%
 					}
+						}
 					} catch (SQLException e) {
 						throw new RuntimeException("Some errors occurred during DB access!", e);
 					} finally {
-						ConnectionManager.closeDbResources(c, statement, set);
+						ConnectionPool.getPool().closeDbResources(connection, statement, set);
 					}
 				%>
 			</td>

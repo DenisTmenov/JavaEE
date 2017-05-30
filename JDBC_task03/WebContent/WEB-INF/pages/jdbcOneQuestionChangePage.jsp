@@ -1,7 +1,7 @@
+<%@page import="com.trainingcenter.connectionpool.ConnectionPool"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="com.trainingcenter.javaclass.ChangerQuestion"%>
 <%@page import="com.trainingcenter.javaclass.ChangerAnswer"%>
-<%@page import="com.trainingcenter.javaclass.ConnectionManager"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.InputStream"%>
@@ -59,40 +59,38 @@
 		int num_answer_04 = 0;
 
 		if (change_id_q != 0) {
-			
-			Connection c = null;
-			Statement statement = null;
+
+			Connection connection = null;
+			PreparedStatement statement = null;
 			ResultSet set = null;
 			ArrayList<Integer> allNumberQuestions = new ArrayList<Integer>();
 			HashMap<Integer, String> allQuestions = new HashMap<Integer, String>();
 			try {
-				Context initContext = new InitialContext();
-				Context rootContext = (Context) initContext.lookup("java:comp/env");
-				DataSource dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task03_db_link");
+				connection = ConnectionPool.getPool().getConnection();
 
-				c = dataSource.getConnection();
-				statement = c.createStatement();
-				set = statement.executeQuery("SELECT * FROM jdbc_task03_db.questions WHERE id_q=" + change_id_q);
+				statement = connection.prepareStatement("SELECT * FROM jdbc_task03_db.questions WHERE id_q = ?");
+				statement.setInt(1, change_id_q);
 
-				set.next();
-				Integer id_q = set.getInt("id_q"); // Вот так получать данные - очень хорошо!
-				String question = set.getString("question");
-				txt_question = question;
+				set = statement.executeQuery();
+				while (set.next()) {
+					Integer id_q = set.getInt("id_q"); // Вот так получать данные - очень хорошо!
+					String question = set.getString("question");
+					txt_question = question;
+				}
 			} catch (SQLException e) {
 				throw new RuntimeException("Some errors occurred during DB access!", e);
 			} finally {
-				ConnectionManager.closeDbResources(c, statement, set);
+				ConnectionPool.getPool().closeDbResources(connection, statement, set);
 			}
 
 			try {
-				Context initContext = new InitialContext();
-				Context rootContext = (Context) initContext.lookup("java:comp/env");
-				DataSource dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task03_db_link");
+				connection = ConnectionPool.getPool().getConnection();
 
-				c = dataSource.getConnection();
-				statement = c.createStatement();
-				set = statement
-						.executeQuery("SELECT * FROM jdbc_task03_db.answers WHERE fk_question_id=" + change_id_q);
+				statement = connection.prepareStatement("SELECT * FROM jdbc_task03_db.answers WHERE fk_question_id = ?");
+				statement.setInt(1, change_id_q);
+				
+				set = statement.executeQuery();
+				
 				String fourAnswers[] = new String[4];
 				int fourNumAnswer[] = new int[4];
 				int i = 0;
@@ -115,7 +113,7 @@
 			} catch (SQLException e) {
 				throw new RuntimeException("Some errors occurred during DB access!", e);
 			} finally {
-				ConnectionManager.closeDbResources(c, statement, set);
+				ConnectionPool.getPool().closeDbResources(connection, statement, set);
 			}
 
 			if (btn_save_question != null) {
@@ -210,7 +208,7 @@
 		</table>
 		<input type="submit" name="btn_save_question" value="Изменить" /> <input
 			type="text" name="change_id_q"
-			value="<%=request.getParameter("change_id_q")%>" hidden="hidden"/>
+			value="<%=request.getParameter("change_id_q")%>" hidden="hidden" />
 
 
 	</form>

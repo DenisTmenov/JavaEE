@@ -5,6 +5,5 @@ CREATE TABLE `answers` (
   `fk_question_id` INTEGER default NULL,
 
   CONSTRAINT `fk_answer_to_quwstion` FOREIGN KEY (`fk_question_id`) REFERENCES `questions` (`id_q`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT
+    
 );

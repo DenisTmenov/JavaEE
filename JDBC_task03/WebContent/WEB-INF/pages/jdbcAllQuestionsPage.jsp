@@ -1,5 +1,5 @@
+<%@page import="com.trainingcenter.connectionpool.ConnectionPool"%>
 <%@page import="javax.sql.DataSource"%>
-<%@page import="com.trainingcenter.javaclass.ConnectionManager"%>
 <%@page import="com.trainingcenter.javaclass.ReadFile"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
@@ -37,30 +37,34 @@
 	<form id="primaryTable" method="post" class="form-group"
 		onsubmit="true" action="onequestion.html">
 		<table>
-			<tr>
-				<td>Список вопросов вопрос:</td>
-			</tr>
 			<%
-				Connection c = null;
-				Statement statement = null;
+				Connection connection = null;
+				PreparedStatement statement = null;
 				ResultSet set = null;
 				ArrayList<Integer> allNumberQuestions = new ArrayList<Integer>();
 				HashMap<Integer, String> allQuestions = new HashMap<Integer, String>();
 				try {
-					Context initContext = new InitialContext();
-					Context rootContext = (Context) initContext.lookup("java:comp/env");
-					DataSource dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task03_db_link");
+					connection = ConnectionPool.getPool().getConnection();
 
-					c = dataSource.getConnection();
-					statement = c.createStatement();
-					set = statement.executeQuery("SELECT * FROM jdbc_task03_db.questions");
+					statement = connection.prepareStatement("SELECT * FROM jdbc_task03_db.questions");
 
+					set = statement.executeQuery();
+					if (set.next()) {
+						set.previous();
+			%>
+			<tr>
+				<td>Список вопросов вопрос:</td>
+			</tr>
+			<%
+				} else {
+					out.print("Вопросов нет в базе :(");
+					}
 					while (set.next()) {
 						Integer id_q = set.getInt("id_q"); // Вот так получать данные - очень хорошо!
 						String question = set.getString("question");
 			%>
 			<tr>
-				<td align="right">Вопрос: <%=id_q%> &nbsp; 
+				<td align="right">Вопрос: <%=id_q%> &nbsp;
 				</td>
 				<td colspan="3"><%=question%><input id="question"
 					name="question" type="hidden" value="<%=question%>" /></td>
@@ -80,13 +84,13 @@
 					</p>
 				</td>
 			</tr>
-			
+
 			<%
 				}
 				} catch (SQLException e) {
 					throw new RuntimeException("Some errors occurred during DB access!", e);
 				} finally {
-					ConnectionManager.closeDbResources(c, statement, set);
+					ConnectionPool.getPool().closeDbResources(connection, statement, set);
 				}
 			%>
 		</table>

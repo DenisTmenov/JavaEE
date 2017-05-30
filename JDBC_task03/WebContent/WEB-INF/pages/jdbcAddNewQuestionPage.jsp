@@ -1,6 +1,5 @@
 <%@page import="com.trainingcenter.javaclass.ChangerQuestion"%>
 <%@page import="com.trainingcenter.javaclass.ChangerAnswer"%>
-<%@page import="com.trainingcenter.javaclass.ConnectionManager"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.InputStream"%>

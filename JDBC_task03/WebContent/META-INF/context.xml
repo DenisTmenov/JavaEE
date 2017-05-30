@@ -2,7 +2,7 @@
 <Context>
 
    <ResourceLink 
-   name="jdbc/jdbc_task03_db_link" 
+   name="jdbc/jdbc_task03_db_context" 
    global="jdbc/jdbc_task03_db_recource" 
    type="javax.sql.DataSource"/>
 </Context>
