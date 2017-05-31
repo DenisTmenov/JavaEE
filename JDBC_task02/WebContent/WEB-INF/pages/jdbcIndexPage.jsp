@@ -1,3 +1,4 @@
+<%@page import="com.trainingcenter.connectionpool.ConnectionPool"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -43,15 +44,7 @@
 	<h1 align='center'>Lesson 05 - JDBC. Task 02.</h1>
 	<div class='container'>
 		<div class='col-xs-2'>
-			<p>
-				<a href="./" class='btn btn-primary'>Кнопка меню 1</a>
-			</p>
-			<p>
-				<a href="./" class='btn btn-primary'>Кнопка меню 2</a>
-			</p>
-			<p>
-				<a href="./" class='btn btn-primary'>Кнопка меню 3</a>
-			</p>
+			
 		</div>
 
 		<div class='col-xs-8'>
@@ -59,21 +52,20 @@
 				onsubmit="true" action="jdbcSubmit">
 				<table>
 					<%
-						Connection c = null;
-						Statement statement = null;
-						ResultSet set = null;
+					Connection connection = null;
+					PreparedStatement statement = null;
+					ResultSet set = null;
 						ArrayList<Integer> allNumberQuestions = new ArrayList<Integer>();
 						HashMap<Integer, String> allQuestions = new HashMap<Integer, String>();
 						Integer id_q;
 						try {
-							Class.forName("com.mysql.jdbc.Driver");
-							c = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc_task02_db" + "?useSSL=false", "root",
-									"root");
-							statement = c.createStatement();
-							set = statement.executeQuery("SELECT * FROM jdbc_task02_db.questions");
+							connection = ConnectionPool.getPool().getConnection();
 
+							statement = connection.prepareStatement("SELECT * FROM jdbc_task02_db.questions");
+							set = statement.executeQuery();
+							
 							while (set.next()) {
-								Integer id_qq = set.getInt("id_q"); // Вот так получать данные - очень хорошо!
+								Integer id_qq = set.getInt("id_q"); 
 								String question = set.getString("question");
 								allNumberQuestions.add(id_qq);
 								allQuestions.put(id_qq, question);
@@ -93,27 +85,7 @@
 						} catch (SQLException e) {
 							throw new RuntimeException("Some errors occurred during DB access!", e);
 						} finally {
-							if (set != null) {
-								try {
-									set.close();
-								} catch (SQLException e) {
-									System.out.println("Error: ResultSet has not been closed!");
-								}
-							}
-							if (statement != null) {
-								try {
-									statement.close();
-								} catch (SQLException e) {
-									System.out.println("Error: Statement has not been closed!");
-								}
-							}
-							if (c != null) {
-								try {
-									c.close();
-								} catch (SQLException e) {
-									System.out.println("Error: Connection has not been closed!");
-								}
-							}
+							ConnectionPool.getPool().closeDbResources(connection, statement, set);
 						}
 					%>
 					<tr>
@@ -121,14 +93,14 @@
 					</tr>
 					<%
 						try {
-							Class.forName("com.mysql.jdbc.Driver");
-							c = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc_task02_db" + "?useSSL=false", "root",
-									"root");
-							statement = c.createStatement();
-							set = statement.executeQuery("SELECT * FROM jdbc_task02_db.answers WHERE fk_question_id=" + id_q);
+							connection = ConnectionPool.getPool().getConnection();
+
+							statement = connection.prepareStatement("SELECT * FROM jdbc_task02_db.answers WHERE fk_question_id=" + id_q);
+							set = statement.executeQuery();
+							
 							int i = 1;
 							while (set.next()) {
-								Integer id_a = set.getInt("id_a"); // Вот так получать данные - очень хорошо!
+								Integer id_a = set.getInt("id_a"); 
 								String answer = set.getString("answer");
 					%>
 					<tr>
@@ -146,27 +118,7 @@
 						} catch (SQLException e) {
 							throw new RuntimeException("Some errors occurred during DB access!", e);
 						} finally {
-							if (set != null) {
-								try {
-									set.close();
-								} catch (SQLException e) {
-									System.out.println("Error: ResultSet has not been closed!");
-								}
-							}
-							if (statement != null) {
-								try {
-									statement.close();
-								} catch (SQLException e) {
-									System.out.println("Error: Statement has not been closed!");
-								}
-							}
-							if (c != null) {
-								try {
-									c.close();
-								} catch (SQLException e) {
-									System.out.println("Error: Connection has not been closed!");
-								}
-							}
+							ConnectionPool.getPool().closeDbResources(connection, statement, set);
 						}
 					%>
 

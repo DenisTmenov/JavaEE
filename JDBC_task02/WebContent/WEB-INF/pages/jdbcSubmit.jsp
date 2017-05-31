@@ -48,12 +48,7 @@
 					к вопросам
 				</a>
 			</p>
-			<p>
-				<a href="./" class='btn btn-primary'>Кнопка меню 2</a>
-			</p>
-			<p>
-				<a href="./" class='btn btn-primary'>Кнопка меню 3</a>
-			</p>
+			
 		</div>
 
 		<div class='col-xs-8'>
