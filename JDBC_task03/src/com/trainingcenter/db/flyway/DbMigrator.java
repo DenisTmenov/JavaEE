@@ -1,9 +1,11 @@
-package com.trainingcenter.flyway.db;
+package com.trainingcenter.db.flyway;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import org.flywaydb.core.Flyway;
+
+import com.trainingcenter.db.connectionpool.ConnectionPool;
 
 public class DbMigrator extends HttpServlet {
 
@@ -15,7 +17,7 @@ public class DbMigrator extends HttpServlet {
         Flyway flyway = new Flyway();
 
         // Point it to the database
-        flyway.setDataSource("jdbc:mysql://localhost:3306/jdbc_task03_db", "root", "root");
+        flyway.setDataSource(ConnectionPool.getPool().getDataSource());
 
         // Start the migration
         flyway.migrate();

@@ -1,4 +1,4 @@
-package com.trainingcenter.javaclass;
+package com.trainingcenter.servlets.utils;
 
 import java.io.IOException;
 import java.nio.file.Files;

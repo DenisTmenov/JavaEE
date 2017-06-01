@@ -6,7 +6,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>DbMigrator</servlet-name>
-    <servlet-class>com.trainingcenter.flyway.db.DbMigrator</servlet-class>
+    <servlet-class>com.trainingcenter.db.flyway.DbMigrator</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <resource-ref>

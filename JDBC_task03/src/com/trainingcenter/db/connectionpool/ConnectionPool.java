@@ -1,4 +1,4 @@
-package com.trainingcenter.connectionpool;
+package com.trainingcenter.db.connectionpool;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,7 +24,7 @@ public class ConnectionPool {
 		try {
 			Context initContext = new InitialContext();
 			Context rootContext = (Context) initContext.lookup("java:comp/env");
-			dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task02_db_context");
+			dataSource = (DataSource) rootContext.lookup("jdbc/jdbc_task03_db_context");
 		} catch (NamingException e) {
 			throw new RuntimeException("Some errors occurred during DataSource lookup!", e);
 		}
@@ -36,6 +36,10 @@ public class ConnectionPool {
 		} catch (SQLException e) {
 			throw new RuntimeException("Can not receive connection!", e);
 		}
+	}
+	
+	public DataSource getDataSource() {
+		return dataSource;
 	}
 	
 	public void closeDbResources(Connection connection, Statement statement) {

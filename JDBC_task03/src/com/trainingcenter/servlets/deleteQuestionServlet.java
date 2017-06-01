@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.trainingcenter.javaclass.ChangerAnswer;
-import com.trainingcenter.javaclass.ChangerQuestion;
+import com.trainingcenter.db.dao.ChangerAnswer;
+import com.trainingcenter.db.dao.ChangerQuestion;
 
 @WebServlet("/deleteQuestionServlet")
 public class deleteQuestionServlet extends HttpServlet {

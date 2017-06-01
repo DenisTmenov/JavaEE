@@ -1,10 +1,10 @@
-<%@page import="com.trainingcenter.javaclass.ChangerQuestion"%>
-<%@page import="com.trainingcenter.javaclass.ChangerAnswer"%>
+<%@page import="com.trainingcenter.db.dao.ChangerAnswer"%>
+<%@page import="com.trainingcenter.db.dao.ChangerQuestion"%>
+<%@page import="com.trainingcenter.servlets.utils.ReadFile"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.util.Properties"%>
-<%@page import="com.trainingcenter.javaclass.ReadFile"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>

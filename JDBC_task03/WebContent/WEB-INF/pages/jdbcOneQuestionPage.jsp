@@ -1,7 +1,7 @@
-<%@page import="com.trainingcenter.connectionpool.ConnectionPool"%>
+<%@page import="com.trainingcenter.db.connectionpool.ConnectionPool"%>
+<%@page import="com.trainingcenter.servlets.utils.ReadFile"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="java.util.List"%>
-<%@page import="com.trainingcenter.javaclass.ReadFile"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>

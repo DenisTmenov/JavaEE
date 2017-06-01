@@ -1,4 +1,4 @@
-<%@page import="com.trainingcenter.connectionpool.ConnectionPool"%>
+<%@page import="com.trainingcenter.db.connectionpool.ConnectionPool"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.PreparedStatement"%>

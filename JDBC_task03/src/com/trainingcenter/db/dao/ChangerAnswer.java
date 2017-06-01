@@ -1,4 +1,4 @@
-package com.trainingcenter.javaclass;
+package com.trainingcenter.db.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import javax.naming.NamingException;
 
-import com.trainingcenter.connectionpool.ConnectionPool;
+import com.trainingcenter.db.connectionpool.ConnectionPool;
 
 public class ChangerAnswer {
 	public static void saveAnswer(String answer, int question) throws NamingException {
