@@ -15,7 +15,7 @@
   </error-page>
   <servlet>
     <servlet-name>DbMigrator</servlet-name>
-    <servlet-class>com.trainingcenter.projectee.flyway.DbMigrator</servlet-class>
+    <servlet-class>com.trainingcenter.projectee.dao.db.flyway.DbMigrator</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
@@ -33,5 +33,13 @@
   <servlet-mapping>
     <servlet-name>JspRegisrtation</servlet-name>
     <url-pattern>/registration.html</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>JspForgot</servlet-name>
+    <jsp-file>/WEB-INF/pages/forgotlogin.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JspForgot</servlet-name>
+    <url-pattern>/forgot.html</url-pattern>
   </servlet-mapping>
 </web-app>

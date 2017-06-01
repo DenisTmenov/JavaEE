@@ -38,6 +38,10 @@ public class ConnectionPool {
 		}
 	}
 	
+	public DataSource getDataSource() {
+			return dataSource;
+	}
+	
 	public void closeDbResources(Connection connection, Statement statement) {
 		closeDbResources(connection, statement, null);
 	}

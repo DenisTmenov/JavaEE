@@ -36,6 +36,57 @@ public class MySqlUserDAO {
 		return null;
 	}
 
+	public Boolean loginExists(String login) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		try {
+			connection = ConnectionPool.getPool().getConnection();
+
+			statement = connection.prepareStatement("SELECT * FROM user WHERE login=?");
+			statement.setString(1, login);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+		}
+
+		return false;
+	}
+	
+	public Boolean passwordEquals(String login, String password) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		try {
+			connection = ConnectionPool.getPool().getConnection();
+
+			statement = connection.prepareStatement("SELECT * FROM user WHERE login = ? AND password = ?");
+			statement.setString(1, login);
+			statement.setString(2, password);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+		}
+
+		return false;
+	}
+
 	public UserBean storeUser(UserBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -101,5 +152,4 @@ public class MySqlUserDAO {
 		}
 	}
 
-	
 }

@@ -74,7 +74,7 @@ public class RegistrationServlet extends HttpServlet {
 				UserBean userBean = new UserBean();
 				userBean.setLogin(login);
 				userBean.setPassword(password);
-				userBean.setDelStatus(true);
+				userBean.setDelStatus(false);
 				userBean.setFkRole(3);
 
 				userDao.storeUser(userBean);

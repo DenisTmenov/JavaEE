@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.trainingcenter.projectee.dao.MySqlUserDAO;
 import com.trainingcenter.projectee.utils.HttpUtils;
 import com.trainingcenter.projectee.utils.StringUtils;
 
@@ -61,23 +62,25 @@ public class WelcomeServlet extends HttpServlet {
 	private boolean validateData(HttpServletRequest request, String username, String password) {
 		Map<String, String> errorMap = new HashMap<>();
 		HttpSession session = request.getSession();
+
 		if (StringUtils.isBlank(username)) {
 			errorMap.put(LOGIN_EMPTY_CODE, LOGIN_EMPTY_VALUE);
 		}
-		// проверить в базе данных
-		/*
-		 * if (StringUtils.isBlank(login)) { errorMap.put(LOGIN_NOT_EXISTS_CODE,
-		 * LOGIN_NOT_EXISTS_VALUE); }
-		 */
-
 		if (StringUtils.isBlank(password)) {
 			errorMap.put(PASSWORD_EMPTY_CODE, PASSWORD_EMPTY_VALUE);
 		}
-		// проверить в базе данных
-		/*
-		 * if (StringUtils.isBlank(password)) { errorMap.put(PASSWORD_BED_CODE,
-		 * PASSWORD_BED_VALUE); }
-		 */
+
+		if (!StringUtils.isBlank(username) && !StringUtils.isBlank(password)) {
+			MySqlUserDAO userDao = new MySqlUserDAO();
+
+			if (userDao.loginExists(username)) {
+				if (!userDao.passwordEquals(username, password)) {
+					errorMap.put(PASSWORD_BED_CODE, PASSWORD_BED_VALUE);
+				}
+			} else {
+				errorMap.put(LOGIN_NOT_EXISTS_CODE, LOGIN_NOT_EXISTS_VALUE);
+			}
+		}
 
 		if (!errorMap.isEmpty()) {
 			session.setAttribute(VALIDATION_ERRORS_ATTR_LOGIN_PAGE, errorMap);
