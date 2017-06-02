@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page
 	import="com.trainingcenter.projectee.controllers.RegistrationServlet"%>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>

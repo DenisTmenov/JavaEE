@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Map"%>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <%@page import="com.trainingcenter.projectee.controllers.WelcomeServlet"%>
 <html lang='eng'>
