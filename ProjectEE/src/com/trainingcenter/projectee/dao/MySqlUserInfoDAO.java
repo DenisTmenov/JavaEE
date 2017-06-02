@@ -24,8 +24,8 @@ public class MySqlUserInfoDAO {
 			set = statement.executeQuery();
 
 			if (set.next()) {
-				UserInfoBean entity = createUserInfoBean(set);
-				return entity;
+				UserInfoBean beanUserInfo = createUserInfoBean(set);
+				return beanUserInfo;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -36,7 +36,33 @@ public class MySqlUserInfoDAO {
 		return null;
 	}
 
-	public UserInfoBean storeUserInfo(UserInfoBean bean) {
+	public UserInfoBean loadUserInfoByEmail(String email) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		try {
+			connection = ConnectionPool.getPool().getConnection();
+
+			statement = connection.prepareStatement("SELECT * FROM user_info WHERE email=?");
+			statement.setString(1, email);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				UserInfoBean beanUserInfo = createUserInfoBean(set);
+				return beanUserInfo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+		}
+
+		return null;
+	}
+	
+	public UserInfoBean saveUserInfo(UserInfoBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 

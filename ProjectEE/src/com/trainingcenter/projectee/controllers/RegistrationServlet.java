@@ -79,29 +79,34 @@ public class RegistrationServlet extends HttpServlet {
 				userBean.setDelStatus(false);
 				userBean.setFkRole(3);
 
-				userDao.storeUser(userBean);
+				userDao.saveUser(userBean);
 
 				Integer id_user = userDao.returnIdByLogin(login);
 
 				UserInfoBean userInfoBean = new UserInfoBean();
 				userInfoBean.setEmail(email);
 				userInfoBean.setFkIdUser(id_user);
-
-				userInfoDAO.storeUserInfo(userInfoBean);
 				
 				HttpSession session = request.getSession();
 				session.setAttribute(USER_ROLE, USER_ROLE_NAME);
+
+				userInfoDAO.saveUserInfo(userInfoBean);
+
 
 				response.sendRedirect(VIEW_USER_PAGE);
 			}
 
 			if (!isValid) {
-				 HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+
+				HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+
 			}
 
 		}
 		if (!isBtnRegister) {
-			HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
+
+			HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+
 		}
 
 	}
