@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <%@page import="com.trainingcenter.projectee.controllers.WelcomeServlet"%>
-<%@page import="java.util.Map"%>
 <html lang='eng'>
 <head>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
