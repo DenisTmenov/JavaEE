@@ -63,14 +63,14 @@ public class WelcomeServlet extends HttpServlet {
 		Map<String, String> errorMap = new HashMap<>();
 		HttpSession session = request.getSession();
 
-		if (StringUtils.isBlank(username)) {
+		if (StringUtils.isEmpty(username)) {
 			errorMap.put(LOGIN_EMPTY_CODE, LOGIN_EMPTY_VALUE);
 		}
-		if (StringUtils.isBlank(password)) {
+		if (StringUtils.isEmpty(password)) {
 			errorMap.put(PASSWORD_EMPTY_CODE, PASSWORD_EMPTY_VALUE);
 		}
 
-		if (!StringUtils.isBlank(username) && !StringUtils.isBlank(password)) {
+		if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)) {
 			MySqlUserDAO userDao = new MySqlUserDAO();
 
 			if (userDao.loginExists(username)) {

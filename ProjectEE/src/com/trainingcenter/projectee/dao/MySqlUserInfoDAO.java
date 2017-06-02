@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.trainingcenter.projectee.beans.UserInfoBean;
 import com.trainingcenter.projectee.dao.db.ConnectionPool;
@@ -103,6 +101,31 @@ public class MySqlUserInfoDAO {
 		}
 	}
 
+	public Boolean emailExists(String email) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		try {
+			connection = ConnectionPool.getPool().getConnection();
+
+			statement = connection.prepareStatement("SELECT * FROM user_info WHERE email=?");
+			statement.setString(1, email);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+		}
+
+		return false;
+	}
+	
 	private UserInfoBean createUserInfoBean(ResultSet set) throws SQLException {
 		Integer idInfo = set.getInt("id_info");
 		String firstName = set.getString("first_name");

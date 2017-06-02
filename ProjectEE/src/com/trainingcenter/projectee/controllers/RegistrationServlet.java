@@ -1,8 +1,6 @@
 package com.trainingcenter.projectee.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +23,11 @@ public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String VIEW_OK_NAME = "/WEB-INF/pages/welcomelogin.jsp";
-	private static final String VIEW_BED_NAME = "/WEB-INF/pages/registration.jsp";
+	private static final String VIEW_BED_NAME ="/WEB-INF/pages/registration.jsp";
+	private static final String VIEW_USER_PAGE ="./userpage.html";
+	
+	private static final String USER_ROLE = "role";
+	private static final String USER_ROLE_NAME ="user";
 
 	public static final String VALIDATION_ERRORS_ATTR = "validation_errors";
 
@@ -54,8 +56,8 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		// Map<String, String> paramsRequest = createMapParameters(request);
-		// printMapToScrean(paramsRequest, response);
+		response.setCharacterEncoding("UTF-8");
+
 		Boolean isBtnRegister = HttpUtils.isParameterExists(request, "btn_register");
 
 		if (isBtnRegister) {
@@ -86,87 +88,56 @@ public class RegistrationServlet extends HttpServlet {
 				userInfoBean.setFkIdUser(id_user);
 
 				userInfoDAO.storeUserInfo(userInfoBean);
+				
+				HttpSession session = request.getSession();
+				session.setAttribute(USER_ROLE, USER_ROLE_NAME);
 
-				HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
+				response.sendRedirect(VIEW_USER_PAGE);
 			}
 
 			if (!isValid) {
-				HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
-				// HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+				 HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
 			}
 
 		}
 		if (!isBtnRegister) {
 			HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
-			// HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
 		}
 
-	}
-
-	public void printMapToScrean(Map<String, String> map, HttpServletResponse response) throws IOException {
-
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/plain");
-
-		for (String name : map.keySet()) {
-
-			String key = name.toString();
-			String value = map.get(name).toString();
-			StringBuffer sb = new StringBuffer();
-			sb.append(key).append("\t").append(value).append("\n");
-			out.write(sb.toString());
-		}
-
-		out.close();
-
-	}
-
-	public Map<String, String> createMapParameters(HttpServletRequest request) throws IOException {
-
-		Enumeration<String> parameterNames = request.getParameterNames();
-		Map<String, String> parametersRequest = new HashMap<String, String>();
-		while (parameterNames.hasMoreElements()) {
-			String paramName = parameterNames.nextElement();
-			String paramValue = request.getParameter(paramName);
-			parametersRequest.put(paramName, paramValue);
-		}
-		return parametersRequest;
 	}
 
 	private boolean validateData(HttpServletRequest request, String login, String password, String password_confirm,
 			String email) {
 		Map<String, String> errorMap = new HashMap<>();
 		HttpSession session = request.getSession();
-		if (StringUtils.isBlank(login)) {
-			errorMap.put(LOGIN_EMPTY_CODE, LOGIN_EMPTY_VALUE);
-		}
-		// проверить в базе данных
-		/*
-		 * if (StringUtils.isBlank(login)) { errorMap.put(LOGIN_EXISTS_CODE,
-		 * LOGIN_EXISTS_VALUE); }
-		 */
+		MySqlUserDAO userDao = new MySqlUserDAO();
+		MySqlUserInfoDAO userInfoDao = new MySqlUserInfoDAO();
 
-		if (StringUtils.isBlank(password)) {
+		if (StringUtils.isEmpty(login)) {
+			errorMap.put(LOGIN_EMPTY_CODE, LOGIN_EMPTY_VALUE);
+		} else if (userDao.loginExists(login)) {
+			errorMap.put(LOGIN_EXISTS_CODE, LOGIN_EXISTS_VALUE);
+		}
+
+		if (StringUtils.isEmpty(password)) {
 			errorMap.put(PASSWORD_EMPTY_CODE, PASSWORD_EMPTY_VALUE);
 		}
 
-		if (StringUtils.isBlank(password)) {
+		if (StringUtils.isEmpty(password_confirm)) {
 			errorMap.put(PASSWORD_CONFIRM_EMPTY_CODE, PASSWORD_CONFIRM_EMPTY_VALUE);
 		}
-		// проверить в базе данных
-		/*
-		 * if (StringUtils.isBlank(password, password_confirm)) {
-		 * errorMap.put(PASSWORDS_NOT_MATCH_CODE, PASSWORDS_NOT_MATCH_VALUE); }
-		 */
 
-		if (StringUtils.isBlank(email)) {
-			errorMap.put(EMAIL_EMPTY_CODE, EMAIL_EMPTY_VALUE);
+		if (!StringUtils.isEmpty(password) && !StringUtils.isEmpty(password_confirm)) {
+			if (!password.contains(password_confirm)) {
+				errorMap.put(PASSWORDS_NOT_MATCH_CODE, PASSWORDS_NOT_MATCH_VALUE);
+			}
 		}
-		// проверить в базе данных
-		/*
-		 * if (StringUtils.isBlank(email)) { errorMap.put(EMAIL_EXISTS_CODE,
-		 * EMAIL_EXISTS_VALUE); }
-		 */
+
+		if (StringUtils.isEmpty(email)) {
+			errorMap.put(EMAIL_EMPTY_CODE, EMAIL_EMPTY_VALUE);
+		} else if (userInfoDao.emailExists(email)) {
+			errorMap.put(EMAIL_EXISTS_CODE, EMAIL_EXISTS_VALUE);
+		}
 
 		if (!errorMap.isEmpty()) {
 			session.setAttribute(VALIDATION_ERRORS_ATTR, errorMap);
@@ -174,6 +145,6 @@ public class RegistrationServlet extends HttpServlet {
 		}
 		session.removeAttribute(VALIDATION_ERRORS_ATTR);
 		return true;
-	}
 
+	}
 }

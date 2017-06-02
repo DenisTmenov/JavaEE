@@ -45,9 +45,9 @@
 					</div>
 					<div class="panel-body">
 						<form action="./RegistrationServlet" onsubmit="return validate()"
-							method="post" id="regForm" role="form">
+							method="post" id="regForm" >
 							<div class="form-group">
-								<input required type="login" name="login" id="login"
+								<input required type="text" name="login" id="login"
 									class="form-control input-sm" placeholder="Login">
 								<%
 									Map<String, String> errorMap = HttpUtils.getMapAttribute(session,
@@ -66,7 +66,7 @@
 							</div>
 
 							<div class="form-group">
-								<input required type="email" name="email" id="email"
+								<input required type="text" name="email" id="email"
 									class="form-control input-sm" placeholder="Email Address">
 								<%
 									if (!errorMap.isEmpty()) {
@@ -104,7 +104,7 @@
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<input required type="password" name="password_confirm"
+										<input  type="password" name="password_confirm" required 
 											id="password_confirm" class="form-control input-sm"
 											placeholder="Confirm Password">
 										<%

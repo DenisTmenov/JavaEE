@@ -42,4 +42,12 @@
     <servlet-name>JspForgot</servlet-name>
     <url-pattern>/forgot.html</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>JspUserPage</servlet-name>
+    <jsp-file>/WEB-INF/pages/userpage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JspUserPage</servlet-name>
+    <url-pattern>/userpage.html</url-pattern>
+  </servlet-mapping>
 </web-app>

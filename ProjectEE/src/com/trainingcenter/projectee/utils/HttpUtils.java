@@ -22,7 +22,7 @@ public final class HttpUtils {
 			throw new IllegalArgumentException("HttpSession can not be NULL!");
 		}
 
-		if (StringUtils.isBlank(attrName)) {
+		if (StringUtils.isEmpty(attrName)) {
 			throw new IllegalArgumentException("Attribute name can not be blank!");
 		}
 
@@ -39,16 +39,16 @@ public final class HttpUtils {
 	}
 
 	public static boolean isParameterExists(HttpServletRequest request, String paramName) {
-		if (StringUtils.isBlank(paramName)) {
+		if (StringUtils.isEmpty(paramName)) {
 			throw new IllegalArgumentException("Parameter name can not be blank!");
 		}
 
 		String valueStr = request.getParameter(paramName);
-		return StringUtils.isNotBlank(valueStr);
+		return StringUtils.isNotEmpty(valueStr);
 	}
 
 	public static Integer getIntParam(HttpServletRequest request, String paramName) {
-		if (StringUtils.isBlank(paramName)) {
+		if (StringUtils.isEmpty(paramName)) {
 			throw new IllegalArgumentException("Parameter name can not be blank!");
 		}
 
