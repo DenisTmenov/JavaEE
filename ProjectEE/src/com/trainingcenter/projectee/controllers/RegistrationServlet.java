@@ -54,8 +54,6 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		// Map<String, String> paramsRequest = createMapParameters(request);
-		// printMapToScrean(paramsRequest, response);
 		Boolean isBtnRegister = HttpUtils.isParameterExists(request, "btn_register");
 
 		if (isBtnRegister) {
@@ -77,7 +75,7 @@ public class RegistrationServlet extends HttpServlet {
 				userBean.setDelStatus(false);
 				userBean.setFkRole(3);
 
-				userDao.storeUser(userBean);
+				userDao.saveUser(userBean);
 
 				Integer id_user = userDao.returnIdByLogin(login);
 
@@ -85,52 +83,20 @@ public class RegistrationServlet extends HttpServlet {
 				userInfoBean.setEmail(email);
 				userInfoBean.setFkIdUser(id_user);
 
-				userInfoDAO.storeUserInfo(userInfoBean);
+				userInfoDAO.saveUserInfo(userInfoBean);
 
 				HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
 			}
 
 			if (!isValid) {
-				HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
-				// HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+				HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
 			}
 
 		}
 		if (!isBtnRegister) {
-			HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
-			// HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+			HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
 		}
 
-	}
-
-	public void printMapToScrean(Map<String, String> map, HttpServletResponse response) throws IOException {
-
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/plain");
-
-		for (String name : map.keySet()) {
-
-			String key = name.toString();
-			String value = map.get(name).toString();
-			StringBuffer sb = new StringBuffer();
-			sb.append(key).append("\t").append(value).append("\n");
-			out.write(sb.toString());
-		}
-
-		out.close();
-
-	}
-
-	public Map<String, String> createMapParameters(HttpServletRequest request) throws IOException {
-
-		Enumeration<String> parameterNames = request.getParameterNames();
-		Map<String, String> parametersRequest = new HashMap<String, String>();
-		while (parameterNames.hasMoreElements()) {
-			String paramName = parameterNames.nextElement();
-			String paramValue = request.getParameter(paramName);
-			parametersRequest.put(paramName, paramValue);
-		}
-		return parametersRequest;
 	}
 
 	private boolean validateData(HttpServletRequest request, String login, String password, String password_confirm,

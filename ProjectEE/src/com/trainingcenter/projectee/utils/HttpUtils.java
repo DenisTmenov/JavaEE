@@ -1,6 +1,8 @@
 package com.trainingcenter.projectee.utils;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +16,36 @@ public final class HttpUtils {
 
 	private HttpUtils() {
 		throw new AssertionError("Class contains static methods only. You should not instantiate it!");
+	}
+	
+	public Map<String, String> createMapParameters(HttpServletRequest request) throws IOException {
+
+		Enumeration<String> parameterNames = request.getParameterNames();
+		Map<String, String> parametersRequest = new HashMap<String, String>();
+		while (parameterNames.hasMoreElements()) {
+			String paramName = parameterNames.nextElement();
+			String paramValue = request.getParameter(paramName);
+			parametersRequest.put(paramName, paramValue);
+		}
+		return parametersRequest;
+	}
+	
+	public void printMapToScrean(Map<String, String> map, HttpServletResponse response) throws IOException {
+
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain");
+
+		for (String name : map.keySet()) {
+
+			String key = name.toString();
+			String value = map.get(name).toString();
+			StringBuffer sb = new StringBuffer();
+			sb.append(key).append("\t").append(value).append("\n");
+			out.write(sb.toString());
+		}
+
+		out.close();
+
 	}
 
 	@SuppressWarnings("unchecked")
