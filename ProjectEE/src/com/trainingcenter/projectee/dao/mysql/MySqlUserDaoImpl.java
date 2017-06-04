@@ -1,4 +1,4 @@
-package com.trainingcenter.projectee.dao;
+package com.trainingcenter.projectee.dao.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,18 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.trainingcenter.projectee.beans.UserBean;
-import com.trainingcenter.projectee.beans.UserInfoBean;
+import com.trainingcenter.projectee.dao.UserDao;
 import com.trainingcenter.projectee.dao.db.ConnectionPool;
+import com.trainingcenter.projectee.dao.exceptions.ExceptionDao;
 
-public class MySqlUserDAO {
-
+public class MySqlUserDaoImpl implements UserDao {
+	@Override
 	public Integer returnIdByLogin(String login) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
 		try {
-			connection = ConnectionPool.getPool().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 
 			statement = connection.prepareStatement("SELECT * FROM user WHERE login=?");
 			statement.setString(1, login);
@@ -29,21 +30,22 @@ public class MySqlUserDAO {
 				return id_user;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExceptionDao("Exception from MySqlUserDAO in returnIdByLogin.", e);
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
 		}
 
 		return null;
 	}
-	
+
+	@Override
 	public UserBean loadUserByIdUser(Integer idUser) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
 		try {
-			connection = ConnectionPool.getPool().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 
 			statement = connection.prepareStatement("SELECT * FROM user WHERE id_user=?");
 			statement.setInt(1, idUser);
@@ -55,21 +57,22 @@ public class MySqlUserDAO {
 				return userBean;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExceptionDao("Exception from MySqlUserDAO in loadUserByIdUser.", e);
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
 		}
 
 		return null;
 	}
 
+	@Override
 	public Boolean loginExists(String login) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
 		try {
-			connection = ConnectionPool.getPool().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 
 			statement = connection.prepareStatement("SELECT * FROM user WHERE login=?");
 			statement.setString(1, login);
@@ -80,21 +83,22 @@ public class MySqlUserDAO {
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExceptionDao("Exception from MySqlUserDAO in loginExists.", e);
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
 		}
 
 		return false;
 	}
-	
+
+	@Override
 	public Boolean passwordEquals(String login, String password) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
 		try {
-			connection = ConnectionPool.getPool().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 
 			statement = connection.prepareStatement("SELECT * FROM user WHERE login = ? AND password = ?");
 			statement.setString(1, login);
@@ -106,20 +110,21 @@ public class MySqlUserDAO {
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExceptionDao("Exception from MySqlUserDAO in passwordEquals.", e);
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement, set);
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
 		}
 
 		return false;
 	}
 
-	public UserBean saveUser(UserBean bean) {
+	@Override
+	public void save(UserBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
 		try {
-			connection = ConnectionPool.getPool().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 
 			statement = connection
 					.prepareStatement("INSERT INTO user (login, password, del_status, fk_role) VALUES (?, ?, ?, ?)");
@@ -130,20 +135,20 @@ public class MySqlUserDAO {
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExceptionDao("Exception from MySqlUserDAO in save.", e);
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement);
+			ConnectionPool.getInstance().closeDbResources(connection, statement);
 		}
-
-		return null;
+		
 	}
 
-	public void updateUser(UserBean bean) {
+	@Override
+	public void update(UserBean bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
 		try {
-			connection = ConnectionPool.getPool().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 
 			statement = connection.prepareStatement(
 					"UPDATE user SET login = ?, password = ?, del_status = ?, fk_role = ? WHERE id = ?");
@@ -155,27 +160,28 @@ public class MySqlUserDAO {
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExceptionDao("Exception from MySqlUserDAO in update.", e);
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement);
+			ConnectionPool.getInstance().closeDbResources(connection, statement);
 		}
 	}
 
-	public void removeUser(Integer idUser) {
+	@Override
+	public void remove(Integer idUser) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
 		try {
-			connection = ConnectionPool.getPool().getConnection();
+			connection = ConnectionPool.getInstance().getConnection();
 
 			statement = connection.prepareStatement("DELETE FROM user WHERE id = ?");
 			statement.setInt(1, idUser);
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExceptionDao("Exception from MySqlUserDAO in remove.", e);
 		} finally {
-			ConnectionPool.getPool().closeDbResources(connection, statement);
+			ConnectionPool.getInstance().closeDbResources(connection, statement);
 		}
 	}
 
@@ -196,4 +202,5 @@ public class MySqlUserDAO {
 
 		return bean;
 	}
+
 }
