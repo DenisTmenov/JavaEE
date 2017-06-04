@@ -19,7 +19,7 @@ public class DbMigrator extends HttpServlet {
         flyway.setBaselineOnMigrate(true);
     	flyway.setValidateOnMigrate(false);
         // Point it to the database
-        flyway.setDataSource(ConnectionPool.getPool().getDataSource());
+        flyway.setDataSource(ConnectionPool.getInstance().getDataSource());
 
         // Start the migration
         try {

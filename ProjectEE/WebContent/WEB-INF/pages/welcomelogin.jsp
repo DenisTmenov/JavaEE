@@ -38,7 +38,8 @@
 						<input type="text" required id="username" name="username"
 							class="form-control input-lg" placeholder="Username" />
 						<%
-							Map<String, String> errorMap = HttpUtils.getMapAttribute(session, WelcomeServlet.VALIDATION_ERRORS_ATTR_LOGIN_PAGE);
+							Map<String, String> errorMap = HttpUtils.getMapAttribute(session,
+									WelcomeServlet.VALIDATION_ERRORS_ATTR_LOGIN_PAGE);
 							if (!errorMap.isEmpty()) {
 								String emptyLogin = errorMap.get(WelcomeServlet.LOGIN_EMPTY_CODE);
 								String existLogin = errorMap.get(WelcomeServlet.LOGIN_NOT_EXISTS_CODE);
@@ -68,6 +69,9 @@
 							}
 						%>
 					</div>
+					<%
+					session.removeAttribute(WelcomeServlet.VALIDATION_ERRORS_ATTR_LOGIN_PAGE);	
+					%>
 
 					<div class="form-group">
 						<input type="submit" class="btn btn-block btn-lg btn-primary"

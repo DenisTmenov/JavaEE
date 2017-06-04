@@ -11,16 +11,36 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class ConnectionPool {
+	// реализация Singlton On Demand Holder idiom   https://habrahabr.ru/post/129494/
+	// + Ленивая инициализация
+	// + Высокая производительность
+	// - Невозможно использовать для не статических полей класса
 
-	private static final ConnectionPool pool = new ConnectionPool();
+	public static class SingletonHolder {
+		public static final ConnectionPool HOLDER_INSTANCE = new ConnectionPool();
+	}
 
-	public static ConnectionPool getPool() {
-		return pool;
+	private static ConnectionPool instance = null; // 3 признак. PRIVATE STATIC
+													// переменная самого себя
+
+	/*
+	 public static ConnectionPool getInstance() { 
+	 // 2 признак. Instance создаем только один раз и возвращаем его 
+	 if(instance == null){ 
+	 instance = new ConnectionPool(); 
+	 } 
+	 return instance; }
+	 */
+
+	public static ConnectionPool getInstance() {
+
+		return SingletonHolder.HOLDER_INSTANCE;
 	}
 
 	private DataSource dataSource;
 
 	private ConnectionPool() {
+		// 1 признак. Конструктор всегда PRIVATE
 		try {
 			Context initContext = new InitialContext();
 			Context rootContext = (Context) initContext.lookup("java:comp/env");
@@ -37,11 +57,11 @@ public class ConnectionPool {
 			throw new RuntimeException("Can not receive connection!", e);
 		}
 	}
-	
+
 	public DataSource getDataSource() {
-			return dataSource;
+		return dataSource;
 	}
-	
+
 	public void closeDbResources(Connection connection, Statement statement) {
 		closeDbResources(connection, statement, null);
 	}

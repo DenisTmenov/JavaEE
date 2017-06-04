@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.trainingcenter.projectee.dao.MySqlUserDAO;
+import com.trainingcenter.projectee.dao.mysql.MySqlUserDaoImpl;
 import com.trainingcenter.projectee.utils.HttpUtils;
 import com.trainingcenter.projectee.utils.StringUtils;
 
@@ -57,6 +57,11 @@ public class WelcomeServlet extends HttpServlet {
 				HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
 			}
 		}
+		
+		if (!isBtnLogIn) {
+			response.sendRedirect("./welcome.html");
+		}
+		
 	}
 
 	private boolean validateData(HttpServletRequest request, String username, String password) {
@@ -71,7 +76,7 @@ public class WelcomeServlet extends HttpServlet {
 		}
 
 		if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)) {
-			MySqlUserDAO userDao = new MySqlUserDAO();
+			MySqlUserDaoImpl userDao = new MySqlUserDaoImpl();
 
 			if (userDao.loginExists(username)) {
 				if (!userDao.passwordEquals(username, password)) {

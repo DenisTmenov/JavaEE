@@ -14,22 +14,22 @@ import javax.servlet.http.HttpSession;
 import com.trainingcenter.projectee.utils.StringUtils;
 import com.trainingcenter.projectee.beans.UserBean;
 import com.trainingcenter.projectee.beans.UserInfoBean;
-import com.trainingcenter.projectee.dao.MySqlUserDAO;
-import com.trainingcenter.projectee.dao.MySqlUserInfoDAO;
+import com.trainingcenter.projectee.dao.mysql.MySqlUserDaoImpl;
+import com.trainingcenter.projectee.dao.mysql.MySqlUserInfoDaoImpl;
 import com.trainingcenter.projectee.utils.HttpUtils;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VIEW_OK_NAME = "/WEB-INF/pages/welcomelogin.jsp";
-	private static final String VIEW_BED_NAME ="/WEB-INF/pages/registration.jsp";
-	private static final String VIEW_USER_PAGE ="./userpage.html";
-	
-	private static final String USER_ROLE = "role";
-	private static final String USER_ROLE_NAME ="user";
-
 	public static final String VALIDATION_ERRORS_ATTR = "validation_errors";
+
+	private static final String VIEW_OK_NAME = "/WEB-INF/pages/welcomelogin.jsp";
+	private static final String VIEW_BED_NAME = "/WEB-INF/pages/registration.jsp";
+	private static final String VIEW_USER_PAGE = "./userpage.html";
+
+	private static final String USER_ROLE = "role";
+	private static final String USER_ROLE_NAME = "user";
 
 	public static final String LOGIN_EMPTY_CODE = "login.empty";
 	public static final String LOGIN_EXISTS_CODE = "login.exists";
@@ -70,8 +70,8 @@ public class RegistrationServlet extends HttpServlet {
 
 			if (isValid) {
 
-				MySqlUserDAO userDao = new MySqlUserDAO();
-				MySqlUserInfoDAO userInfoDAO = new MySqlUserInfoDAO();
+				MySqlUserDaoImpl userDao = new MySqlUserDaoImpl();
+				MySqlUserInfoDaoImpl userInfoDAO = new MySqlUserInfoDaoImpl();
 
 				UserBean userBean = new UserBean();
 				userBean.setLogin(login);
@@ -79,19 +79,18 @@ public class RegistrationServlet extends HttpServlet {
 				userBean.setDelStatus(false);
 				userBean.setFkRole(3);
 
-				userDao.saveUser(userBean);
+				userDao.save(userBean);
 
 				Integer id_user = userDao.returnIdByLogin(login);
 
 				UserInfoBean userInfoBean = new UserInfoBean();
 				userInfoBean.setEmail(email);
 				userInfoBean.setFkIdUser(id_user);
-				
+
 				HttpSession session = request.getSession();
 				session.setAttribute(USER_ROLE, USER_ROLE_NAME);
 
-				userInfoDAO.saveUserInfo(userInfoBean);
-
+				userInfoDAO.save(userInfoBean);
 
 				response.sendRedirect(VIEW_USER_PAGE);
 			}
@@ -115,8 +114,8 @@ public class RegistrationServlet extends HttpServlet {
 			String email) {
 		Map<String, String> errorMap = new HashMap<>();
 		HttpSession session = request.getSession();
-		MySqlUserDAO userDao = new MySqlUserDAO();
-		MySqlUserInfoDAO userInfoDao = new MySqlUserInfoDAO();
+		MySqlUserDaoImpl userDao = new MySqlUserDaoImpl();
+		MySqlUserInfoDaoImpl userInfoDao = new MySqlUserInfoDaoImpl();
 
 		if (StringUtils.isEmpty(login)) {
 			errorMap.put(LOGIN_EMPTY_CODE, LOGIN_EMPTY_VALUE);

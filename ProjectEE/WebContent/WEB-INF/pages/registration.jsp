@@ -48,7 +48,7 @@
 							method="post" id="regForm" >
 							<div class="form-group">
 								<input required type="text" name="login" id="login"
-									class="form-control input-sm" placeholder="Login">
+									class="form-control input-lg" placeholder="Login">
 								<%
 									Map<String, String> errorMap = HttpUtils.getMapAttribute(session,
 											RegistrationServlet.VALIDATION_ERRORS_ATTR);
@@ -67,7 +67,7 @@
 
 							<div class="form-group">
 								<input required type="text" name="email" id="email"
-									class="form-control input-sm" placeholder="Email Address">
+									class="form-control input-lg" placeholder="Email Address">
 								<%
 									if (!errorMap.isEmpty()) {
 										String emptyEmail = errorMap.get(RegistrationServlet.EMAIL_EMPTY_CODE);
@@ -87,7 +87,7 @@
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input required type="password" name="password" id="password"
-											class="form-control input-sm" placeholder="Password">
+											class="form-control input-lg" placeholder="Password">
 										<%
 											if (!errorMap.isEmpty()) {
 												String emptyPassword = errorMap.get(RegistrationServlet.PASSWORD_EMPTY_CODE);
@@ -105,7 +105,7 @@
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
 										<input  type="password" name="password_confirm" required 
-											id="password_confirm" class="form-control input-sm"
+											id="password_confirm" class="form-control input-lg"
 											placeholder="Confirm Password">
 										<%
 											if (!errorMap.isEmpty()) {
@@ -124,9 +124,15 @@
 							</div>
 
 							<input type="submit" id="btn_register" name="btn_register"
-								value="Register" class="btn btn-info btn-block"> <input
-								type="button" value="Fill in the form"
-								class="btn btn-info btn-block" onclick="fillRegForm()">
+								value="Register" class="btn btn-block btn-lg btn-primary"> 
+							
+							<input type="button" value="Fill in the form"
+								class="btn btn-block btn-lg btn-primary" onclick="fillRegForm()">
+								
+							<p>
+							<span> <a href="welcome.html">Go back to Homepage</a>
+							</span>
+						</p>
 
 						</form>
 					</div>
@@ -135,4 +141,4 @@
 		</div>
 	</div>
 </body>
-</html>s
+</html>
