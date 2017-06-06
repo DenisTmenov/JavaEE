@@ -10,5 +10,6 @@ public interface UserRoleDao {
 	void update(UserRoleBean bean) throws ExceptionDao;
 
 	void remove(Integer idRole) throws ExceptionDao;
-
+	
+	UserRoleBean loadUserRoleByIdRole(Integer idRole) throws ExceptionDao;
 }

@@ -20,7 +20,7 @@
   </servlet>
   <servlet>
     <servlet-name>JspWelcomeLogin</servlet-name>
-    <jsp-file>/WEB-INF/pages/welcomelogin.jsp</jsp-file>
+    <jsp-file>/WEB-INF/pages/welcome.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>JspWelcomeLogin</servlet-name>
@@ -36,18 +36,18 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>JspForgot</servlet-name>
-    <jsp-file>/WEB-INF/pages/forgotlogin.jsp</jsp-file>
+    <jsp-file>/WEB-INF/pages/forgot.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>JspForgot</servlet-name>
     <url-pattern>/forgot.html</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>JspUserPage</servlet-name>
-    <jsp-file>/WEB-INF/pages/userpage.jsp</jsp-file>
+    <servlet-name>JspMainInterface</servlet-name>
+    <jsp-file>/WEB-INF/pages/mainInterface.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
-    <servlet-name>JspUserPage</servlet-name>
-    <url-pattern>/userpage.html</url-pattern>
+    <servlet-name>JspMainInterface</servlet-name>
+    <url-pattern>/main.html</url-pattern>
   </servlet-mapping>
 </web-app>

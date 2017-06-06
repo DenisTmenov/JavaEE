@@ -89,7 +89,7 @@ public class RegistrationServlet extends HttpServlet {
 
 				userInfoDAO.save(userInfoBean);
 
-				response.sendRedirect(LinkKeeper.USER_PAGE);
+				response.sendRedirect(LinkKeeper.MAIN_PAGE);
 			}
 
 			if (!isValid) {
