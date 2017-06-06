@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.trainingcenter.projectee.utils.StringUtils;
 import com.trainingcenter.projectee.beans.UserBean;
 import com.trainingcenter.projectee.beans.UserInfoBean;
+import com.trainingcenter.projectee.controllers.helpers.LinkKeeper;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserDaoImpl;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserInfoDaoImpl;
 import com.trainingcenter.projectee.utils.HttpUtils;
@@ -23,10 +24,6 @@ public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String VALIDATION_ERRORS_ATTR = "validation_errors";
-
-	private static final String VIEW_OK_NAME = "/WEB-INF/pages/welcomelogin.jsp";
-	private static final String VIEW_BED_NAME = "/WEB-INF/pages/registration.jsp";
-	private static final String VIEW_USER_PAGE = "./userpage.html";
 
 	private static final String USER_ROLE = "role";
 	private static final String USER_ROLE_NAME = "user";
@@ -92,19 +89,19 @@ public class RegistrationServlet extends HttpServlet {
 
 				userInfoDAO.save(userInfoBean);
 
-				response.sendRedirect(VIEW_USER_PAGE);
+				response.sendRedirect(LinkKeeper.USER_PAGE);
 			}
 
 			if (!isValid) {
 
-				HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+				HttpUtils.forwardToView(LinkKeeper.JSP_REGISTRATION, request, response);
 
 			}
 
 		}
 		if (!isBtnRegister) {
 
-			HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+			HttpUtils.forwardToView(LinkKeeper.JSP_REGISTRATION, request, response);
 
 		}
 

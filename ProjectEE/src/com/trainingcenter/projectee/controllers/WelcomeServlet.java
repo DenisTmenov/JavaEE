@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.trainingcenter.projectee.controllers.helpers.LinkKeeper;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserDaoImpl;
 import com.trainingcenter.projectee.utils.HttpUtils;
 import com.trainingcenter.projectee.utils.StringUtils;
@@ -18,9 +19,6 @@ import com.trainingcenter.projectee.utils.StringUtils;
 @WebServlet("/WelcomeServlet")
 public class WelcomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private static final String VIEW_OK_NAME = "/WEB-INF/pages/xxxx.jsp";
-	private static final String VIEW_BED_NAME = "/WEB-INF/pages/welcomelogin.jsp";
 
 	public static final String VALIDATION_ERRORS_ATTR_LOGIN_PAGE = "validation_errors";
 
@@ -52,14 +50,14 @@ public class WelcomeServlet extends HttpServlet {
 			boolean isValid = validateData(request, username, password);
 
 			if (isValid) {
-				HttpUtils.forwardToView(VIEW_OK_NAME, request, response);
+				HttpUtils.forwardToView(LinkKeeper.JSP_MAIN_INTERFACE, request, response);
 			} else {
-				HttpUtils.forwardToView(VIEW_BED_NAME, request, response);
+				HttpUtils.forwardToView(LinkKeeper.JSP_WELCOME_LOGIN, request, response);
 			}
 		}
 		
 		if (!isBtnLogIn) {
-			response.sendRedirect("./welcome.html");
+			response.sendRedirect(LinkKeeper.WELCOME_PAGE);
 		}
 		
 	}

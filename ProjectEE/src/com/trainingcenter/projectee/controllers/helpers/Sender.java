@@ -1,4 +1,4 @@
-package com.trainingcenter.projectee.controllers;
+package com.trainingcenter.projectee.controllers.helpers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,15 +15,13 @@ import javax.mail.internet.MimeMessage;
 
 public final class Sender {
 
-	public static void sendEmail(String addressRecipient, byte[] text ) throws IOException
-			{
-	
+	public static void sendEmail(String addressRecipient, byte[] text) throws IOException {
 		String propePathDefault = "settings/email.properties";
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		InputStream stream = classLoader.getResourceAsStream(propePathDefault);
 		Properties properties = new Properties();
 		properties.load(stream);
-		
+
 		String fromEmail = properties.getProperty("mail.from");
 		final String user = properties.getProperty("mail.user");
 		final String password = properties.getProperty("mail.password");
@@ -40,11 +38,9 @@ public final class Sender {
 			InternetAddress to[] = new InternetAddress[1];
 			to[0] = new InternetAddress(addressRecipient);
 			message.setRecipients(Message.RecipientType.TO, to);
-			message.setSubject("Restore credentials");
-			
-			
-			
-			// прочитать из файла
+			message.setSubject("Restore the registration data.");
+
+			// read from byte[] text
 			String messageText = new String(text, "UTF-8");
 			message.setText(messageText);
 
@@ -54,6 +50,5 @@ public final class Sender {
 			throw new RuntimeException(e);
 		}
 	}
-
 
 }
