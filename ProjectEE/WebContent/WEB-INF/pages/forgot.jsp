@@ -25,7 +25,7 @@
 	crossorigin='anonymous'></script>
 <link rel="stylesheet" href="css/styles.css">
 <script src="script/validateEmail.js"></script>
-<title>Project EE</title>
+<title>Forgot</title>
 </head>
 <body>
 	<div class="modal-dialog">
