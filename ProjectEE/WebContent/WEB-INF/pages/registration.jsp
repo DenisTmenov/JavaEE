@@ -1,5 +1,5 @@
-<%@page import="java.util.Map"%>
 <%@page import="com.trainingcenter.projectee.controllers.RegistrationController"%>
+<%@page import="java.util.Map"%>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

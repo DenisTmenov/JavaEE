@@ -128,5 +128,11 @@ public final class HttpUtils {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
 		dispatcher.forward(request, response);
 	}
+	
+	public static void includeView(String viewName, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
+		dispatcher.include(request, response);
+	}
 
 }

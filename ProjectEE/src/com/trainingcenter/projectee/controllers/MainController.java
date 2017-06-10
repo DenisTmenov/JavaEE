@@ -26,43 +26,28 @@ public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String ACTION_IN_SESSION_CODE = "actionInSession";
+	
+	
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		HttpUtils.includeView(LinkKeeper.JSP_HEADER, request, response);
+		HttpUtils.includeView(LinkKeeper.JSP_MENU, request, response);
+		HttpUtils.includeView(LinkKeeper.JSP_MAIN, request, response);
+		HttpUtils.includeView(LinkKeeper.JSP_FOOTER, request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
 
-		String userLogin = null;
-
-		String profileValue = returnParameterValue("Profile", request);
-		String btnChangeProfileValue = returnParameterValue("BtnChangeProfile", request);
-		String btnChangeProfileSave = returnParameterValue("BtnChangeProfileSave", request);
-		String BtnChangeProfileCansel = returnParameterValue("BtnChangeProfileCansel", request);
-		if (!profileValue.equals("")) {
-			session.setAttribute(ACTION_IN_SESSION_CODE, "Profile");
-			userLogin = (String) session.getAttribute(LinkKeeper.SESSION_USER_BEAN_LOGIN);
-			sendAllUserBeanToSession(userLogin, session);
-		}
-
-		if (!btnChangeProfileValue.equals("")) {
-			session.setAttribute(ACTION_IN_SESSION_CODE, "ProfileChange");
-		}
-
-		if (!btnChangeProfileSave.equals("")) {
-			userLogin = (String) session.getAttribute(LinkKeeper.SESSION_USER_BEAN_LOGIN);
-			saveInfoInDB(userLogin, request, session);
-			sendAllUserBeanToSession(userLogin, session);
-			session.setAttribute(ACTION_IN_SESSION_CODE, "Profile");
-		}
-
-		if (!BtnChangeProfileCansel.equals("")) {
-			session.setAttribute(ACTION_IN_SESSION_CODE, "ProfileChange");
-		}
-
-		HttpUtils.forwardToView(LinkKeeper.JSP_MAIN, request, response);
+		HttpUtils.forwardToView(LinkKeeper.PAGE_MAIN, request, response);
 
 	}
 

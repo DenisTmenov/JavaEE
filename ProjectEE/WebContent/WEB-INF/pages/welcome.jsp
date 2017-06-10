@@ -1,6 +1,6 @@
+<%@page import="com.trainingcenter.projectee.controllers.WelcomeController"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
-<%@page import="com.trainingcenter.projectee.controllers.WelcomeController"%>
 <!DOCTYPE html>
 <html lang='eng'>
 <head>

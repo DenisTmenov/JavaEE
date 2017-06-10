@@ -1,12 +1,12 @@
-﻿	Здравствуйте!
+﻿	Hello!
 	
-	Вы получили это сообщение, потому что была совершена попытка восстановить Ваши учетные данные.	
+	You received this message because an attempt was made to restore your credentials.
 	
-	Ваши учетные данные следующие:
+	Your credentials are as follows:
 	
 		Login - ${LOGIN}
 		Password - ${PASSWORD}
 		First name - ${FIRST_NAME}
 		Last name - ${LAST_NAME}
-
-	Не отвечайте на это сообщение.
+		
+	Do not reply to this message.

@@ -7,6 +7,10 @@ public final class LinkKeeper {
 	public static final String PAGE_FORGOT = "forgot.html";
 	public static final String PAGE_MAIN = "main.html";
 	public static final String PAGE_PROFILE = "profile.html";
+	
+	public static final String JSP_HEADER = "/WEB-INF/pages/frame/page/header.jsp";
+	public static final String JSP_MENU = "/WEB-INF/pages/frame/page/menu.jsp";
+	public static final String JSP_FOOTER = "/WEB-INF/pages/frame/page/footer.jsp";
 
 	public static final String JSP_MAIN = "/WEB-INF/pages/mainInterface.jsp";
 	public static final String JSP_WELCOME = "/WEB-INF/pages/welcome.jsp";

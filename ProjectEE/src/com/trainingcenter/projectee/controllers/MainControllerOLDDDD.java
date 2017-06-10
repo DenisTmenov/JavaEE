@@ -1,7 +1,6 @@
 package com.trainingcenter.projectee.controllers;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +12,14 @@ import javax.servlet.http.HttpSession;
 import com.trainingcenter.projectee.beans.UserAllInfoBean;
 import com.trainingcenter.projectee.beans.UserBean;
 import com.trainingcenter.projectee.beans.UserInfoBean;
-import com.trainingcenter.projectee.beans.UserRoleBean;
 import com.trainingcenter.projectee.controllers.helpers.LinkKeeper;
-import com.trainingcenter.projectee.dao.UserDao;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserDaoImpl;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserInfoDaoImpl;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserRoleDaoImpl;
 import com.trainingcenter.projectee.utils.HttpUtils;
 
-@WebServlet("/Action")
-public class ActionFromMainInterfaceServlet extends HttpServlet {
+//@WebServlet("/main.html")
+public class MainControllerOLDDDD extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String ACTION_IN_SESSION_CODE = "actionInSession";
@@ -38,34 +35,32 @@ public class ActionFromMainInterfaceServlet extends HttpServlet {
 		String userLogin = null;
 
 		String profileValue = returnParameterValue("Profile", request);
+		String btnChangeProfileValue = returnParameterValue("BtnChangeProfile", request);
+		String btnChangeProfileSave = returnParameterValue("BtnChangeProfileSave", request);
+		String BtnChangeProfileCansel = returnParameterValue("BtnChangeProfileCansel", request);
 		if (!profileValue.equals("")) {
 			session.setAttribute(ACTION_IN_SESSION_CODE, "Profile");
 			userLogin = (String) session.getAttribute(LinkKeeper.SESSION_USER_BEAN_LOGIN);
-
 			sendAllUserBeanToSession(userLogin, session);
 		}
 
-		String btnChangeProfileValue = returnParameterValue("BtnChangeProfile", request);
 		if (!btnChangeProfileValue.equals("")) {
 			session.setAttribute(ACTION_IN_SESSION_CODE, "ProfileChange");
 		}
 
-		String btnChangeProfileSave = returnParameterValue("BtnChangeProfileSave", request);
 		if (!btnChangeProfileSave.equals("")) {
 			userLogin = (String) session.getAttribute(LinkKeeper.SESSION_USER_BEAN_LOGIN);
-
 			saveInfoInDB(userLogin, request, session);
-
 			sendAllUserBeanToSession(userLogin, session);
 			session.setAttribute(ACTION_IN_SESSION_CODE, "Profile");
 		}
-		
-		String BtnChangeProfileCansel = returnParameterValue("BtnChangeProfileCansel", request);
+
 		if (!BtnChangeProfileCansel.equals("")) {
 			session.setAttribute(ACTION_IN_SESSION_CODE, "ProfileChange");
 		}
 
-		response.sendRedirect(LinkKeeper.PAGE_PROFILE);
+		HttpUtils.forwardToView(LinkKeeper.JSP_MAIN, request, response);
+
 	}
 
 	private String returnParameterValue(String nameParameter, HttpServletRequest request) {

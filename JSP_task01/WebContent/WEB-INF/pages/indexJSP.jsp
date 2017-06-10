@@ -43,7 +43,7 @@
 		<div class='col-xs-8'>
 
 			<form id='primaryTable' class='form-group' method='post'
-				onsubmit='return validateInfo()' action='formOut'>
+				onsubmit='return validateInfo()' action='./formOut'>
 				<%
 					request.setCharacterEncoding("UTF-8");
 					response.setCharacterEncoding("UTF-8");
