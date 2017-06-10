@@ -18,31 +18,10 @@
     <servlet-class>com.trainingcenter.projectee.dao.db.flyway.DbMigrator</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  <servlet>
-    <servlet-name>JspWelcomeLogin</servlet-name>
-    <jsp-file>/WEB-INF/pages/welcome.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JspWelcomeLogin</servlet-name>
-    <url-pattern>/welcome.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>JspRegisrtation</servlet-name>
-    <jsp-file>/WEB-INF/pages/registration.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JspRegisrtation</servlet-name>
-    <url-pattern>/registration.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>JspForgot</servlet-name>
-    <jsp-file>/WEB-INF/pages/forgot.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JspForgot</servlet-name>
-    <url-pattern>/forgot.html</url-pattern>
-  </servlet-mapping>
-  <servlet>
+  
+ 
+  
+  <!-- <servlet>
     <servlet-name>JspMainInterface</servlet-name>
     <jsp-file>/WEB-INF/pages/mainInterface.jsp</jsp-file>
   </servlet>
@@ -57,5 +36,5 @@
   <servlet-mapping>
     <servlet-name>JspProfile</servlet-name>
     <url-pattern>/profile.html</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 </web-app>

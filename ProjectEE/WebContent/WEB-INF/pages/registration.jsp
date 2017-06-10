@@ -1,6 +1,5 @@
-<%@page import="com.trainingcenter.projectee.controllers.RegistrationServlet"%>
 <%@page import="java.util.Map"%>
-
+<%@page import="com.trainingcenter.projectee.controllers.RegistrationController"%>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -44,17 +43,17 @@
 						<h3 class="panel-title">Please register in ProjectEE</h3>
 					</div>
 					<div class="panel-body">
-						<form action="./RegistrationServlet" onsubmit="return validate()"
+						<form action="./RegistrationController" onsubmit="return validate()"
 							method="post" id="regForm" >
 							<div class="form-group">
 								<input required type="text" name="login" id="login"
 									class="form-control input-lg" placeholder="Login">
 								<%
 									Map<String, String> errorMap = HttpUtils.getMapAttribute(session,
-											RegistrationServlet.VALIDATION_ERRORS_ATTR);
+											RegistrationController.VALIDATION_ERRORS_ATTR);
 									if (!errorMap.isEmpty()) {
-										String emptyLogin = errorMap.get(RegistrationServlet.LOGIN_EMPTY_CODE);
-										String existLogin = errorMap.get(RegistrationServlet.LOGIN_EXISTS_CODE);
+										String emptyLogin = errorMap.get(RegistrationController.LOGIN_EMPTY_CODE);
+										String existLogin = errorMap.get(RegistrationController.LOGIN_EXISTS_CODE);
 										if (emptyLogin != null) {
 											out.print(emptyLogin);
 										}
@@ -70,8 +69,8 @@
 									class="form-control input-lg" placeholder="Email Address">
 								<%
 									if (!errorMap.isEmpty()) {
-										String emptyEmail = errorMap.get(RegistrationServlet.EMAIL_EMPTY_CODE);
-										String existEmail = errorMap.get(RegistrationServlet.EMAIL_EXISTS_CODE);
+										String emptyEmail = errorMap.get(RegistrationController.EMAIL_EMPTY_CODE);
+										String existEmail = errorMap.get(RegistrationController.EMAIL_EXISTS_CODE);
 										if (emptyEmail != null) {
 											out.print(emptyEmail);
 										}
@@ -90,8 +89,8 @@
 											class="form-control input-lg" placeholder="Password">
 										<%
 											if (!errorMap.isEmpty()) {
-												String emptyPassword = errorMap.get(RegistrationServlet.PASSWORD_EMPTY_CODE);
-												String notMatchPasswords = errorMap.get(RegistrationServlet.PASSWORDS_NOT_MATCH_CODE);
+												String emptyPassword = errorMap.get(RegistrationController.PASSWORD_EMPTY_CODE);
+												String notMatchPasswords = errorMap.get(RegistrationController.PASSWORDS_NOT_MATCH_CODE);
 												if (emptyPassword != null) {
 													out.print(emptyPassword);
 												}
@@ -109,8 +108,8 @@
 											placeholder="Confirm Password">
 										<%
 											if (!errorMap.isEmpty()) {
-												String emptyPasswordConfirm = errorMap.get(RegistrationServlet.PASSWORD_CONFIRM_EMPTY_CODE);
-												String notMatchPasswords = errorMap.get(RegistrationServlet.PASSWORDS_NOT_MATCH_CODE);
+												String emptyPasswordConfirm = errorMap.get(RegistrationController.PASSWORD_CONFIRM_EMPTY_CODE);
+												String notMatchPasswords = errorMap.get(RegistrationController.PASSWORDS_NOT_MATCH_CODE);
 												if (emptyPasswordConfirm != null) {
 													out.print(emptyPasswordConfirm);
 												}

@@ -8,8 +8,9 @@ public final class LinkKeeper {
 	public static final String PAGE_MAIN = "main.html";
 	public static final String PAGE_PROFILE = "profile.html";
 
-	public static final String JSP_MAIN_INTERFACE = "/WEB-INF/pages/mainInterface.jsp";
-	public static final String JSP_WELCOME_LOGIN = "/WEB-INF/pages/welcome.jsp";
+	public static final String JSP_MAIN = "/WEB-INF/pages/mainInterface.jsp";
+	public static final String JSP_WELCOME = "/WEB-INF/pages/welcome.jsp";
+	public static final String JSP_FORGOT = "/WEB-INF/pages/forgot.jsp";
 	public static final String JSP_REGISTRATION = "/WEB-INF/pages/registration.jsp";
 	public static final String JSP_PROFILE = "/WEB-INF/pages/profile.jsp";
 

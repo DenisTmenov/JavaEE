@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <%@page import="java.util.Map"%>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
-<%@page import="com.trainingcenter.projectee.controllers.WelcomeServlet"%>
+<%@page import="com.trainingcenter.projectee.controllers.WelcomeController"%>
+<!DOCTYPE html>
 <html lang='eng'>
 <head>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -32,14 +32,14 @@
 				<h1 class="text-center">Welcome</h1>
 			</div>
 			<div class="modal-body">
-				<form action="./WelcomeServlet" onsubmit="return validateLogIn()"
+				<form action="welcome.html" onsubmit="true"
 					method="post" id="regForm" role="form">
 					<div class="form-group">
 						<input type="text" required id="userName" name="userName"
-							class="form-control input-lg" placeholder="Username" value="${userName }"/>
+							class="form-control input-lg" placeholder="Username" value="${welcomeDto.username }" /> 
 						<%
 							Map<String, String> errorMap = HttpUtils.getMapAttribute(request,
-									WelcomeServlet.VALIDATION_ERRORS_ATTR_LOGIN_PAGE);
+									WelcomeController.VALIDATION_ERRORS_ATTR_LOGIN_PAGE);
 							Boolean noErrors = errorMap.isEmpty();
 
 							String loginEmpty = null;
@@ -48,21 +48,19 @@
 							String emptyPassword = null;
 							String bedPassword = null;
 							if (!noErrors) {
-								loginEmpty = errorMap.get(WelcomeServlet.LOGIN_EMPTY_CODE);
-								loginExist = errorMap.get(WelcomeServlet.LOGIN_NOT_EXISTS_CODE);
-								loginBloked = errorMap.get(WelcomeServlet.LOGIN_IS_BLOCKED_CODE);
-								emptyPassword = errorMap.get(WelcomeServlet.PASSWORD_EMPTY_CODE);
-								bedPassword = errorMap.get(WelcomeServlet.PASSWORD_BED_CODE);
-								loginBloked = errorMap.get(WelcomeServlet.LOGIN_IS_BLOCKED_CODE);
+								loginEmpty = errorMap.get(WelcomeController.LOGIN_EMPTY_CODE);
+								loginExist = errorMap.get(WelcomeController.LOGIN_NOT_EXISTS_CODE);
+								loginBloked = errorMap.get(WelcomeController.LOGIN_IS_BLOCKED_CODE);
+								emptyPassword = errorMap.get(WelcomeController.PASSWORD_EMPTY_CODE);
+								bedPassword = errorMap.get(WelcomeController.PASSWORD_BED_CODE);
+								loginBloked = errorMap.get(WelcomeController.LOGIN_IS_BLOCKED_CODE);
 							}
 
 							if (loginEmpty != null) {
 								out.print(loginEmpty);
-							}
-							if (loginExist != null) {
+							} else if (loginExist != null) {
 								out.print(loginExist);
-							}
-							if (loginBloked != null) {
+							} else if (loginBloked != null) {
 								out.print(loginBloked);
 							}
 						%>
@@ -74,8 +72,7 @@
 						<%
 							if (emptyPassword != null) {
 								out.print(emptyPassword);
-							}
-							if (bedPassword != null) {
+							} else	if (bedPassword != null) {
 								out.print(bedPassword);
 							}
 						%>

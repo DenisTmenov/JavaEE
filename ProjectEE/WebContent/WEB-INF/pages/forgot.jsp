@@ -1,6 +1,6 @@
-<%@page import="com.trainingcenter.projectee.controllers.ForgotServlet"%>
-<%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <%@page import="java.util.Map"%>
+<%@page import="com.trainingcenter.projectee.controllers.ForgotController"%>
+<%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,20 +34,20 @@
 				<h1 class="text-center">Enter your email, please.</h1>
 			</div>
 			<div class="modal-body">
-				<form action="./ForgotServlet"
+				<form action="forgot.html"
 					onsubmit="return only_email_validate()" method="post" id="regForm">
 					<div class="form-group">
 						<input type="text" required id="email" name="email"
-							class="form-control input-lg" placeholder="123@gmail.com" />
+							class="form-control input-lg" placeholder="123@gmail.com" value="${forgotDto.email }"/>
 						<div class="status" id="statusEmail"></div>
 						<%
 							Map<String, String> errorMap = HttpUtils.getMapAttribute(session,
-									ForgotServlet.VALIDATION_ERRORS_ATTR_FORGOT);
+									ForgotController.VALIDATION_ERRORS_ATTR_FORGOT);
 							if (!errorMap.isEmpty()) {
-								String notEmail = errorMap.get(ForgotServlet.EMAIL_NOT_EXISTS_CODE);
+								String notEmail = errorMap.get(ForgotController.EMAIL_NOT_EXISTS_CODE);
 								if (!notEmail.isEmpty()) {
 						%>
-						<span class='warning'><%=ForgotServlet.EMAIL_NOT_EXISTS_VALUE %></span>
+						<span class='warning'><%=ForgotController.EMAIL_NOT_EXISTS_VALUE %></span>
 						<%
 							}
 							}

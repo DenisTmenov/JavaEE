@@ -54,7 +54,7 @@
 					data-toggle="dropdown"><i class="fa fa-user"></i> ${userLogin} <b
 						class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="Action?Profile=true"><i
+						<li><a href="main.html?Profile=true"><i
 								class="fa fa-fw fa-user"></i> Profile</a></li>
 						<li class="divider"></li>
 						<li><a href="LogOutFromSession"><i
