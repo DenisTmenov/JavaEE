@@ -14,6 +14,8 @@ public interface UserDao {
 	Integer returnIdByLogin(String login) throws ExceptionDao;
 
 	UserBean loadUserByIdUser(Integer idUser) throws ExceptionDao;
+	
+	UserBean loadUserByLogin(String login) throws ExceptionDao;
 
 	Boolean loginExists(String login) throws ExceptionDao;
 

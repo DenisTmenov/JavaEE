@@ -35,20 +35,35 @@
 				<form action="./WelcomeServlet" onsubmit="return validateLogIn()"
 					method="post" id="regForm" role="form">
 					<div class="form-group">
-						<input type="text" required id="username" name="username"
-							class="form-control input-lg" placeholder="Username" />
+						<input type="text" required id="userName" name="userName"
+							class="form-control input-lg" placeholder="Username" value="${userName }"/>
 						<%
-							Map<String, String> errorMap = HttpUtils.getMapAttribute(session,
+							Map<String, String> errorMap = HttpUtils.getMapAttribute(request,
 									WelcomeServlet.VALIDATION_ERRORS_ATTR_LOGIN_PAGE);
-							if (!errorMap.isEmpty()) {
-								String emptyLogin = errorMap.get(WelcomeServlet.LOGIN_EMPTY_CODE);
-								String existLogin = errorMap.get(WelcomeServlet.LOGIN_NOT_EXISTS_CODE);
-								if (emptyLogin != null) {
-									out.print(emptyLogin);
-								}
-								if (existLogin != null) {
-									out.print(existLogin);
-								}
+							Boolean noErrors = errorMap.isEmpty();
+
+							String loginEmpty = null;
+							String loginExist = null;
+							String loginBloked = null;
+							String emptyPassword = null;
+							String bedPassword = null;
+							if (!noErrors) {
+								loginEmpty = errorMap.get(WelcomeServlet.LOGIN_EMPTY_CODE);
+								loginExist = errorMap.get(WelcomeServlet.LOGIN_NOT_EXISTS_CODE);
+								loginBloked = errorMap.get(WelcomeServlet.LOGIN_IS_BLOCKED_CODE);
+								emptyPassword = errorMap.get(WelcomeServlet.PASSWORD_EMPTY_CODE);
+								bedPassword = errorMap.get(WelcomeServlet.PASSWORD_BED_CODE);
+								loginBloked = errorMap.get(WelcomeServlet.LOGIN_IS_BLOCKED_CODE);
+							}
+
+							if (loginEmpty != null) {
+								out.print(loginEmpty);
+							}
+							if (loginExist != null) {
+								out.print(loginExist);
+							}
+							if (loginBloked != null) {
+								out.print(loginBloked);
 							}
 						%>
 					</div>
@@ -57,21 +72,26 @@
 						<input type="password" required id="password" name="password"
 							class="form-control input-lg" placeholder="Password" />
 						<%
-							if (!errorMap.isEmpty()) {
-								String emptyPassword = errorMap.get(WelcomeServlet.PASSWORD_EMPTY_CODE);
-								String bedPassword = errorMap.get(WelcomeServlet.PASSWORD_BED_CODE);
-								if (emptyPassword != null) {
-									out.print(emptyPassword);
-								}
-								if (bedPassword != null) {
-									out.print(bedPassword);
-								}
+							if (emptyPassword != null) {
+								out.print(emptyPassword);
+							}
+							if (bedPassword != null) {
+								out.print(bedPassword);
 							}
 						%>
 					</div>
+
 					<%
-					session.removeAttribute(WelcomeServlet.VALIDATION_ERRORS_ATTR_LOGIN_PAGE);	
+						if (loginBloked != null) {
 					%>
+					<div class="form-group">
+						<p>You are blocked, contact the administrator:
+							admin@projectee.com</p>
+					</div>
+					<%
+						}
+					%>
+
 
 					<div class="form-group">
 						<input type="submit" class="btn btn-block btn-lg btn-primary"

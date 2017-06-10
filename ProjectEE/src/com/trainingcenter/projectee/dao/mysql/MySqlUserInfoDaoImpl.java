@@ -37,6 +37,32 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 
 		return null;
 	}
+	
+	public Integer returnIdInfoByFkIdUser(Integer fkIdUser) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
+
+			statement = connection.prepareStatement("SELECT * FROM user_info WHERE fk_id_user = ?");
+			statement.setInt(1, fkIdUser);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				Integer idInfo = set.getInt("id_info");
+				return idInfo;
+			}
+		} catch (SQLException e) {
+			throw new ExceptionDao("Exception from MySqlUserInfoDaoImpl in returnIdInfoByFkIdUser.", e);
+		} finally {
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
+		}
+
+		return null;
+	}
 
 	@Override
 	public UserInfoBean loadUserInfoByEmail(String email) {
@@ -102,6 +128,8 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 			statement.setString(2, bean.getLastName());
 			statement.setString(3, bean.getEmail());
 			statement.setInt(4, bean.getFkIdUser());
+			statement.setInt(5, bean.getIdInfo());
+			
 
 			statement.executeUpdate();
 		} catch (SQLException e) {

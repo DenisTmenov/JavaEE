@@ -69,6 +69,28 @@ public final class HttpUtils {
 
 		return attribute;
 	}
+	
+	public static Map<String, String> getMapAttribute(HttpServletRequest request, String attrName) {
+		Map<String, String> attribute = getAttribute(request, attrName);
+		if (attribute == null) {
+			return new HashMap<>();
+		}
+
+		return attribute;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T getAttribute(HttpServletRequest request, String attrName) {
+		if (request == null) {
+			throw new IllegalArgumentException("HttpServletRequest can not be NULL!");
+		}
+
+		if (StringUtils.isEmpty(attrName)) {
+			throw new IllegalArgumentException("Attribute name can not be blank!");
+		}
+
+		return (T) request.getAttribute(attrName);
+	}
 
 	public static boolean isParameterExists(HttpServletRequest request, String paramName) {
 		if (StringUtils.isEmpty(paramName)) {
@@ -76,6 +98,15 @@ public final class HttpUtils {
 		}
 
 		String valueStr = request.getParameter(paramName);
+		return StringUtils.isNotEmpty(valueStr);
+	}
+	
+	public static boolean isParameterExists(HttpSession session, String paramName) {
+		if (StringUtils.isEmpty(paramName)) {
+			throw new IllegalArgumentException("Parameter name can not be blank!");
+		}
+
+		String valueStr = (String) session.getAttribute(paramName);
 		return StringUtils.isNotEmpty(valueStr);
 	}
 

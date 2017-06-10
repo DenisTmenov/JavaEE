@@ -50,4 +50,12 @@
     <servlet-name>JspMainInterface</servlet-name>
     <url-pattern>/main.html</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>JspProfile</servlet-name>
+    <jsp-file>/WEB-INF/pages/profile.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JspProfile</servlet-name>
+    <url-pattern>/profile.html</url-pattern>
+  </servlet-mapping>
 </web-app>

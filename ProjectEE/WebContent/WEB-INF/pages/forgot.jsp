@@ -3,7 +3,7 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -59,7 +59,7 @@
 							name="BtnForgot" id="BtnForgot" value="Forgot"
 							onclick="only_email_validate()" />
 						<p>
-							<span> <a href="welcome.html">Go back to Homepage</a>
+							<span> <a href="index.html">Go back to Homepage</a>
 							</span>
 						</p>
 					</div>
@@ -68,6 +68,5 @@
 
 		</div>
 	</div>
-<% session.removeAttribute(ForgotServlet.VALIDATION_ERRORS_ATTR_FORGOT); %>
 </body>
 </html>

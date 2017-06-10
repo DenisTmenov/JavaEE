@@ -25,8 +25,7 @@ public class RegistrationServlet extends HttpServlet {
 
 	public static final String VALIDATION_ERRORS_ATTR = "validation_errors";
 
-	private static final String USER_ROLE = "role";
-	private static final String USER_ROLE_NAME = "user";
+	private static final String USER_ROLE_NAME = "User";
 
 	public static final String LOGIN_EMPTY_CODE = "login.empty";
 	public static final String LOGIN_EXISTS_CODE = "login.exists";
@@ -85,11 +84,13 @@ public class RegistrationServlet extends HttpServlet {
 				userInfoBean.setFkIdUser(id_user);
 
 				HttpSession session = request.getSession();
-				session.setAttribute(USER_ROLE, USER_ROLE_NAME);
-
+				session.setAttribute(LinkKeeper.SESSION_USER_BEAN_ROLE, USER_ROLE_NAME);
+				session.setAttribute(LinkKeeper.SESSION_USER_BEAN_LOGIN, login);
 				userInfoDAO.save(userInfoBean);
+				
+				
 
-				response.sendRedirect(LinkKeeper.MAIN_PAGE);
+				response.sendRedirect(LinkKeeper.PAGE_MAIN);
 			}
 
 			if (!isValid) {

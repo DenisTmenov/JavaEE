@@ -105,6 +105,32 @@ public class MySqlUserRoleDaoImpl implements UserRoleDao {
 
 		return null;
 	}
+	
+	public Integer returnIdRoleByNameRole(String roleName) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
+
+			statement = connection.prepareStatement("SELECT * FROM user_role WHERE name_role = ?");
+			statement.setString(1, roleName);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				Integer numRole = set.getInt("id_role");
+				return numRole;
+			}
+		} catch (SQLException e) {
+			throw new ExceptionDao("Exception from MySqlUserRoleDaoImpl in loadUserRoleByIdRole.", e);
+		} finally {
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
+		}
+
+		return null;
+	}
 
 	private UserRoleBean createUserRoleBean(ResultSet set) throws SQLException {
 		Integer idRole = set.getInt("id_role");

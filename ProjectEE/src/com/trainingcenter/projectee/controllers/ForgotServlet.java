@@ -91,16 +91,16 @@ public class ForgotServlet extends HttpServlet {
 				} else {
 					errorMap.put(EMAIL_NOT_EXISTS_CODE, EMAIL_NOT_EXISTS_VALUE);
 					session.setAttribute(VALIDATION_ERRORS_ATTR_FORGOT, errorMap);
-					response.sendRedirect(LinkKeeper.FORGOT_PAGE);
+					response.sendRedirect(LinkKeeper.PAGE_FORGOT);
 				}
 			} else {
 				errorMap.put(EMAIL_EMPTY_CODE, EMAIL_EMPTY_VALUE);
 				session.setAttribute(VALIDATION_ERRORS_ATTR_FORGOT, errorMap);
-				response.sendRedirect(LinkKeeper.FORGOT_PAGE);
+				response.sendRedirect(LinkKeeper.PAGE_FORGOT);
 			}
 		} else {
 			session.removeAttribute(VALIDATION_ERRORS_ATTR_FORGOT);
-			response.sendRedirect(LinkKeeper.FORGOT_PAGE);
+			response.sendRedirect(LinkKeeper.PAGE_FORGOT);
 		}
 
 	}

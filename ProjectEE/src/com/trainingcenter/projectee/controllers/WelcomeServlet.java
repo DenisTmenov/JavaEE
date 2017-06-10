@@ -24,49 +24,59 @@ public class WelcomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String VALIDATION_ERRORS_ATTR_LOGIN_PAGE = "validation_errors";
-	
-	public static final String ROLE_CODE = "user.role";
 
 	public static final String LOGIN_EMPTY_CODE = "login.empty";
 	public static final String LOGIN_NOT_EXISTS_CODE = "login.not.exists";
+	public static final String LOGIN_IS_BLOCKED_CODE = "login.is.bloked";
 	public static final String PASSWORD_EMPTY_CODE = "password.empty";
 	public static final String PASSWORD_BED_CODE = "password.is.wrong";
 
 	public static final String LOGIN_EMPTY_VALUE = "Login is empty!";
 	public static final String LOGIN_NOT_EXISTS_VALUE = "This login is not registered!";
+	public static final String LOGIN_IS_BLOCKED_VALUE = "You are bloked!";
 	public static final String PASSWORD_EMPTY_VALUE = "Password is empty!";
 	public static final String PASSWORD_BED_VALUE = "Password is wrong!";
 
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.sendRedirect(LinkKeeper.PAGE_WELCOME);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		Boolean buttonIsClick = HttpUtils.isParameterExists(request, "BtnLogIn");
 
-		Boolean isBtnLogIn = HttpUtils.isParameterExists(request, "BtnLogIn");
-
-		if (isBtnLogIn) {
-			String username = request.getParameter("username");
+		if (buttonIsClick) {
+			
+			String username = request.getParameter("userName");
 			String password = request.getParameter("password");
-
 			boolean isValid = validateData(request, username, password);
 
 			if (isValid) {
-				sendRoleInSession(username, request);
-				response.sendRedirect(LinkKeeper.MAIN_PAGE);
+				sendRoleAndNameInSession(username, request);
+				
+				response.sendRedirect(LinkKeeper.PAGE_MAIN);
 			} else {
 				HttpUtils.forwardToView(LinkKeeper.JSP_WELCOME_LOGIN, request, response);
 			}
 		}
 
-		if (!isBtnLogIn) {
-			response.sendRedirect(LinkKeeper.WELCOME_PAGE);
+		if (!buttonIsClick) {
+			response.sendRedirect(LinkKeeper.PAGE_WELCOME);
 		}
 
 	}
 	
-	private void sendRoleInSession(String username, HttpServletRequest request){
+	private void sendRoleAndNameInSession(String userName, HttpServletRequest request){
 		MySqlUserDaoImpl userDao = new MySqlUserDaoImpl();
-		Integer idUser = userDao.returnIdByLogin(username);
+		Integer idUser = userDao.returnIdByLogin(userName);
 		UserBean userBean = userDao.loadUserByIdUser(idUser);
 		Integer fkRole = userBean.getFkRole();
 
@@ -75,37 +85,40 @@ public class WelcomeServlet extends HttpServlet {
 		String userRoleName = userRoleBean.getNameRole();
 
 		HttpSession session = request.getSession();
-		session.setAttribute(ROLE_CODE, userRoleName);
+		session.setAttribute(LinkKeeper.SESSION_USER_BEAN_ROLE, userRoleName);
+		session.setAttribute(LinkKeeper.SESSION_USER_BEAN_LOGIN, userName);
 	}
 
-	private boolean validateData(HttpServletRequest request, String username, String password) {
+	private boolean validateData(HttpServletRequest request, String userName, String password) {
 		Map<String, String> errorMap = new HashMap<>();
-		HttpSession session = request.getSession();
 
-		if (StringUtils.isEmpty(username)) {
+		if (StringUtils.isEmpty(userName)) {
 			errorMap.put(LOGIN_EMPTY_CODE, LOGIN_EMPTY_VALUE);
 		}
 		if (StringUtils.isEmpty(password)) {
 			errorMap.put(PASSWORD_EMPTY_CODE, PASSWORD_EMPTY_VALUE);
 		}
 
-		if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)) {
+		if (!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(password)) {
 			MySqlUserDaoImpl userDao = new MySqlUserDaoImpl();
 
-			if (userDao.loginExists(username)) {
-				if (!userDao.passwordEquals(username, password)) {
+			if (userDao.loginExists(userName)) {
+				if (!userDao.passwordEquals(userName, password)) {
 					errorMap.put(PASSWORD_BED_CODE, PASSWORD_BED_VALUE);
 				}
+				if(userDao.returnDelStatusByLogin(userName)){
+					errorMap.put(LOGIN_IS_BLOCKED_CODE, LOGIN_IS_BLOCKED_VALUE);
+				}
+				
 			} else {
 				errorMap.put(LOGIN_NOT_EXISTS_CODE, LOGIN_NOT_EXISTS_VALUE);
 			}
 		}
 
 		if (!errorMap.isEmpty()) {
-			session.setAttribute(VALIDATION_ERRORS_ATTR_LOGIN_PAGE, errorMap);
+			request.setAttribute(VALIDATION_ERRORS_ATTR_LOGIN_PAGE, errorMap);
 			return false;
 		}
-		session.removeAttribute(VALIDATION_ERRORS_ATTR_LOGIN_PAGE);
 		return true;
 	}
 
