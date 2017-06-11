@@ -1,62 +1,45 @@
-package com.trainingcenter.projectee.beans;
+package com.trainingcenter.projectee.domain;
 
 import java.io.Serializable;
 
-public class UserAllInfoBean implements Serializable {
+public class ProfileDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer idUser;
-	private String Login;
-	private String Password;
-	private Boolean delStatus;
-	private String role;
+	private String login;
+	private String email;
+	private String password;
 	private String firstName;
 	private String lastName;
-	private String email;
-
-	public UserAllInfoBean() {
+	private Boolean delStatus;
+	private String role;
+	
+	public ProfileDto() {
 		super();
 	}
 
-	public Integer getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
-	}
-
 	public String getLogin() {
-		return Login;
+		return login;
 	}
 
 	public void setLogin(String login) {
-		Login = login;
+		this.login = login;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
-	}
-
-	public Boolean getDelStatus() {
-		return delStatus;
-	}
-
-	public void setDelStatus(Boolean delStatus) {
-		this.delStatus = delStatus;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
+		this.password = password;
 	}
 
 	public String getFirstName() {
@@ -75,25 +58,32 @@ public class UserAllInfoBean implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getEmail() {
-		return email;
+	public Boolean getDelStatus() {
+		return delStatus;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDelStatus(Boolean delStatus) {
+		this.delStatus = delStatus;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Login == null) ? 0 : Login.hashCode());
-		result = prime * result + ((Password == null) ? 0 : Password.hashCode());
 		result = prime * result + ((delStatus == null) ? 0 : delStatus.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((idUser == null) ? 0 : idUser.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -106,17 +96,7 @@ public class UserAllInfoBean implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserAllInfoBean other = (UserAllInfoBean) obj;
-		if (Login == null) {
-			if (other.Login != null)
-				return false;
-		} else if (!Login.equals(other.Login))
-			return false;
-		if (Password == null) {
-			if (other.Password != null)
-				return false;
-		} else if (!Password.equals(other.Password))
-			return false;
+		ProfileDto other = (ProfileDto) obj;
 		if (delStatus == null) {
 			if (other.delStatus != null)
 				return false;
@@ -132,15 +112,20 @@ public class UserAllInfoBean implements Serializable {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (idUser == null) {
-			if (other.idUser != null)
-				return false;
-		} else if (!idUser.equals(other.idUser))
-			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
 		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
 			return false;
 		if (role == null) {
 			if (other.role != null)
@@ -152,11 +137,11 @@ public class UserAllInfoBean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserAllInfoBean [idUser=" + idUser + ", Login=" + Login + ", Password=" + Password + ", delStatus="
-				+ delStatus + ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + "]";
+		return "ProfileDto [login=" + login + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", delStatus=" + delStatus + ", role=" + role + "]";
 	}
 
 	
 
+	
 }

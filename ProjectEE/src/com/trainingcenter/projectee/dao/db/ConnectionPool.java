@@ -19,11 +19,11 @@ public class ConnectionPool {
 	public static class SingletonHolder {
 		public static final ConnectionPool HOLDER_INSTANCE = new ConnectionPool();
 	}
-
+	/*
 	private static ConnectionPool instance = null; // 3 признак. PRIVATE STATIC
 													// переменная самого себя
 
-	/*
+	
 	 public static ConnectionPool getInstance() { 
 	 // 2 признак. Instance создаем только один раз и возвращаем его 
 	 if(instance == null){ 

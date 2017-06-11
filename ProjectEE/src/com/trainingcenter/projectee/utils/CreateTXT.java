@@ -9,12 +9,10 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 public class CreateTXT {
 	public static byte[] create(HttpServletRequest request, String filePath, Map<String, String> mapWithParameters) throws IOException {
-		// filePath = "/WEB-INF/txtTemplates/forgot.txt"
 		String realPathTemplate = request.getServletContext().getRealPath(filePath);
 		Path pathTemplate = Paths.get(realPathTemplate);
 		List<String> readAllLines = Files.readAllLines(pathTemplate);

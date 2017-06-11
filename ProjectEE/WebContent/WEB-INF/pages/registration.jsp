@@ -43,7 +43,7 @@
 						<h3 class="panel-title">Please register in ProjectEE</h3>
 					</div>
 					<div class="panel-body">
-						<form action="./RegistrationController" onsubmit="return validate()"
+						<form action="./registration.html" onsubmit="return validate()"
 							method="post" id="regForm" >
 							<div class="form-group">
 								<input required type="text" name="login" id="login"

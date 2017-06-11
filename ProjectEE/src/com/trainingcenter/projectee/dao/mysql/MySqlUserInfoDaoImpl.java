@@ -5,14 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.trainingcenter.projectee.beans.UserInfoBean;
 import com.trainingcenter.projectee.dao.UserInfoDao;
 import com.trainingcenter.projectee.dao.db.ConnectionPool;
 import com.trainingcenter.projectee.dao.exceptions.ExceptionDao;
+import com.trainingcenter.projectee.entity.UserInfoEntity;
 
 public class MySqlUserInfoDaoImpl implements UserInfoDao {
 	@Override
-	public UserInfoBean loadUserInfoById(Integer idInfo) {
+	public UserInfoEntity loadUserInfoById(Integer idInfo) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -26,7 +26,7 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 			set = statement.executeQuery();
 
 			if (set.next()) {
-				UserInfoBean beanUserInfo = createUserInfoBean(set);
+				UserInfoEntity beanUserInfo = CreaterEntity.createUserInfoEntity(set);
 				return beanUserInfo;
 			}
 		} catch (SQLException e) {
@@ -35,6 +35,31 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
 		}
 
+		return null;
+	}
+	
+	public UserInfoEntity returnUserInfoByLogin(String login) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
+
+			statement = connection.prepareStatement("SELECT * FROM user, user_info WHERE login = ? AND user.id_user = user_info.fk_id_user");
+			statement.setString(1, login);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				UserInfoEntity userInfoEntity = CreaterEntity.createUserInfoEntity(set);
+				return userInfoEntity;
+			}
+		} catch (SQLException e) {
+			throw new ExceptionDao("Exception from MySqlUserDaoImpl in returnRoleByLogin.", e);
+		} finally {
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
+		}
 		return null;
 	}
 	
@@ -65,7 +90,7 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 	}
 
 	@Override
-	public UserInfoBean loadUserInfoByEmail(String email) {
+	public UserInfoEntity loadUserInfoByEmail(String email) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -79,8 +104,8 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 			set = statement.executeQuery();
 
 			if (set.next()) {
-				UserInfoBean beanUserInfo = createUserInfoBean(set);
-				return beanUserInfo;
+				UserInfoEntity userInfoEntity = CreaterEntity.createUserInfoEntity(set);
+				return userInfoEntity;
 			}
 		} catch (SQLException e) {
 			throw new ExceptionDao("Exception from MySqlUserInfoDaoImpl in loadUserInfoByEmail.", e);
@@ -92,7 +117,7 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 	}
 
 	@Override
-	public void save(UserInfoBean bean) {
+	public void save(UserInfoEntity bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
@@ -116,7 +141,7 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 	}
 
 	@Override
-	public void update(UserInfoBean bean) {
+	public void update(UserInfoEntity bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
@@ -183,22 +208,6 @@ public class MySqlUserInfoDaoImpl implements UserInfoDao {
 		return false;
 	}
 
-	private UserInfoBean createUserInfoBean(ResultSet set) throws SQLException {
-		Integer idInfo = set.getInt("id_info");
-		String firstName = set.getString("first_name");
-		String lastName = set.getString("last_name");
-		String email = set.getString("email");
-		Integer fkIdUser = set.getInt("fk_id_user");
-
-		UserInfoBean bean = new UserInfoBean();
-
-		bean.setIdInfo(idInfo);
-		bean.setFirstName(firstName);
-		bean.setLastName(lastName);
-		bean.setEmail(email);
-		bean.setFkIdUser(fkIdUser);
-
-		return bean;
-	}
+	
 
 }

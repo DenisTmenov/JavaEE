@@ -35,7 +35,7 @@
 				<form action="welcome.html" onsubmit="true"
 					method="post" id="regForm" role="form">
 					<div class="form-group">
-						<input type="text" required id="userName" name="userName"
+						<input type="text" required id="username" name="username"
 							class="form-control input-lg" placeholder="Username" value="${welcomeDto.username }" /> 
 						<%
 							Map<String, String> errorMap = HttpUtils.getMapAttribute(request,

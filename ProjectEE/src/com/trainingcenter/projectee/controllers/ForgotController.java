@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.trainingcenter.projectee.beans.UserBean;
-import com.trainingcenter.projectee.beans.UserInfoBean;
 import com.trainingcenter.projectee.controllers.helpers.LinkKeeper;
 import com.trainingcenter.projectee.controllers.helpers.WriterOutJsp;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserDaoImpl;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserInfoDaoImpl;
-import com.trainingcenter.projectee.dto.ForgotDto;
+import com.trainingcenter.projectee.domain.ForgotDto;
+import com.trainingcenter.projectee.entity.UserEntity;
+import com.trainingcenter.projectee.entity.UserInfoEntity;
 import com.trainingcenter.projectee.services.EmailService;
 import com.trainingcenter.projectee.services.factory.ServiceFactory;
 import com.trainingcenter.projectee.utils.CreateTXT;
@@ -60,13 +60,13 @@ public class ForgotController extends HttpServlet {
 				request.setAttribute("forgotDto", forgotDto);
 
 				MySqlUserInfoDaoImpl infoDAO = new MySqlUserInfoDaoImpl();
-				UserInfoBean userInfoBean = infoDAO.loadUserInfoByEmail(email);
+				UserInfoEntity userInfoBean = infoDAO.loadUserInfoByEmail(email);
 				if (userInfoBean != null) {
 					Integer fkIdUser = userInfoBean.getFkIdUser();
 
 					if (userInfoBean != null) {
 						MySqlUserDaoImpl userDAO = new MySqlUserDaoImpl();
-						UserBean userBean = userDAO.loadUserByIdUser(fkIdUser);
+						UserEntity userBean = userDAO.loadUserByIdUser(fkIdUser);
 						Boolean delStatus = userBean.getDelStatus();
 						byte[] textMessage = null;
 						Map<String, String> userAllParameters = new HashMap<String, String>();
@@ -76,7 +76,7 @@ public class ForgotController extends HttpServlet {
 							userAllParameters.put("FIRST_NAME", EMPTY_VALUE_IN_REG_INFO_VALUE);
 						}
 						if (userInfoBean.getLastName() != null) {
-							userAllParameters.put("LAST_NAME", userInfoBean.getFirstName());
+							userAllParameters.put("LAST_NAME", userInfoBean.getLastName());
 						} else {
 							userAllParameters.put("LAST_NAME", EMPTY_VALUE_IN_REG_INFO_VALUE);
 						}

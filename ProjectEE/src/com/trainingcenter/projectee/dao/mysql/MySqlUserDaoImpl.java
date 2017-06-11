@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.trainingcenter.projectee.beans.UserAllInfoBean;
-import com.trainingcenter.projectee.beans.UserBean;
 import com.trainingcenter.projectee.dao.UserDao;
 import com.trainingcenter.projectee.dao.db.ConnectionPool;
 import com.trainingcenter.projectee.dao.exceptions.ExceptionDao;
+import com.trainingcenter.projectee.entity.UserEntity;
+import com.trainingcenter.projectee.entity.UserInfoEntity;
 
 public class MySqlUserDaoImpl implements UserDao {
 	@Override
@@ -40,7 +40,7 @@ public class MySqlUserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public UserBean loadUserByIdUser(Integer idUser) {
+	public UserEntity loadUserByIdUser(Integer idUser) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -54,7 +54,7 @@ public class MySqlUserDaoImpl implements UserDao {
 			set = statement.executeQuery();
 
 			if (set.next()) {
-				UserBean userBean = createUserBean(set);
+				UserEntity userBean = CreaterEntity.createUserEntity(set);
 				return userBean;
 			}
 		} catch (SQLException e) {
@@ -67,7 +67,7 @@ public class MySqlUserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public UserBean loadUserByLogin(String login) {
+	public UserEntity loadUserByLogin(String login) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -81,7 +81,7 @@ public class MySqlUserDaoImpl implements UserDao {
 			set = statement.executeQuery();
 
 			if (set.next()) {
-				UserBean userBean = createUserBean(set);
+				UserEntity userBean = CreaterEntity.createUserEntity(set);
 				return userBean;
 			}
 		} catch (SQLException e) {
@@ -147,7 +147,7 @@ public class MySqlUserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void save(UserBean bean) {
+	public void save(UserEntity bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
@@ -171,7 +171,7 @@ public class MySqlUserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void update(UserBean bean) {
+	public void update(UserEntity bean) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
@@ -238,26 +238,8 @@ public class MySqlUserDaoImpl implements UserDao {
 
 		return null;
 	}
-
-	private UserBean createUserBean(ResultSet set) throws SQLException {
-		Integer idUser = set.getInt("id_user");
-		String login = set.getString("login");
-		String password = set.getString("password");
-		Boolean delStatus = set.getBoolean("del_status");
-		Integer fkRole = set.getInt("fk_role");
-
-		UserBean bean = new UserBean();
-
-		bean.setIdUser(idUser);
-		bean.setLogin(login);
-		bean.setPassword(password);
-		bean.setDelStatus(delStatus);
-		bean.setFkRole(fkRole);
-
-		return bean;
-	}
-
-	public UserAllInfoBean loadAllUserInfoByLogin(String login) {
+	
+	public UserInfoEntity returnUserInfoByLogin(String login) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -265,47 +247,49 @@ public class MySqlUserDaoImpl implements UserDao {
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
 
-			statement = connection.prepareStatement("SELECT * FROM user, user_info, user_role "
-					+ "WHERE login=? AND user.id_user = user_info.fk_id_user and user.fk_role = user_role.id_role");
+			statement = connection.prepareStatement("SELECT * FROM user, user_info WHERE login = ? AND user.id_user = user_info.fk_id_user");
 			statement.setString(1, login);
 
 			set = statement.executeQuery();
 
 			if (set.next()) {
-				UserAllInfoBean userAllInfoBean = createUserAllInfoBean(set);
-				
-				return userAllInfoBean;
+				UserInfoEntity userInfoEntity = CreaterEntity.createUserInfoEntity(set);
+				return userInfoEntity;
 			}
 		} catch (SQLException e) {
-			throw new ExceptionDao("Exception from MySqlUserDaoImpl in loadUserByLogin.", e);
+			throw new ExceptionDao("Exception from MySqlUserDaoImpl in returnRoleByLogin.", e);
 		} finally {
 			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
 		}
-
 		return null;
 	}
-	
-	private UserAllInfoBean createUserAllInfoBean(ResultSet set) throws SQLException {
-		Integer idUser = set.getInt("id_user");
-		String login = set.getString("login");
-		String password = set.getString("password");
-		Boolean delStatus = set.getBoolean("del_status");
-		String role = set.getString("name_role");
-		String firstName = set.getString("first_name");
-		String lastName = set.getString("last_name");
-		String email = set.getString("email");
 
-		UserAllInfoBean bean = new UserAllInfoBean();
+	public String returnRoleByLogin(String login) {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
 
-		bean.setIdUser(idUser);
-		bean.setLogin(login);
-		bean.setPassword(password);
-		bean.setDelStatus(delStatus);
-		bean.setRole(role);
-		bean.setFirstName(firstName);
-		bean.setLastName(lastName);
-		bean.setEmail(email);
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
 
-		return bean;
+			statement = connection.prepareStatement("SELECT * FROM user, user_role WHERE login = ? AND user.fk_role = user_role.id_role");
+			statement.setString(1, login);
+
+			set = statement.executeQuery();
+
+			if (set.next()) {
+				String role = set.getString("name_role");
+				return role;
+			}
+		} catch (SQLException e) {
+			throw new ExceptionDao("Exception from MySqlUserDaoImpl in returnRoleByLogin.", e);
+		} finally {
+			ConnectionPool.getInstance().closeDbResources(connection, statement, set);
+		}
+		return "";
 	}
+
+	
+	
+	
 }

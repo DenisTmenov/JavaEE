@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.trainingcenter.projectee.utils.StringUtils;
-import com.trainingcenter.projectee.beans.UserBean;
-import com.trainingcenter.projectee.beans.UserInfoBean;
 import com.trainingcenter.projectee.controllers.helpers.LinkKeeper;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserDaoImpl;
 import com.trainingcenter.projectee.dao.mysql.MySqlUserInfoDaoImpl;
-import com.trainingcenter.projectee.dto.RegistrationDto;
+import com.trainingcenter.projectee.domain.RegistrationDto;
+import com.trainingcenter.projectee.entity.UserEntity;
+import com.trainingcenter.projectee.entity.UserInfoEntity;
 import com.trainingcenter.projectee.utils.HttpUtils;
 
 @WebServlet("/registration.html")
@@ -73,7 +73,7 @@ public class RegistrationController extends HttpServlet {
 				MySqlUserDaoImpl userDao = new MySqlUserDaoImpl();
 				MySqlUserInfoDaoImpl userInfoDAO = new MySqlUserInfoDaoImpl();
 
-				UserBean userBean = new UserBean();
+				UserEntity userBean = new UserEntity();
 				userBean.setLogin(registrationDto.getLogin());
 				userBean.setPassword(registrationDto.getPassword());
 				userBean.setDelStatus(false);
@@ -83,13 +83,13 @@ public class RegistrationController extends HttpServlet {
 
 				Integer id_user = userDao.returnIdByLogin(registrationDto.getLogin());
 
-				UserInfoBean userInfoBean = new UserInfoBean();
+				UserInfoEntity userInfoBean = new UserInfoEntity();
 				userInfoBean.setEmail(registrationDto.getEmail());
 				userInfoBean.setFkIdUser(id_user);
 
 				HttpSession session = request.getSession();
-				session.setAttribute(LinkKeeper.SESSION_USER_BEAN_ROLE, USER_ROLE_NAME);
-				session.setAttribute(LinkKeeper.SESSION_USER_BEAN_LOGIN, registrationDto.getLogin());
+				session.setAttribute(WelcomeController.SESSION_USER_BEAN_ROLE, USER_ROLE_NAME);
+				session.setAttribute(WelcomeController.SESSION_USER_BEAN_LOGIN, registrationDto.getLogin());
 				userInfoDAO.save(userInfoBean);
 				
 				

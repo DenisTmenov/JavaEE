@@ -1,4 +1,4 @@
-package com.trainingcenter.projectee.dto;
+package com.trainingcenter.projectee.domain;
 
 import java.io.Serializable;
 

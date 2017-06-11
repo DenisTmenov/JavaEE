@@ -134,5 +134,13 @@ public final class HttpUtils {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewName);
 		dispatcher.include(request, response);
 	}
+	
+	public static String returnRequestParameterValue(String nameParameter, HttpServletRequest request) {
+		if (HttpUtils.isParameterExists(request, nameParameter)) {
+			String value = (String) request.getParameter(nameParameter);
+			return value;
+		}
+		return "";
+	}
 
 }

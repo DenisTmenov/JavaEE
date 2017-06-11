@@ -1,8 +1,8 @@
-package com.trainingcenter.projectee.beans;
+package com.trainingcenter.projectee.entity;
 
 import java.io.Serializable;
 
-public class UserBean implements Serializable {
+public class UserEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -12,7 +12,7 @@ public class UserBean implements Serializable {
 	private Boolean delStatus;
 	private Integer fkRole;
 
-	public UserBean() {
+	public UserEntity() {
 		super();
 	}
 
@@ -76,7 +76,7 @@ public class UserBean implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserBean other = (UserBean) obj;
+		UserEntity other = (UserEntity) obj;
 		if (Login == null) {
 			if (other.Login != null)
 				return false;

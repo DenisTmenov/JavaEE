@@ -22,7 +22,7 @@ public class UserInSessionServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		if (HttpUtils.isParameterExists(session, LinkKeeper.SESSION_USER_BEAN_ROLE)) {
+		if (HttpUtils.isParameterExists(session, WelcomeController.SESSION_USER_BEAN_ROLE)) {
 			response.sendRedirect(LinkKeeper.PAGE_MAIN);
 		} else {
 			response.sendRedirect(LinkKeeper.PAGE_WELCOME);

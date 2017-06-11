@@ -1,7 +1,6 @@
 <%@page import="com.trainingcenter.projectee.utils.StringUtils"%>
 <%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +53,7 @@
 					data-toggle="dropdown"><i class="fa fa-user"></i> ${userLogin}
 						<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="main.html?Profile=true"><i
+						<li><a href="profile.html"><i
 								class="fa fa-fw fa-user"></i> Profile</a></li>
 						<li class="divider"></li>
 						<li><a href="LogOutFromSession"><i
