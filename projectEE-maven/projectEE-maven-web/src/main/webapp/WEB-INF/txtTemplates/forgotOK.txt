@@ -1,0 +1,12 @@
+﻿	Hello!
+	
+	You received this message because an attempt was made to restore your credentials.
+	
+	Your credentials are as follows:
+	
+		Login - ${LOGIN}
+		Password - ${PASSWORD}
+		First name - ${FIRST_NAME}
+		Last name - ${LAST_NAME}
+		
+	Do not reply to this message.

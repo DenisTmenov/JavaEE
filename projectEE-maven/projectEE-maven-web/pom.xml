@@ -8,9 +8,8 @@
 		<artifactId>projectEE-maven</artifactId>
 		<version>${project.version}</version>
 	</parent>
-	<artifactId>projectEE-maven-dao</artifactId>
-
-
+	<artifactId>projectEE-maven-web</artifactId>
+	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -18,19 +17,6 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
-		</dependency>
-
-
-
 	</dependencies>
+	
 </project>

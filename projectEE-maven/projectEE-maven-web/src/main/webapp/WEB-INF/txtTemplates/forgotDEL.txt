@@ -1,0 +1,14 @@
+﻿	Hello!
+	
+	You received this message because an attempt was made to restore your credentials.
+	
+	Your credentials are as follows:
+	
+		Login - ${LOGIN}
+		Password - ${PASSWORD}
+		First name - ${FIRST_NAME}
+		Last name - ${LAST_NAME}
+		
+	Please note, you are blocked on our resource. For more information, contact administrator@projectee.com
+
+	Do not reply to this message.

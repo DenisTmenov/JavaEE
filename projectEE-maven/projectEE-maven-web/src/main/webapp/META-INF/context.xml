@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context>
+  <!-- 
+	<Resource name="jdbc/project_ee_db_server" 
+			  auth="Container" 
+			  type="javax.sql.DataSource" 
+			  url="jdbc:mysql://localhost:3306/project_ee_db" 
+			  driverClassName="com.mysql.jdbc.Driver" 
+			  username="root" 
+			  password="root" 
+			  maxActive="100" 
+			  maxIdle="30" 
+			  maxWait="10000" />
+			   -->
+	<ResourceLink name="jdbc/project_ee_db_context" global="jdbc/project_ee_db_server" type="javax.sql.DataSource"/>
+</Context>

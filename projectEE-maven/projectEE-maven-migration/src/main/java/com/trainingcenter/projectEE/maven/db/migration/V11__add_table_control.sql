@@ -1,0 +1,4 @@
+CREATE TABLE `control` (
+  `id_control` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `name` INTEGER NOT NULL
+);
