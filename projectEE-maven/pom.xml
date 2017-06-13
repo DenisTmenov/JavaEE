@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
@@ -11,10 +9,12 @@
 	<packaging>pom</packaging>
 
 	<modules>
-
 		<module>projectEE-maven-dao</module>
 		<module>projectEE-maven-web</module>
 		<module>projectEE-maven-migration</module>
+		<module>projectEE-maven-domain</module>
+		<module>projectEE-maven-services</module>
+		<module>projectEE-maven-utils</module>
 	</modules>
 
 	<properties>
@@ -25,6 +25,8 @@
 		<junit.version>3.8.1</junit.version>
 		<flyway.version>4.2.0</flyway.version>
 		<servlet.version>3.1.0</servlet.version>
+		<javax.mail.version>1.5.6</javax.mail.version>
+		<mysql.connector.version>6.0.6</mysql.connector.version>
 
 	</properties>
 
@@ -36,6 +38,13 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+
+
+
+
+
+
 
 	</dependencies>
 
@@ -50,6 +59,18 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<!-- <plugin>
+               <groupId>org.apache.tomcat.maven</groupId>
+               <artifactId>tomcat7-maven-plugin</artifactId>
+               <version>2.2</version>
+               Config: contextPath and Port (Default - /SimpleMavenWebApp : 8080)
+               
+               <configuration>
+                   <path>/</path>
+                   <port>8899</port>
+               </configuration>
+               
+           </plugin> -->
 		</plugins>
 	</build>
 

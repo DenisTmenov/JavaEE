@@ -1,6 +1,6 @@
-<%@page import="com.trainingcenter.projectee.controllers.WelcomeController"%>
+<%@page import="com.trainingcenter.projectEE.maven.controllers.WelcomeController"%>
+<%@page import="com.trainingcenter.projectEE.maven.utils.HttpUtils"%>
 <%@page import="java.util.Map"%>
-<%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <!DOCTYPE html>
 <html lang='eng'>
 <head>

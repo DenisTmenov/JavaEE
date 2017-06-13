@@ -3,13 +3,13 @@ package main.java.com.trainingcenter.projectEE.maven.dao.mysql;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.trainingcenter.projectee.entity.UserEntity;
-import com.trainingcenter.projectee.entity.UserInfoEntity;
-import com.trainingcenter.projectee.entity.UserRoleEntity;
+import main.java.com.trainingcenter.projectEE.maven.entity.UserEntity;
+import main.java.com.trainingcenter.projectEE.maven.entity.UserInfoEntity;
+import main.java.com.trainingcenter.projectEE.maven.entity.UserRoleEntity;
 
 public class CreaterEntity {
 	
-	public static UserEntity createUserEntity(ResultSet set) throws SQLException {
+	public static main.java.com.trainingcenter.projectEE.maven.entity.UserEntity createUserEntity(ResultSet set) throws SQLException {
 		Integer idUser = set.getInt("id_user");
 		String login = set.getString("login");
 		String password = set.getString("password");

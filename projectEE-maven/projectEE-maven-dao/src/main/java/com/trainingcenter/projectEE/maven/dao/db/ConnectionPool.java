@@ -1,4 +1,4 @@
-package com.trainingcenter.projectee.dao.db;
+package main.java.com.trainingcenter.projectEE.maven.dao.db;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

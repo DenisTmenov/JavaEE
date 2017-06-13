@@ -1,6 +1,6 @@
-<%@page import="com.trainingcenter.projectee.controllers.ForgotController"%>
+<%@page import="com.trainingcenter.projectEE.maven.utils.HttpUtils"%>
+<%@page import="com.trainingcenter.projectEE.maven.controllers.ForgotController"%>
 <%@page import="java.util.Map"%>
-<%@page import="com.trainingcenter.projectee.utils.HttpUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>

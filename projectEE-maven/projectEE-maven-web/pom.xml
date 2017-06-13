@@ -12,11 +12,31 @@
 	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.trainingcenter</groupId>
+			<artifactId>projectEE-maven-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.trainingcenter</groupId>
+			<artifactId>projectEE-maven-dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.trainingcenter</groupId>
+			<artifactId>projectEE-maven-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 	</dependencies>
-	
+
+	<build>
+		<finalName>projectEE-maven-web</finalName>
+	</build>
+
 </project>
