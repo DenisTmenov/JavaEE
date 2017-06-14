@@ -1,30 +1,30 @@
-package main.java.com.trainingcenter.projectEE.maven.dao.mysql;
+package com.trainingcenter.projectEE.maven.dao.mysql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import main.java.com.trainingcenter.projectEE.maven.entity.UserEntity;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserInfoEntity;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserRoleEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserRoleEntity;
 
 public class CreaterEntity {
 	
-	public static main.java.com.trainingcenter.projectEE.maven.entity.UserEntity createUserEntity(ResultSet set) throws SQLException {
+	public static UserEntity createUserEntity(ResultSet set) throws SQLException {
 		Integer idUser = set.getInt("id_user");
 		String login = set.getString("login");
 		String password = set.getString("password");
 		Boolean delStatus = set.getBoolean("del_status");
 		Integer fkRole = set.getInt("fk_role");
 
-		UserEntity entity = new UserEntity();
+		UserEntity bean = new UserEntity();
 
-		entity.setIdUser(idUser);
-		entity.setLogin(login);
-		entity.setPassword(password);
-		entity.setDelStatus(delStatus);
-		entity.setFkRole(fkRole);
+		bean.setIdUser(idUser);
+		bean.setLogin(login);
+		bean.setPassword(password);
+		bean.setDelStatus(delStatus);
+		bean.setFkRole(fkRole);
 
-		return entity;
+		return bean;
 	}
 	
 	public static UserInfoEntity createUserInfoEntity(ResultSet set) throws SQLException {
@@ -34,15 +34,15 @@ public class CreaterEntity {
 		String email = set.getString("email");
 		Integer fkIdUser = set.getInt("fk_id_user");
 
-		UserInfoEntity entity = new UserInfoEntity();
+		UserInfoEntity bean = new UserInfoEntity();
 
-		entity.setIdInfo(idInfo);
-		entity.setFirstName(firstName);
-		entity.setLastName(lastName);
-		entity.setEmail(email);
-		entity.setFkIdUser(fkIdUser);
+		bean.setIdInfo(idInfo);
+		bean.setFirstName(firstName);
+		bean.setLastName(lastName);
+		bean.setEmail(email);
+		bean.setFkIdUser(fkIdUser);
 
-		return entity;
+		return bean;
 	}
 
 	public static UserRoleEntity createUserRoleEntity(ResultSet set) throws SQLException {
@@ -53,16 +53,16 @@ public class CreaterEntity {
 		Boolean modify = set.getBoolean("modify");
 		Boolean read = set.getBoolean("read");
 
-		UserRoleEntity entity = new UserRoleEntity();
+		UserRoleEntity bean = new UserRoleEntity();
 
-		entity.setIdRole(idRole);
-		entity.setNameRole(nameRole);
-		entity.setAdd(add);
-		entity.setDelete(delete);
-		entity.setModify(modify);
-		entity.setRead(read);
+		bean.setIdRole(idRole);
+		bean.setNameRole(nameRole);
+		bean.setAdd(add);
+		bean.setDelete(delete);
+		bean.setModify(modify);
+		bean.setRead(read);
 
-		return entity;
+		return bean;
 	}
 	
 	

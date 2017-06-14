@@ -23,23 +23,15 @@
 
 		<dependency>
 			<groupId>com.trainingcenter</groupId>
-			<artifactId>projectEE-maven-services</artifactId>
+			<artifactId>projectEE-maven-domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.trainingcenter</groupId>
 			<artifactId>projectEE-maven-utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.trainingcenter</groupId>
-			<artifactId>projectEE-maven-domain</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-
 
 	</dependencies>
 

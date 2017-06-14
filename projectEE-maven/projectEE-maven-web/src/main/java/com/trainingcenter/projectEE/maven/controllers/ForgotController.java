@@ -13,16 +13,15 @@ import javax.servlet.http.HttpSession;
 
 import com.trainingcenter.projectEE.maven.controllers.helpers.LinkKeeper;
 import com.trainingcenter.projectEE.maven.controllers.helpers.WriterOutJsp;
+import com.trainingcenter.projectEE.maven.dao.entity.UserEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserInfoDaoImpl;
 import com.trainingcenter.projectEE.maven.domain.ForgotDto;
 import com.trainingcenter.projectEE.maven.services.EmailService;
 import com.trainingcenter.projectEE.maven.services.factory.ServiceFactory;
 import com.trainingcenter.projectEE.maven.utils.CreateTXT;
 import com.trainingcenter.projectEE.maven.utils.HttpUtils;
-
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserInfoDaoImpl;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserEntity;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserInfoEntity;
 
 @WebServlet("/forgot.html")
 public class ForgotController extends HttpServlet {

@@ -1,7 +1,7 @@
-package main.java.com.trainingcenter.projectEE.maven.dao;
+package com.trainingcenter.projectEE.maven.dao;
 
-import main.java.com.trainingcenter.projectEE.maven.dao.exceptions.ExceptionDao;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.exceptions.ExceptionDao;
 
 public interface UserInfoDao {
 

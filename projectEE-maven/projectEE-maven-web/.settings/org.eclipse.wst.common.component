@@ -5,6 +5,9 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="projectEE-maven-domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/projectEE-maven-domain/projectEE-maven-domain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="projectEE-maven-services-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/projectEE-maven-services/projectEE-maven-services">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -12,9 +15,6 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="projectEE-maven-utils-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/projectEE-maven-utils/projectEE-maven-utils">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="projectEE-maven-domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/projectEE-maven-domain/projectEE-maven-domain">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="projectEE-maven-web"/>

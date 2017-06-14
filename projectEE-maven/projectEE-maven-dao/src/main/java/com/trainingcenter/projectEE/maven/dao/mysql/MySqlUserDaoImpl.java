@@ -1,15 +1,15 @@
-package main.java.com.trainingcenter.projectEE.maven.dao.mysql;
+package com.trainingcenter.projectEE.maven.dao.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import main.java.com.trainingcenter.projectEE.maven.dao.UserDao;
-import main.java.com.trainingcenter.projectEE.maven.dao.db.ConnectionPool;
-import main.java.com.trainingcenter.projectEE.maven.dao.exceptions.ExceptionDao;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserEntity;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.UserDao;
+import com.trainingcenter.projectEE.maven.dao.db.ConnectionPool;
+import com.trainingcenter.projectEE.maven.dao.entity.UserEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.exceptions.ExceptionDao;
 
 public class MySqlUserDaoImpl implements UserDao {
 	@Override

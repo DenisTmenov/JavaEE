@@ -15,7 +15,7 @@
   </error-page>
   <servlet>
     <servlet-name>DbMigrator</servlet-name>
-    <servlet-class>com.trainingcenter.projectee.maven.dao.db.flyway.DbMigrator</servlet-class>
+    <servlet-class>com.trainingcenter.projectEE.maven.dao.db.flyway.DbMigrator</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
 </web-app>

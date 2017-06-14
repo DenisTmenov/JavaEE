@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.trainingcenter.projectEE.maven.controllers.helpers.LinkKeeper;
+import com.trainingcenter.projectEE.maven.dao.entity.UserEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserInfoDaoImpl;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserRoleDaoImpl;
 import com.trainingcenter.projectEE.maven.domain.ProfileDto;
 import com.trainingcenter.projectEE.maven.utils.HttpUtils;
-
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserInfoDaoImpl;
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserRoleDaoImpl;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserEntity;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserInfoEntity;
 
 @WebServlet("/profile.html")
 public class ProfileController extends HttpServlet {

@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.trainingcenter.projectEE.maven.controllers.helpers.LinkKeeper;
+import com.trainingcenter.projectEE.maven.dao.entity.UserEntity;
+import com.trainingcenter.projectEE.maven.dao.entity.UserInfoEntity;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserInfoDaoImpl;
 import com.trainingcenter.projectEE.maven.domain.RegistrationDto;
 import com.trainingcenter.projectEE.maven.utils.HttpUtils;
 import com.trainingcenter.projectEE.maven.utils.StringUtils;
-
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserInfoDaoImpl;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserEntity;
-import main.java.com.trainingcenter.projectEE.maven.entity.UserInfoEntity;
 
 @WebServlet("/registration.html")
 public class RegistrationController extends HttpServlet {

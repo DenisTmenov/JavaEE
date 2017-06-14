@@ -9,12 +9,12 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>projectEE-maven-dao</module>
 		<module>projectEE-maven-web</module>
 		<module>projectEE-maven-migration</module>
 		<module>projectEE-maven-domain</module>
 		<module>projectEE-maven-services</module>
 		<module>projectEE-maven-utils</module>
+		<module>projectEE-maven-dao</module>
 	</modules>
 
 	<properties>

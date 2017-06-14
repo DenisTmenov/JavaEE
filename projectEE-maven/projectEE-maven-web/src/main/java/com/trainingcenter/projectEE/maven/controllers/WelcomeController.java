@@ -12,11 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.trainingcenter.projectEE.maven.controllers.helpers.LinkKeeper;
+import com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
 import com.trainingcenter.projectEE.maven.domain.WelcomeDto;
 import com.trainingcenter.projectEE.maven.utils.HttpUtils;
 import com.trainingcenter.projectEE.maven.utils.StringUtils;
-
-import main.java.com.trainingcenter.projectEE.maven.dao.mysql.MySqlUserDaoImpl;
 
 @WebServlet("/welcome.html")
 public class WelcomeController extends HttpServlet {

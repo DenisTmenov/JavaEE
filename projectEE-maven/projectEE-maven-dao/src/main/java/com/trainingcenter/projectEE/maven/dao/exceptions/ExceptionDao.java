@@ -1,4 +1,4 @@
-package main.java.com.trainingcenter.projectEE.maven.dao.exceptions;
+package com.trainingcenter.projectEE.maven.dao.exceptions;
 
 public class ExceptionDao extends RuntimeException {
 
