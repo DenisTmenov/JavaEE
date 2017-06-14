@@ -8,30 +8,38 @@
 		<artifactId>projectEE-maven</artifactId>
 		<version>${project.version}</version>
 	</parent>
+
 	<artifactId>projectEE-maven-web</artifactId>
 	<packaging>war</packaging>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.trainingcenter</groupId>
+			<artifactId>projectEE-maven-services</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.trainingcenter</groupId>
 			<artifactId>projectEE-maven-utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.trainingcenter</groupId>
-			<artifactId>projectEE-maven-dao</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.trainingcenter</groupId>
 			<artifactId>projectEE-maven-domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+
 
 	</dependencies>
 

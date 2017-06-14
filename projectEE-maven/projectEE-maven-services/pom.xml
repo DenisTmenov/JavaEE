@@ -16,5 +16,12 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>${javax.mail.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.trainingcenter</groupId>
+		<artifactId>projectEE-maven-dao</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
 	</dependencies>
 </project>

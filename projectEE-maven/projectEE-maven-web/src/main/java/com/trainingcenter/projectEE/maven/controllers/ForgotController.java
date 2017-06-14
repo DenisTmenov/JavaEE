@@ -56,7 +56,7 @@ public class ForgotController extends HttpServlet {
 			Boolean isEmail = HttpUtils.isParameterExists(request, "email");
 			if (isEmail) {
 				String email = request.getParameter("email");
-				com.trainingcenter.projectEE.maven.domain.ForgotDto forgotDto = new ForgotDto();
+				ForgotDto forgotDto = new ForgotDto();
 				forgotDto.setEmail(email);
 				request.setAttribute("forgotDto", forgotDto);
 
